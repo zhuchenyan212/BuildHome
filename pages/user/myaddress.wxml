@@ -1,0 +1,32 @@
+<!--pages/user/myaddress.wxml-->
+<view class="container">
+  <view class="addresswrap">
+    <view class="cart_container">
+      <image class="item-select" bindtap="switchSelect" src="{{isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+      <view class="adressFont">
+        <view class="addresInfo">光谷HANWE MALLA013
+          <view class="lable">默认</view>
+        </view>
+        <view class="addressuser">张三 189876464654</view>
+      </view>
+      <view class="edit">
+        <image src="/images/Edit.png" />
+      </view>
+    </view>
+    <view class="cart_container">
+      <image class="item-select" bindtap="switchSelect" src="{{isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+      <view class="adressFont">
+        <view class="addresInfo">光谷HANWE MALLA013
+          <view class="lable">默认</view>
+        </view>
+        <view class="addressuser">张三 189876464654</view>
+      </view>
+      <view class="edit">
+        <image src="/images/Edit.png" />
+      </view>
+    </view>
+  </view>
+  <view class="wid">
+    <button catchtap="addAddress">新增收货地址</button>
+  </view>
+</view>

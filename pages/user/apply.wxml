@@ -1,0 +1,23 @@
+<!--pages/user/apply.wxml-->
+<view class="container">
+  <view class="imgwrap">
+    <image src="/images/apply1.png" />
+    <image src="/images/apply2.png" />
+    <image src="/images/apply3.png" />
+  </view>
+  <view class="formwrap">
+    <view class="forminput">
+      <view>姓名：</view>
+      <input type="text" placeholder="请填写真实姓名" />
+    </view>
+    <view class="forminput">
+      <view>手机号：</view>
+      <input type="text" placeholder="请填写手机号" />
+    </view>
+    <view class="forminput">
+      <view>意向城市：</view>
+      <input type="text" placeholder="填写意向城市" />
+    </view>
+    <button>提交申请</button>
+  </view>
+</view>

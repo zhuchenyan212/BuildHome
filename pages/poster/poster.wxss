@@ -1,0 +1,58 @@
+/* pages/poster/poster.wxss */
+
+page {
+  background: #fff;
+  height: 100%;
+}
+
+.container .posterWrap {
+  padding: 55rpx;
+  color: #342b2b;
+  font-size: 28rpx;
+}
+
+.container .posterWrap .headTitle {
+  width: 138%;
+  margin-top: -5rpx;
+  margin-left: 56rpx;
+}
+
+.container .posterWrap .left .ImgContain {
+  width: 150rpx;
+  height: 150rpx;
+  margin-left: 54rpx;
+  position: relative;
+}
+
+.container .posterWrap .left .ImgContain .img {
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.container .posterWrap .left .ImgContain .position {
+  position: absolute;
+  top: -9rpx;
+  right: -10rpx;
+}
+
+.container .posterWrap .left .ImgContain .position image {
+  width: 43rpx;
+  height: 43rpx;
+}
+
+.container .posterWrap .textarea {
+  width: 484rpx;
+  height: 202rpx;
+  background: rgba(243, 243, 243, 1);
+  border: 2rpx solid rgba(143, 143, 143, 1);
+  opacity: 1;
+  border-radius: 10rpx;
+  padding: 24rpx 24rpx 24rpx 24rpx;
+}
+
+.fontmax {
+  color: #8f8f8f;
+  font-size: 28rpx;
+  height: 20rpx;
+  text-align: right;
+}

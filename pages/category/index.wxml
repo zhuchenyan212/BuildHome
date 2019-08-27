@@ -1,0 +1,25 @@
+<!--pages/category/index.wxml-->
+<view class="container">
+  <!--左侧栏-->
+  <view class="nav_left">
+    <block wx:for="{{jgjGoodsTypeEntities}}" wx:key="index">
+      <view class="nav_left_items {{curNav == item.id ? 'active' : ''}}" bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+    </block>
+  </view>
+  <!--右侧栏-->
+  <view class="nav_right">
+    <!--如果有数据，才遍历项-->
+    <view wx:if="{{products.length > 0}}">
+      <block wx:for="{{products}}" wx:key="index">
+        <view class="nav_right_items">
+          <navigator url="/pages/category/productDetail?id={{item.id}}">
+            <image src="{{item.mainImg}}"></image>
+            <text>{{item.name}}</text>
+          </navigator>
+        </view>
+      </block>
+    </view>
+    <!--如果无数据，则显示数据-->
+    <view class="nodata_text" wx:if="{{products.length <= 0}}">该分类暂无数据</view>
+  </view>
+</view>

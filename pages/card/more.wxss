@@ -1,0 +1,44 @@
+/* pages/card/more.wxss */
+
+page {
+  background: #f5f5f7;
+}
+
+.container {
+  width: 100%;
+}
+
+.container .list {
+  width: 100%;
+  height: auto;
+}
+
+.container .list .listitem {
+  width: 100%;
+  height: 228rpx;
+  background: #fff;
+  padding-left: 27rpx;
+  padding-right: 27rpx;
+  margin-top: 5rpx;
+}
+
+.container .list .listitem image {
+  width: 292rpx;
+  height: 172rpx;
+  margin: 24rpx 12rpx;
+  float: left;
+}
+
+.container .list .listInfo {
+  margin: 24rpx 12rpx;
+  float: left;
+}
+
+.container .list .listInfo .text {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 56rpx;
+  color: rgba(143, 143, 143, 1);
+  opacity: 1;
+}

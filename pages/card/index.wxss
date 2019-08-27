@@ -1,0 +1,243 @@
+/* pages/card/index.wxss */
+
+page {
+  background: #f5f5f7;
+}
+
+.container .guangao {
+  width: 100%;
+  height: 612rpx;
+  background: #fff;
+  position: relative;
+}
+
+.container .guangao .bgImg {
+  width: 100%;
+  height: 412rpx;
+}
+
+.container .guangao .carditem {
+  width: 90%;
+  height: 210rpx;
+  background: #fff;
+  position: absolute;
+  top: 304rpx;
+  left: 40rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.container .guangao .carditem .touxiang {
+  width: 160rpx;
+  height: 160rpx;
+  margin: 24rpx 20rpx;
+  float: left;
+  border: 1px dashed #666;
+}
+
+.container .guangao .carditem .carInfo {
+  font-size: 24rpx;
+  color: #000;
+  float: left;
+  width: 380rpx;
+  height: 160rpx;
+  line-height: 44rpx;
+  background: #fff;
+  margin: 24rpx 12rpx;
+}
+
+.container .guangao .carditem .erweima {
+  width: 50rpx;
+  height: 50rpx;
+  float: right;
+  margin-right: 10rpx;
+  margin-top: 10rpx;
+}
+
+.container .guangao .carditem .Edit {
+  width: 120rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background: #fff;
+  color: #dc7f20;
+  font-size: 20rpx;
+  position: absolute;
+  right: 10rpx;
+  bottom: 16rpx;
+}
+
+.container .guangao .carditem .Edit image {
+  width: 26rpx;
+  height: 26rpx;
+  margin-top: 6rpx;
+  float: left;
+}
+
+.container .guangao .headbottom {
+  width: 100%;
+  height: 60rpx;
+  margin-top: 112rpx;
+  display: flex;
+  align-items: center;
+}
+
+.container .guangao .headbottom > view {
+  flex: 1;
+  height: 60rpx;
+  text-align: left;
+  line-height: 60rpx;
+  color: #342b2b;
+  font-size: 20rpx;
+  float: left;
+  margin-left: 70rpx;
+}
+
+.container .guangao .headbottom > view image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 16rpx;
+  float: left;
+  margin-right: 6rpx;
+}
+
+.container .caseList {
+  padding: 0 24rpx;
+  background: #fff;
+  margin-top: 15rpx;
+}
+
+.container .caseList .title {
+  height: 60rpx;
+  line-height: 60rpx;
+}
+
+.container .caseList .title .right {
+  font-size: 20rpx;
+  color: #8f8f8f;
+}
+
+.container .caseList .list {
+  height: 600rpx;
+  background: #fff;
+}
+
+.container .caseList .list .items {
+  overflow: hidden;
+  float: left;
+  box-sizing: border-box;
+  margin-top: 16rpx;
+}
+
+.container .caseList .list .items:nth-child(even) {
+  margin-left: 100rpx;
+}
+
+.container .caseList .list .items .listImg {
+  width: 300rpx;
+  height: 180rpx;
+}
+
+.container .caseList .list .items .itemsize {
+  font-size: 20rpx;
+  font-family: PingFang SC;
+  font-weight: 400;
+  line-height: 24rpx;
+  color: rgba(143, 143, 143, 1);
+  opacity: 1;
+  margin-top: 5px;
+}
+
+.container .floor {
+  height: 260rpx;
+  padding: 0 24rpx;
+  background: #fff;
+  margin-top: 15rpx;
+  margin-bottom: 15rpx;
+}
+
+.container .floor .floor_box .title {
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.container .floor .floor_box .title .right {
+  font-size: 20rpx;
+  font-weight: bold;
+}
+
+.container .floor .floor_box .item {
+  overflow: hidden;
+  float: left;
+  box-sizing: border-box;
+}
+
+.container .floor .floor_box .list .item {
+  width: 330rpx;
+  height: 150rpx;
+}
+
+.container .floor .floor_box .list .item:nth-child(even) {
+  margin-left: 24rpx;
+}
+
+.container .floor .floor_box .list image {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.showToast {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  background-color: #000;
+  filter: alpha(opacity=52);
+  -moz-opacity: 0.52;
+  opacity: 0.52;
+}
+
+.cover {
+  width: 543rpx;
+  height: 670rpx;
+  background: #fff !important;
+  margin-top: 182rpx;
+  margin-left: 108rpx;
+  position: fixed;
+  top: 25rpx;
+  z-index: 999;
+  border-radius: 10rpx;
+}
+
+.headErwe {
+  width: 100%;
+  height: 210rpx;
+  border-radius: 10rpx;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
+}
+
+.headErwe .touxiang {
+  width: 26%;
+  height: 156rpx;
+  margin: 24rpx 0 0 20rpx;
+  float: left;
+  border: 1px dashed #666;
+}
+
+.headErwe .carInfo {
+  font-size: 24rpx;
+  color: #000;
+  float: left;
+  width: 65%;
+  height: 160rpx;
+  line-height: 54rpx;
+  background: #fff;
+  margin: 24rpx 0rpx 0rpx 15rpx;
+}
+
+.userma image {
+  width: 356rpx;
+  height: 356rpx;
+  margin: 70rpx 88rpx;
+}

@@ -1,0 +1,101 @@
+<!--pages/order/detail.wxml-->
+<view class="container">
+  <!-- 头部模块 -->
+  <view class="headnav">
+    <view class="headBg">
+      <view class="orderstatus">待付款</view>
+      <view class="orderstatus hide">待发货</view>
+      <view class="orderstatus hide">待收货</view>
+      <view class="orderstatus hide">已完成</view>
+      <image src="/images/righton.png" />
+    </view>
+    <!-- 订单模块 -->
+    <view class="carditem">
+      <navigator class="ft-13 font" url="" hover-class="none">请尽快支付</navigator>
+      <navigator class="ft-13 font hide" url="" hover-class="none">订单已付款，等待发货</navigator>
+      <navigator class="ft-13 font hide" url="" hover-class="none">订单已发货，等待收货</navigator>
+      <navigator class="ft-13 font hide" url="" hover-class="none">已确认收货，订单已完成</navigator>
+      <view class="orderbottom">
+        <view class="onButton space">付款</view>
+        <view class="offButton space">取消订单</view>
+      </view>
+    </view>
+    <!-- 订单模块 -->
+  </view>
+  <!-- 头部模块 -->
+  <!-- 订单信息 -->
+  <view class="cart_container">
+    <view class="adressFont">
+      <view class="addresInfo">光谷HANWE MALLA013
+        <view class="lable">默认</view>
+      </view>
+      <view class="addressuser">张三 189876464654</view>
+    </view>
+    <view class="edit">
+      <image src="/images/right.png" />
+    </view>
+  </view>
+  <view class="orderInfo">
+    <view class='Productitem clear'>
+      <view class='left'>
+        <image class="proImg" src="/images/mt.png" />
+        <view class="profot">
+          <view class="proName clamp">马桶安装维修</view>
+          <view class="proNum">x1</view>
+        </view>
+      </view>
+      <view class='proPrice right'>
+        ¥7200.00
+      </view>
+    </view>
+    <view class='Productitem clear'>
+      <view class='left'>
+        <image class="proImg" src="/images/mt.png" />
+        <view class="profot">
+          <view class="proName clamp">马桶安装维修</view>
+          <view class="proNum">x1</view>
+        </view>
+      </view>
+      <view class='proPrice right'>
+        ¥7200.00
+      </view>
+    </view>
+  </view>
+  <view class="chooseAdress clear">
+    <view class="left">使用优惠券
+      <text>有5张可用优惠券(不可叠加)</text>
+    </view>
+    <view class="right">
+      <image src="/images/right.png" />
+    </view>
+  </view>
+  <view class="ordercontain">
+    <view class="orderItem">
+      <view class="left">商品总价</view>
+      <view class="right">¥7200.00</view>
+    </view>
+    <view class="orderItem">
+      <view class="left">优惠</view>
+      <view class="right">-¥0.00</view>
+    </view>
+    <view class="orderItem">
+      <view class="left">订单金额</view>
+      <view class="right">¥7200.00</view>
+    </view>
+  </view>
+  <view class="ordercontains">
+    <view class="orderItems">
+      <view class="left">订单编号</view>
+      <view class="right">15465465464</view>
+    </view>
+    <view class="orderItems">
+      <view class="left">下单时间</view>
+      <view class="right">2019-07-11 15:54:54</view>
+    </view>
+    <view class="orderItems">
+      <view class="left">支付方式</view>
+      <view class="right">微信支付</view>
+    </view>
+  </view>
+  <!-- 订单信息 -->
+</view>

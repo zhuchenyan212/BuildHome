@@ -1,0 +1,18 @@
+<!--pages/card/Edit.wxml-->
+<view class="container">
+  <view class="editwrap">
+    <view class="itemedit">
+      <text>姓名</text>
+      <input type="text" placeholder="请填写姓名" />
+    </view>
+    <view class="itemedit">
+      <text>电话</text>
+      <input type="text" placeholder="请填写手机号" />
+    </view>
+    <view class="itemedit">
+      <text>年龄</text>
+      <input type="text" placeholder="请填写年龄" />
+    </view>
+  </view>
+  <button>保存</button>
+</view>

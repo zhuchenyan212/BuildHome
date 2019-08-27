@@ -1,0 +1,83 @@
+/* pages/user/myaddress.wxss */
+
+page {
+  background: #f5f5f7;
+}
+
+.cart_container {
+  display: flex;
+  flex-direction: row;
+  height: 148rpx;
+  background: #fff;
+  margin-top: 10rpx;
+  position: relative;
+}
+
+.item-select {
+  width: 40rpx;
+  height: 40rpx;
+  margin-top: 54rpx;
+  margin-left: 32rpx;
+}
+
+.cart_container .adressFont {
+  line-height: 50rpx;
+  padding-top: 30rpx;
+  padding-left: 20rpx;
+}
+
+.cart_container .adressFont .addresInfo {
+  font-weight: bold;
+  color: #342b2b;
+  font-size: 28rpx;
+}
+
+.cart_container .adressFont .addressuser {
+  color: #8f8f8f;
+  font-size: 24rpx;
+}
+
+.cart_container .adressFont .addresInfo .lable {
+  display: inline-block;
+  width: 70rpx;
+  height: 30rpx;
+  line-height: 30rpx;
+  background: rgba(220, 127, 32, 1);
+  opacity: 1;
+  border-radius: 10rpx;
+  font-size: 20rpx;
+  color: #fff;
+  text-align: center;
+}
+
+.cart_container .edit {
+  float: right;
+  position: absolute;
+  right: 30rpx;
+  top: 30rpx;
+}
+
+.cart_container .edit image {
+  width: 29rpx;
+  height: 29rpx;
+}
+
+.container .wid {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  bottom: 50rpx;
+}
+
+.container button {
+  width: 90%;
+  height: 76rpx;
+  line-height: 76rpx;
+  color: #fff;
+  background: rgba(220, 127, 32, 1);
+  opacity: 1;
+  text-align: center;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+}

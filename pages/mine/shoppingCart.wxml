@@ -1,0 +1,37 @@
+<!--pages/mine/shoppingCart.wxml-->
+<view class="container">
+  <scroll-view class="scroll" scroll-y="true">
+    <view wx:for="{{carts}}" wx:key='{{cart}}'>
+      <view class="cart_container">
+        <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" src="{{item.isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+        <image class="item-image" src="{{item.pic}}"></image>
+        <view class="column">
+          <view class="title clamp">{{item.name}}</view>
+          <view class="deletproduct" bindtap="delGoods">
+            <image src="/images/delp.png" />
+          </view>
+          <view class="row">
+            <text class="sku-price">￥{{item.price}}</text>
+            <!-- 控制数量加减 -->
+            <view class="right pd">
+              <view class="btn-box">
+                <view class="operate leftB" data-num="{{item.count.quantity}}" bindtap="delCount">-</view>
+                <input class="num" value="{{item.count.quantity}}" />
+                <view class="operate rightB" data-num="{{item.count.quantity}}" bindtap="addCount">+</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+  <view class="bottom_total">
+    <view class="rows">
+      <image class="item-allselect" bindtap="allSelect" src="{{isAllSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+      <text class="small_text">全选</text>
+      <text class="heji">合计:</text>
+      <text class="price">￥{{totalMoney}}</text>
+      <button class="button-red" bindtap="toBuy" formType="submit">去下单</button>
+    </view>
+  </view>
+</view>

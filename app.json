@@ -1,0 +1,75 @@
+{
+  "pages": [
+    "pages/login/index",
+    "pages/index/index",
+    "pages/index/activity",
+    "pages/category/index",
+    "pages/category/service",
+    "pages/category/productDetail",
+    "pages/card/index",
+    "pages/card/Edit",
+    "pages/card/more",
+    "pages/card/caseDetail",
+    "pages/user/index",
+    "pages/user/infoList",
+    "pages/user/myaddress",
+    "pages/user/addAddress",
+    "pages/user/apply",
+    "pages/user/applycity",
+    "pages/mine/quan",
+    "pages/mine/shoppingCart",
+    "pages/mine/confirmOrder",
+    "pages/order/index",
+    "pages/order/detail",
+    "pages/poster/index",
+    "pages/poster/poster"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "佳管家小程序",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundTextStyle": "light",
+    "backgroundColor": "#fff",
+    "enablePullDownRefresh": false
+  },
+  "tabBar": {
+    "color": "#333",
+    "selectedColor": "#DC7F20",
+    "borderStyle": "black",
+    "backgroundColor": "#fff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "images/foot01.png",
+        "selectedIconPath": "images/foot02.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/category/index",
+        "iconPath": "images/foot03.png",
+        "selectedIconPath": "images/foot04.png",
+        "text": "商城"
+      },
+      {
+        "pagePath": "pages/card/index",
+        "iconPath": "images/foot05.png",
+        "selectedIconPath": "images/foot06.png",
+        "text": "专职名片"
+      },
+      {
+        "pagePath": "pages/user/index",
+        "iconPath": "images/foot07.png",
+        "selectedIconPath": "images/foot08.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "networkTimeout": {
+    "request": 10000,
+    "connectSocket": 10000,
+    "uploadFile": 10000,
+    "downloadFile": 10000
+  },
+  "debug": true,
+  "sitemapLocation": "sitemap.json"
+}

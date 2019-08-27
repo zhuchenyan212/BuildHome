@@ -1,0 +1,56 @@
+/* pages/user/apply.wxss */
+
+.container .imgwrap {
+  width: 100%;
+}
+
+.container .imgwrap image {
+  width: 100%;
+  height: 396rpx;
+}
+
+.container .formwrap {
+  width: 100%;
+  height: 520rpx;
+  background: #fff;
+}
+
+.container .formwrap .forminput {
+  width: 90%;
+  height: 86rpx;
+  line-height: 86rpx;
+  margin-left: 35rpx;
+  background: rgba(222, 219, 217, 1);
+  border: 2px solid rgba(220, 127, 32, 1);
+  opacity: 0.4;
+  border-radius: 10rpx;
+  margin-top: 40rpx;
+}
+
+.container .formwrap .forminput view {
+  float: left;
+  font-size: 28rpx;
+  color: #342b2b;
+  padding-left: 40rpx;
+}
+
+.container .formwrap .forminput input {
+  float: left;
+  font-size: 28rpx;
+  color: #342b2b;
+  margin-top: 18rpx;
+  padding-left: 40rpx;
+}
+
+.container .formwrap  button {
+  width: 90%;
+  height: 76rpx;
+  line-height: 76rpx;
+  color: #fff;
+  background: rgba(220, 127, 32, 1);
+  opacity: 1;
+  text-align: center;
+  border-radius: 10rpx;
+  margin-top: 30rpx;
+  font-size: 32rpx;
+}

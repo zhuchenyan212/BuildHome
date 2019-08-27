@@ -1,0 +1,74 @@
+<!-- <import src="../wxParse/wxParse.wxml" /> -->
+<view class="container">
+  <!-- 广告图 -->
+  <view class="guangao">
+    <image src="{{jgjActivity.introImg}}" />
+  </view>
+  <!-- 广告图 -->
+
+  <!-- 表单模块 -->
+  <view class="catagory">
+    <view class="floor_box">
+      <view class="title">
+        <view class="ft-14">
+          <text class="line">—— </text>
+          <text class="font">目前已经有<text class="red">{{count}}</text>人参与活动</text>
+          <text class="line"> ——</text>
+        </view>
+      </view>
+      <view class="p_box clear">
+        <form bindsubmit='saveInfo'>
+          <view class="formitem">
+            <view class="left ft-12 font tit">姓名
+              <text class="red">*</text>
+            </view>
+            <view class="left">
+              <input type="text" name='username' value='{{username}}' />
+            </view>
+          </view>
+          <view class="formitem">
+            <view class="left ft-12 font tit">手机号
+              <text class="red">*</text>
+            </view>
+            <view class="left">
+              <input type="number" name='phone' value='{{phone}}' maxlength="11" />
+            </view>
+          </view>
+          <button form-type="submit" type="default" size="defaultSize" hover-class="none">立即提交</button>
+        </form>
+      </view>
+      <!--公告列表-->
+      <view class="notice_wrap">
+        <view class="swiper-vertical">
+          <view class="slide-title">
+            <image src="/images/gg.png" />
+          </view>
+          <view class="swiper-info">
+            <swiper autoplay="true" interval="2000" vertical="true" circular="true" duration="500">
+              <block wx:for="{{jgjTakePartInEntities}}" wx:key="index">
+                <swiper-item>
+                  <navigator class="ellipsis" hover-class='none'>{{item.userName}} {{item.mobile}} {{item.createTime}}</navigator>
+                </swiper-item>
+              </block>
+            </swiper>
+          </view>
+        </view>
+      </view>
+      <!--公告列表-->
+    </view>
+  </view>
+  <!-- 表单模块 -->
+
+  <!-- 关于其他 -->
+  <view class="floors">
+    <view class="floors_box">
+      <view class="title clear">
+        <view class="left remai">服务详情</view>
+      </view>
+      <view class="item">
+        <image src="{{jgjActivity.detailImg}}" />
+      </view>
+    </view>
+  </view>
+  <!-- 关于其他 -->
+</view>

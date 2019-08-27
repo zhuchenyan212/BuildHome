@@ -1,0 +1,84 @@
+<!--pages/mine/confirmOrder.wxml-->
+<view class="container">
+  <view class="chooseAdress clear hide">
+    <view class="left">请选择收货地址</view>
+    <view class="right">
+      <image src="/images/right.png" />
+    </view>
+  </view>
+  <view class="cart_container">
+    <view class="adressFont">
+      <view class="addresInfo">光谷HANWE MALLA013
+        <view class="lable">默认</view>
+      </view>
+      <view class="addressuser">张三 189876464654</view>
+    </view>
+    <view class="edit">
+      <image src="/images/right.png" />
+    </view>
+  </view>
+  <view class="orderInfo">
+    <view class='Productitem clear'>
+      <view class='left'>
+        <image class="proImg" src="/images/mt.png" />
+        <view class="profot">
+          <view class="proName clamp">马桶安装维修</view>
+          <view class="proNum">x1</view>
+        </view>
+      </view>
+      <view class='proPrice right'>
+        ¥7200.00
+      </view>
+    </view>
+    <view class='Productitem clear'>
+      <view class='left'>
+        <image class="proImg" src="/images/mt.png" />
+        <view class="profot">
+          <view class="proName clamp">马桶安装维修</view>
+          <view class="proNum">x1</view>
+        </view>
+      </view>
+      <view class='proPrice right'>
+        ¥7200.00
+      </view>
+    </view>
+  </view>
+  <view class="chooseAdress clear">
+    <view class="left">使用优惠券
+      <text>有5张可用优惠券(不可叠加)</text>
+    </view>
+    <view class="right">
+      <image src="/images/right.png" />
+    </view>
+  </view>
+  <view class="ordercontain">
+    <view class="orderItem">
+      <view class="left">商品总价</view>
+      <view class="right">¥7200.00</view>
+    </view>
+    <view class="orderItem">
+      <view class="left">优惠</view>
+      <view class="right">-¥0.00</view>
+    </view>
+    <view class="orderItem">
+      <view class="left">订单金额</view>
+      <view class="right">¥7200.00</view>
+    </view>
+  </view>
+  <view class="orderPay clear">
+    <view class="left">
+      <image src="/images/weixin.png" />
+      <text>微信支付</text>
+    </view>
+    <view class="right">
+      <image src="/images/chooseon.png" />
+    </view>
+  </view>
+  <view class="bottom_total">
+    <view class="rows">
+      <text class="heji">待支付:</text>
+      <text class="price">￥¥7200.00</text>
+      <button class="button-red" bindtap="toBuy" formType="submit">立即支付</button>
+    </view>
+  </view>
+</view>

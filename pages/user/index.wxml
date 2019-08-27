@@ -1,0 +1,81 @@
+<!--pages/user/index.wxml-->
+<view class="container">
+  <!-- 头部模块 -->
+  <view class="headnav">
+    <view class="headBg">
+      <view class="dingwei" bindtap="showInfo">
+        <image src="/images/bell.png" />
+      </view>
+      <image class="touxing" src="/images/case1.png" />
+      <view class="fot" style="margin-top:4rpx;">萨姆</view>
+      <view class="item">
+        <input class="fot input" value="18545646540" />
+        <image class="changephone" src="/images/changephone.png" />
+      </view>
+    </view>
+    <!-- 订单模块 -->
+    <view class="carditem">
+      <navigator class="ft-13 font" url="/pages/order/index" hover-class="none">我的订单</navigator>
+      <view class="ui-grids clear">
+        <navigator class="grid" url="" hover-class="none">
+          <view class="ui_grid-img">
+            <image src="/images/order1.png" />
+          </view>
+          <view class="ui_grid-label ellipsis">待付款</view>
+        </navigator>
+        <navigator class="grid margin" url="" hover-class="none">
+          <view class="ui_grid-img">
+            <image src="/images/order2.png" />
+          </view>
+          <view class="ui_grid-label ellipsis">待发货</view>
+        </navigator>
+        <navigator class="grid margin" url="" hover-class="none">
+          <view class="ui_grid-img">
+            <image src="/images/order3.png" />
+          </view>
+          <view class="ui_grid-label ellipsis">待收货</view>
+        </navigator>
+        <navigator class="grid margin" url="" hover-class="none">
+          <view class="ui_grid-img">
+            <image src="/images/order4.png" />
+          </view>
+          <view class="ui_grid-label ellipsis">已完成</view>
+        </navigator>
+      </view>
+    </view>
+    <!-- 订单模块 -->
+  </view>
+  <!-- 头部模块 -->
+  <!-- 其他模块 -->
+  <view class="listmenu">
+    <navigator class="menu-item" url="/pages/mine/shoppingCart" hover-class="none">
+      <image src="/images/car.png" />
+      <text>购物车</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/mine/quan" hover-class="none">
+      <image src="/images/quan.png" />
+      <text>我的优惠券</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/user/myaddress" hover-class="none">
+      <image src="/images/adress.png" />
+      <text>我的地址</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/user/apply" hover-class="none">
+      <image src="/images/apply.png" />
+      <text>申请成为维修师傅</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/user/applycity" hover-class="none">
+      <image src="/images/cityapply.png" />
+      <text>城市合伙人申请</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/poster/index" hover-class="none">
+      <image src="/images/cityapply.png" />
+      <text>单图海报</text>
+    </navigator>
+    <navigator class="menu-item" url="/pages/poster/poster" hover-class="none">
+      <image src="/images/cityapply.png" />
+      <text>自定义海报</text>
+    </navigator>
+  </view>
+  <!-- 其他模块 -->
+</view>

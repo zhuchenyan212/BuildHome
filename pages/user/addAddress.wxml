@@ -1,0 +1,26 @@
+<!--pages/user/addAddress.wxml-->
+<view class="container">
+  <view class="editwrap">
+    <view class="itemedit">
+      <text>收货人</text>
+      <input type="text" placeholder="请填写收货人的姓名" />
+    </view>
+    <view class="itemedit">
+      <text>手机号</text>
+      <input type="text" placeholder="请填写收货人手机号" />
+    </view>
+    <view class="itemedit">
+      <text>收货地址</text>
+      <input type="text" placeholder="点击选择收货地址" />
+    </view>
+    <view class="itemedit">
+      <text>门牌号</text>
+      <input type="text" placeholder="详细地址,例如:3号楼二单元105" />
+    </view>
+    <view class="itemedit">
+      <text>设为默认地址</text>
+      <input type="text" placeholder="点击选择收货地址" />
+    </view>
+  </view>
+  <button>保存并使用</button>
+</view>

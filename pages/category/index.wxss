@@ -1,0 +1,77 @@
+/* pages/category/index.wxss */
+
+page {
+  /* background: #f5f5f5; */
+  background: #e8e8e8;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  /* height: 100%; */
+  background-color: #fff;
+  color: #939393;
+}
+
+.nav_left {
+  display: inline-block;
+  width: 25%;
+  /* height: 100%; */
+  background: #e8e8e8;
+  text-align: center;
+}
+
+.nav_left .nav_left_items {
+  height: 40px;
+  line-height: 40px;
+  padding: 6px 0;
+  border-bottom: 2px solid #fff;
+  font-size: 13px;
+  color: #000;
+}
+
+.nav_left .nav_left_items.active {
+  background: #fff;
+  color: #dc7f20;
+}
+
+.nav_right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex: 1;
+  width: 75%;
+  height: 1000px;
+  padding: 10px;
+  box-sizing: border-box;
+  background: #fff;
+}
+
+.nav_right .nav_right_items {
+  float: left;
+  width: 33.33%;
+  height: 105px;
+  text-align: center;
+}
+
+.nav_right .nav_right_items image {
+  width: 65px;
+  height: 65px;
+  margin-top: 10px;
+}
+
+.nav_right .nav_right_items text {
+  display: block;
+  margin-top: 4px;
+  font-size: 13px;
+  color: black;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.nodata_text {
+  color: black;
+  font-size: 14px;
+  text-align: center;
+}
