@@ -20,9 +20,8 @@
   height: 86rpx;
   line-height: 86rpx;
   margin-left: 35rpx;
-  background: rgba(222, 219, 217, 1);
-  border: 2px solid rgba(220, 127, 32, 1);
-  opacity: 0.4;
+  background: #eeeceb;
+  border: 2px solid #edbe8e;
   border-radius: 10rpx;
   margin-top: 40rpx;
 }

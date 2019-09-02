@@ -1,19 +1,14 @@
 <!--pages/poster/index.wxml-->
 <view class="container">
   <view class="listwrap">
-    <view class="listItem">
-      <view class="time">2019年8月22日</view>
-      <view class="imgwrap">
-        <image src="/images/hb1.png" />
+    <block wx:for="{{jgjPosterEntities}}" wx:key="index">
+      <view class="listItem">
+        <view class="time">{{item.createTime}}</view>
+        <view class="imgwrap">
+          <image src="{{item.url}}" />
+        </view>
+        <button data-url="{{item.url}}" bindtap="save">生成我的海报并保存到相册</button>
       </view>
-      <button>生成我的海报并保存到相册</button>
-    </view>
-    <view class="listItem">
-      <view class="time">2019年8月22日</view>
-      <view class="imgwrap">
-        <image src="/images/hb2.png" />
-      </view>
-      <button>生成我的海报并保存到相册</button>
-    </view>
+    </block>
   </view>
 </view>

@@ -8,7 +8,9 @@ Page({
     service: [], //服务类目
     active: [], //优惠活动
     news: [], //无缝滚动
-    count: '' //参与人数
+    count: '', //参与人数
+    enterPrise: '',
+    afterSale: '',
   },
 
   onLoad: function() {
@@ -24,12 +26,16 @@ Page({
         swiper: res.jgjMerryGoRoundEntities,
         service: res.jgjServiceEntities,
         active: res.jgjActivityEntities,
-        news: res.jgjTakePartInEntities
+        news: res.jgjTakePartInEntities,
+        enterPrise: res.enterPrise,
+        afterSale: res.afterSale
       })
+      //全局缓存拨打号码
+      wx.setStorageSync('telephone', res.tel);
     }).catch(err => {
       wx.showToast({
-        title: err,
-        icon: 'fail',
+        title: '请求失败请稍候',
+        icon: 'none',
         duration: 2000,
       })
     })

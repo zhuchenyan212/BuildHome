@@ -24,7 +24,9 @@ Page({
         id: options.id,
         jgjService: res.jgjService
       })
-      WxParse.wxParse('article', 'html', res.jgjService.detail, that, 5);
+      if (res.jgjService.detail != null) {
+        WxParse.wxParse('article', 'html', res.jgjService.detail, that, 5);
+      }
     }).catch(err => {
       wx.showToast({
         title: err,
@@ -82,8 +84,8 @@ Page({
         }, 2000);
       }).catch(err => {
         wx.showToast({
-          title: err,
-          icon: 'fail',
+          title: '请求失败请稍候',
+          icon: 'none',
           duration: 2000,
         })
       })
@@ -106,7 +108,7 @@ Page({
   //   }).catch(err => {
   //     wx.showToast({
   //       title: '请求失败请稍候',
-  //       icon: 'fail',
+  //       icon: 'none',
   //       duration: 2000,
   //     })
   //   })

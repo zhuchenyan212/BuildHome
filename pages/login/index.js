@@ -32,8 +32,8 @@ Page({
             })
           }).catch(err => {
             wx.showToast({
-              title: err,
-              icon: 'fail',
+              title: '请求失败请稍候',
+              icon: 'none',
               duration: 2000,
             })
           })

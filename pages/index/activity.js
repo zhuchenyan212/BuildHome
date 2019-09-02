@@ -1,6 +1,6 @@
 //获取应用实例
 var $ = require("../../utils/http.js");
-// var WxParse = require('../wxParse/wxParse.js');
+var WxParse = require('../wxParse/wxParse.js');
 Page({
   data: {
     domain: wx.getStorageSync('domain'),
@@ -25,12 +25,14 @@ Page({
         jgjActivity: res.jgjActivity,
         jgjTakePartInEntities: res.jgjTakePartInEntities
       })
-      // WxParse.wxParse('article', 'html', res.jgjActivity.detailImg, that, 5);
+      if (res.jgjActivity.detail != null) {
+        WxParse.wxParse('article', 'html', res.jgjActivity.detail, that, 5);
+      }
     }).catch(err => {
       console.log(err)
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
     })
@@ -85,8 +87,8 @@ Page({
         }, 2000);
       }).catch(err => {
         wx.showToast({
-          title: err,
-          icon: 'fail',
+          title: '请求失败请稍候',
+          icon: 'none',
           duration: 2000,
         })
       })

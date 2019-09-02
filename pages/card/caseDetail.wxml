@@ -1,20 +1,21 @@
-<!--pages/card/caseDetail.wxml-->
+<import src="../wxParse/wxParse.wxml" />
 <view class="container">
   <view class="wrap">
-     <view class="ft-16 font">新中式</view>
-     <view class="info">小区：水岸星城</view>
-     <view class="info">风格：中式</view>
-     <view class="info">面积：130平方米</view>
-     <view class="info">户型：三室一厅</view>
-     <view class="info">预算：35万元</view>
+    <view class="ft-16 font">{{jgjCaseEntity.name}}</view>
+    <view class="info">小区：{{jgjCaseEntity.unit}}</view>
+    <view class="info">风格：{{jgjCaseEntity.style}}</view>
+    <view class="info">面积：{{jgjCaseEntity.area}}平方米</view>
+    <view class="info">户型：{{jgjCaseEntity.houseType}}</view>
+    <view class="info">预算：{{jgjCaseEntity.budget}}万元</view>
   </view>
   <view class="imgwrap">
-     <image src="/images/case1.png" />
-     <image src="/images/case2.png" />
-     <image src="/images/case3.png" />
+    <image src="{{jgjCaseEntity.img}}" />
+    <view class="wxParse">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
   </view>
   <!-- 表单模块 -->
-  <view class="catagory">
+  <view class="catagory hide">
     <view class="floor_box">
       <view class="title">
         <view class="ft-14">
@@ -24,23 +25,25 @@
         </view>
       </view>
       <view class="p_box clear">
-        <view class="formitem">
-          <view class="left ft-12 font tit">姓名
-            <text class="red">*</text>
+        <form bindsubmit='saveInfo'>
+          <view class="formitem">
+            <view class="left ft-12 font tit">姓名
+              <text class="red">*</text>
+            </view>
+            <view class="left">
+              <input type="text" name='username' value='{{username}}' />
+            </view>
           </view>
-          <view class="left">
-            <input type="text" />
+          <view class="formitem">
+            <view class="left ft-12 font tit">手机号
+              <text class="red">*</text>
+            </view>
+            <view class="left">
+              <input type="number" name='phone' value='{{phone}}' maxlength="11" />
+            </view>
           </view>
-        </view>
-        <view class="formitem">
-          <view class="left ft-12 font tit">手机号
-            <text class="red">*</text>
-          </view>
-          <view class="left">
-            <input type="text" />
-          </view>
-        </view>
-        <button>立即提交</button>
+          <button form-type="submit" type="default" size="defaultSize" hover-class="none">立即提交</button>
+        </form>
       </view>
       <!--公告列表-->
       <view class="notice_wrap">

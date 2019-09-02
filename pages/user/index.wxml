@@ -5,11 +5,12 @@
     <view class="headBg">
       <view class="dingwei" bindtap="showInfo">
         <image src="/images/bell.png" />
+        <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
       </view>
-      <image class="touxing" src="/images/case1.png" />
-      <view class="fot" style="margin-top:4rpx;">萨姆</view>
+      <image class="touxing" src="{{userEntity.avatarurl}}" />
+      <view class="fot" style="margin-top:4rpx;">{{userEntity.nickname}}</view>
       <view class="item">
-        <input class="fot input" value="18545646540" />
+        <input class="fot input" bindinput='formPhone' bindblur="blur" placeholder="请输入手机号码" value="{{phone}}" />
         <image class="changephone" src="/images/changephone.png" />
       </view>
     </view>

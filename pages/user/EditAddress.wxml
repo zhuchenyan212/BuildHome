@@ -1,4 +1,4 @@
-<!--pages/user/addAddress.wxml-->
+<!--pages/user/EditAddress.wxml-->
 <view class="container">
   <form bindsubmit="addAddress">
     <view class="editwrap">
@@ -17,7 +17,7 @@
             请选择收货地址
           </view>
           <view class="picker" wx:else>
-            {{region[0]}}{{region[1]}}{{region[2]}}
+            {{region}}
           </view>
         </picker>
       </view>
@@ -27,7 +27,7 @@
       </view>
       <view class="itemedit">
         <text>设为默认地址</text>
-        <switch type="switch" name="first" color="rgba(220, 127, 32, 1)" />
+        <switch type="switch" bindtap="change" name="isChecked" checked="{{isChecked}}" bindchange="changeSwitch" color="rgba(220, 127, 32, 1)" />
       </view>
     </view>
     <button form-type="submit" type="default" size="defaultSize" hover-class="none">保存并使用</button>

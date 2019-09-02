@@ -41,7 +41,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
     })
@@ -76,7 +76,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
     })
@@ -105,9 +105,19 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
+    })
+  },
+
+  //清除页面缓存id
+  onHide: function() {
+    wx.removeStorage({
+      key: "id",
+      success: function(res) {
+        console.log("清除id成功")
+      }
     })
   },
 

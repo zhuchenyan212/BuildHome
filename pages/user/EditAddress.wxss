@@ -1,4 +1,4 @@
-/* pages/user/addAddress.wxss */
+/* pages/user/EditAddress.wxss */
 
 page {
   background: #f5f5f7;

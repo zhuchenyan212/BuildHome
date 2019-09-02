@@ -5,6 +5,7 @@ Page({
 
   data: {
     domain: wx.getStorageSync('domain'),
+    telephone: wx.getStorageSync('telephone'),
     id: '', //类别
     jgjGoods: '', //详情数据
   },
@@ -27,7 +28,7 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
     })
@@ -105,9 +106,23 @@ Page({
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
-        icon: 'fail',
+        icon: 'none',
         duration: 2000,
       })
+    })
+  },
+
+  //一键拨打客服电话
+  fixedNum: function() {
+    var num = wx.getStorageSync("telephone")
+    wx.makePhoneCall({
+      phoneNumber: num,
+      success: function() {
+        console.log("拨打电话成功！")
+      },
+      fail: function() {
+        console.log("拨打电话失败！")
+      }
     })
   },
 

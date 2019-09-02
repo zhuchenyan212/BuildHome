@@ -111,7 +111,7 @@
         <view class="left remai">企业优势</view>
       </view>
       <view class="item">
-        <image src="/images/company.png" />
+        <image src="{{enterPrise}}" />
       </view>
     </view>
   </view>
@@ -121,7 +121,7 @@
         <view class="left remai">售后服务</view>
       </view>
       <view class="item">
-        <image src="/images/company.png" />
+        <image src="{{afterSale}}" />
       </view>
     </view>
   </view>

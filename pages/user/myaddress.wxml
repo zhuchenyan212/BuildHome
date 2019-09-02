@@ -1,30 +1,20 @@
 <!--pages/user/myaddress.wxml-->
 <view class="container">
   <view class="addresswrap">
-    <view class="cart_container">
-      <image class="item-select" bindtap="switchSelect" src="{{isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
-      <view class="adressFont">
-        <view class="addresInfo">光谷HANWE MALLA013
-          <view class="lable">默认</view>
+    <block wx:for="{{jgjAddressEntities}}" wx:key="index">
+      <view class="cart_container">
+        <image class="item-select" bindtap="switchSelect" data-id="{{item.id}}" src="{{item.isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+        <view class="adressFont">
+          <view class="addresInfo">{{item.address}}
+            <view wx:if="{{item.defaultAddress}}" class="lable">默认</view>
+          </view>
+          <view class="addressuser">{{item.receiver}} {{item.mobile}}</view>
         </view>
-        <view class="addressuser">张三 189876464654</view>
-      </view>
-      <view class="edit">
-        <image src="/images/Edit.png" />
-      </view>
-    </view>
-    <view class="cart_container">
-      <image class="item-select" bindtap="switchSelect" src="{{isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
-      <view class="adressFont">
-        <view class="addresInfo">光谷HANWE MALLA013
-          <view class="lable">默认</view>
+        <view class="edit" data-id="{{item.id}}" data-receiver="{{item.receiver}}" data-mobile="{{item.mobile}}" data-address="{{item.address}}" data-addressDetail="{{item.addressDetail}}" data-defaultAddress="{{item.defaultAddress}}" bindtap="editAddress">
+          <image src="/images/Edit.png" />
         </view>
-        <view class="addressuser">张三 189876464654</view>
       </view>
-      <view class="edit">
-        <image src="/images/Edit.png" />
-      </view>
-    </view>
+    </block>
   </view>
   <view class="wid">
     <button catchtap="addAddress">新增收货地址</button>

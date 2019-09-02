@@ -65,8 +65,9 @@ page {
 .container .wid {
   width: 100%;
   text-align: center;
-  position: fixed;
-  bottom: 50rpx;
+  margin-bottom: 50rpx;
+  /* position: fixed;
+  bottom: 25rpx; */
 }
 
 .container button {

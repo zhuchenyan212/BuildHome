@@ -3,15 +3,46 @@ var $ = require("../../utils/http.js");
 Page({
 
   data: {
-
+    isChecked: '',
+    id: '',
+    region: [], //用户选择收货地址点击选择省市区
   },
 
+  onLoad: function(options) {
+    var that = this;
+    that.setData({
+      id: JSON.parse(options.addressMsg).id,
+      receiver: JSON.parse(options.addressMsg).receiver,
+      mobile: JSON.parse(options.addressMsg).mobile,
+      region: JSON.parse(options.addressMsg).address,
+      addressDetail: JSON.parse(options.addressMsg).addressdetail,
+      isChecked: JSON.parse(options.addressMsg).defaultaddress
+    })
+  },
 
-  saveInfo: function(e) {
+  //选择省市区函数
+  bindRegionChange: function(e) {
+    var that = this;
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    that.setData({
+      region: e.detail.value
+    })
+  },
+
+  //是否是默认收货地址
+  changeSwitch: function() {
+    var that = this;
+    that.setData({
+      isChecked: !that.data.isChecked
+    })
+  },
+
+  //编辑收货地址
+  addAddress: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(e.detail.value)
-    if (e.detail.value.name == '') {
+    console.log(that.data.isChecked)
+    if (e.detail.value.receiver == '') {
       wx.showToast({
         title: '请输入姓名',
         icon: 'none',
@@ -32,9 +63,16 @@ Page({
         duration: 1500
       })
       return false;
-    } else if (e.detail.value.area == '') {
+    } else if (that.data.region == null) {
       wx.showToast({
-        title: '请输入意向城市',
+        title: '请选择收货地址',
+        icon: 'none',
+        duration: 1500
+      })
+      return false;
+    } else if (e.detail.value.addressDetail == '') {
+      wx.showToast({
+        title: '详细地址不能为空',
         icon: 'none',
         duration: 1500
       })
@@ -42,8 +80,8 @@ Page({
     } else {
       //请求服务器
       $.http({
-        url: wx.getStorageSync('domain') + '/api/user/cooperations?name=' + e.detail.value.name + '&mobile=' + e.detail.value.mobile + '&city=' + e.detail.value.area + '&type=2',
-        method: 'POST'
+        url: wx.getStorageSync('domain') + '/api/user/userAddress?id=' + that.data.id + '&receiver=' + e.detail.value.receiver + '&mobile=' + e.detail.value.mobile + '&address=' + that.data.region + '&addressDetail=' + e.detail.value.addressDetail + '&defaultAddress=' + that.data.isChecked,
+        method: 'PUT'
       }).then(res => {
         wx.showToast({
           title: '信息提交成功',
@@ -52,10 +90,10 @@ Page({
         })
         //表单提交以后刷新当前页面
         setTimeout(() => {
-          wx.switchTab({
-            url: '../user/index'
+          wx.navigateBack({
+            delta: 1
           })
-        }, 1500);
+        }, 2000);
       }).catch(err => {
         wx.showToast({
           title: '请求失败请稍候',
@@ -64,13 +102,6 @@ Page({
         })
       })
     }
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
-
   },
 
   /**

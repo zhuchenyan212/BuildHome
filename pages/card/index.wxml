@@ -10,7 +10,7 @@
         <view>服务区域：{{userEntity.serviceRegion}}</view>
       </view>
       <image class="erweima" src="/images/erweima.png" />
-      <view class="Edit" bindtap="Edit">
+      <view wx:if="{{identity===2}}" class="Edit" bindtap="edit">
         <image src="/images/Edit.png" />
         <text>修改资料</text>
       </view>
@@ -19,7 +19,7 @@
       <view bindtap="chatWei">
         <image src="/images/line.png" /> 在线沟通
       </view>
-      <view>
+      <view bindtap="fixedNum">
         <image src="/images/iphone.png" /> 一键拨打
       </view>
       <view>
@@ -33,29 +33,15 @@
   <view class="caseList">
     <view class="title clear">
       <view class="left ft-13 font">装修案例</view>
-      <navigator class="right color-9" url="/pages/card/more" hover-class="none">更多 ></navigator>
     </view>
-    <view class="list">
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list1.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list2.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list3.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list4.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
+    <view class="list clear">
+      <block wx:for="{{decoration}}" wx:key="index">
+        <navigator class="items" url="/pages/card/caseDetail?id={{item.id}}" hover-class="none">
+          <image class="listImg" src="{{item.img}}" />
+          <view class="ft-13 font">{{item.name}}</view>
+          <view class="itemsize">{{item.style}}</view>
+        </navigator>
+      </block>
     </view>
   </view>
   <!-- 装修案例 -->
@@ -64,29 +50,15 @@
   <view class="caseList">
     <view class="title clear">
       <view class="left ft-13 font">装修工地</view>
-      <navigator class="right color-9" url="/pages/card/more" hover-class="none">更多 ></navigator>
     </view>
-    <view class="list">
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list1.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list2.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list3.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
-      <navigator class="items" url="/pages/card/caseDetail" hover-class="none">
-        <image class="listImg" src="/images/list4.png" />
-        <view class="ft-13 font">新中式</view>
-        <view class="itemsize">130/三室一厅/中式</view>
-      </navigator>
+    <view class="list clear">
+      <block wx:for="{{constructionSite}}" wx:key="index">
+        <navigator class="items" url="/pages/card/caseDetail?id={{item.id}}" hover-class="none">
+          <image class="listImg" src="{{item.img}}" />
+          <view class="ft-13 font">{{item.name}}</view>
+          <view class="itemsize">{{item.style}}</view>
+        </navigator>
+      </block>
     </view>
   </view>
   <!-- 工地案例 -->
@@ -95,16 +67,16 @@
   <view class="floor">
     <view class="floor_box">
       <view class="title clear">
-        <view class="left ft-13">专职客服栏目</view>
-        <navigator class="right color-9" url="/pages/index/activity" hover-class="none">更多 ></navigator>
+        <view class="left remai">优惠活动</view>
       </view>
       <view class="list clear">
-        <navigator class="item" url="/pages/index/activity" hover-class="none">
-          <!-- <image src="/images/ad2.png" /> -->
-        </navigator>
-        <navigator class="item" url="/pages/index/activity" hover-class="none">
-          <!-- <image src="/images/ad1.png" /> -->
-        </navigator>
+        <scroll-view scroll-x="true" class="scrollBox">
+          <block wx:for="{{active}}" wx:key="index">
+            <navigator class="item" url="/pages/index/activity?id={{item.id}}" hover-class="none">
+              <image src="{{item.introImg}}" />
+            </navigator>
+          </block>
+        </scroll-view>
       </view>
     </view>
   </view>
@@ -114,11 +86,11 @@
 <view class="showToast hide"></view>
 <view class="cover hide">
   <view class="headErwe">
-    <image class="touxiang" src="/images/nosar.png" />
+    <image class="touxiang" src="{{userEntity.avatarurl}}" />
     <view class="carInfo">
-      <view>姓名：佳管家快装</view>
-      <view>电话：1889864654</view>
-      <view class="clamp" style="height: 67rpx;">服务区域：佳管家快装XX店</view>
+      <view>姓名：{{userEntity.username}}</view>
+      <view>电话：{{userEntity.mobile}}</view>
+      <view>服务区域：{{userEntity.serviceRegion}}</view>
     </view>
     <view class="userma">
       <image src="/images/ma.png" />

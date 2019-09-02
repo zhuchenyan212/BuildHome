@@ -1,29 +1,15 @@
 <!--pages/user/infoList.wxml-->
 <view class="container">
   <view class="wrapList">
-    <view class="list-item">
-      <image src="/images/case1.png" />
-      <view class="font-wrap">
-        <view>萨姆 1854564654</view>
-        <view class="info">在吗?</view>
+    <block wx:for="{{messages}}" wx:key="index">
+      <view class="list-item" data-user="{{item.from_user}}" bindtap="chatwe">
+        <image src="{{item.avatarUrl}}" />
+        <view class="font-wrap">
+          <view>{{item.username}} {{item.tel}}</view>
+          <view class="info">{{item.message}}</view>
+        </view>
+        <view class="infonum">{{item.unReadMessageCount}}</view>
       </view>
-      <view class="infonum">3</view>
-    </view>
-    <view class="list-item">
-      <image src="/images/case1.png" />
-      <view class="font-wrap">
-        <view>萨姆 1854564654</view>
-        <view class="info">在吗?</view>
-      </view>
-      <view class="infonum">3</view>
-    </view>
-    <view class="list-item">
-      <image src="/images/case1.png" />
-      <view class="font-wrap">
-        <view>萨姆 1854564654</view>
-        <view class="info">在吗?</view>
-      </view>
-      <view class="infonum">3</view>
-    </view>
+    </block>
   </view>
 </view>
