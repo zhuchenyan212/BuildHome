@@ -1,20 +1,11 @@
-// pages/mine/quan.js
+var $ = require("../../utils/http.js");
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
     winHeight: "", //窗口高度
     currentTab: 0, //预设当前项的值
     scrollLeft: 0, //tab标题的滚动条位置
-    expertList: [{ //假数据
-      img: "avatar.png",
-      name: "欢顔",
-      tag: "知名情感博主",
-      answer: 134,
-      listen: 2234
-    }]
+    couponList: [] //优惠券数据
   },
 
   // 滚动切换标签样式
@@ -23,11 +14,65 @@ Page({
       currentTab: e.detail.current
     });
     this.checkCor();
+    console.log(e.detail.current)
+
+    var that = this;
+    if (e.detail.current == 0) {
+      //请求服务器可用
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=1',
+        method: 'GET',
+      }).then(res => {
+        that.setData({
+          couponList: res.jgjUsersCouponEntities
+        })
+      }).catch(err => {
+        wx.showToast({
+          title: '请求失败请稍候',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    } else if (e.detail.current == 1) {
+      //请求服务器不可用
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=0',
+        method: 'GET',
+      }).then(res => {
+        that.setData({
+          couponList: res.jgjUsersCouponEntities
+        })
+      }).catch(err => {
+        wx.showToast({
+          title: '请求失败请稍候',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    } else if (e.detail.current == 2) {
+      //请求服务器过期
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=2',
+        method: 'GET',
+      }).then(res => {
+        that.setData({
+          couponList: res.jgjUsersCouponEntities
+        })
+      }).catch(err => {
+        wx.showToast({
+          title: '请求失败请稍候',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
+
   },
 
   // 点击标题切换当前页时改变样式
   swichNav: function(e) {
     var cur = e.target.dataset.current;
+    console.log(e.target.dataset.current)
     if (this.data.currentTaB == cur) {
       return false;
     } else {
@@ -65,6 +110,22 @@ Page({
         });
       }
     });
+    console.log(that.data.currentTab)
+    //请求服务器可用
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=1',
+      method: 'GET',
+    }).then(res => {
+      that.setData({
+        couponList: res.jgjUsersCouponEntities
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
   },
 
   /**

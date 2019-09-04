@@ -30,6 +30,9 @@
         <switch type="switch" bindtap="change" name="isChecked" checked="{{isChecked}}" bindchange="changeSwitch" color="rgba(220, 127, 32, 1)" />
       </view>
     </view>
-    <button form-type="submit" type="default" size="defaultSize" hover-class="none">保存并使用</button>
+    <view class="bottom clear">
+      <button class="left" form-type="submit" type="default" size="defaultSize" hover-class="none">保存并使用</button>
+      <button class="right" hover-class="none" catchtap="deletItme" data-id="{{id}}">删除地址</button>
+    </view>
   </form>
 </view>

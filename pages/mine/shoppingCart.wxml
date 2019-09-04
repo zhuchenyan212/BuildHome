@@ -1,13 +1,13 @@
 <!--pages/mine/shoppingCart.wxml-->
 <view class="container">
   <scroll-view class="scroll" scroll-y="true">
-    <view wx:for="{{carts}}" wx:key='{{cart}}'>
+    <view wx:for="{{jgjShopcartEntities}}" wx:key='index'>
       <view class="cart_container">
-        <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{index}}" src="{{item.isSelect?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
-        <image class="item-image" src="{{item.pic}}"></image>
+        <image class="item-select" bindtap="switchSelect" data-index="{{index}}" data-id="{{item.id}}" src="{{item.selected?'/images/c_checkbox_on.png':'/images/c_checkbox_off.png'}}" />
+        <image class="item-image" src="{{item.main_img}}"></image>
         <view class="column">
           <view class="title clamp">{{item.name}}</view>
-          <view class="deletproduct" bindtap="delGoods">
+          <view class="deletproduct" data-id="{{item.id}}" bindtap="delGoods">
             <image src="/images/delp.png" />
           </view>
           <view class="row">
@@ -15,9 +15,9 @@
             <!-- 控制数量加减 -->
             <view class="right pd">
               <view class="btn-box">
-                <view class="operate leftB" data-num="{{item.count.quantity}}" bindtap="delCount">-</view>
-                <input class="num" value="{{item.count.quantity}}" />
-                <view class="operate rightB" data-num="{{item.count.quantity}}" bindtap="addCount">+</view>
+                <view class="operate leftB" data-num="{{item.num}}" bindtap="delCount" data-id="{{item.id}}">-</view>
+                <input class="num" value="{{item.num}}" />
+                <view class="operate rightB" data-num="{{item.num}}" bindtap="addCount" data-id="{{item.id}}">+</view>
               </view>
             </view>
           </view>

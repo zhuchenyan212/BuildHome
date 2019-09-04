@@ -104,6 +104,45 @@ Page({
     }
   },
 
+
+  // 删除收货地址
+  deletItme: function(e) {
+    console.log(e.currentTarget.dataset.id)
+    wx.showModal({
+      content: '确认删除当前收货地址？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点确定了')
+          //请求服务器
+          $.http({
+            url: wx.getStorageSync('domain') + '/api/user/userAddress?id=' + e.currentTarget.dataset.id,
+            method: 'DELETE'
+          }).then(res => {
+            wx.showToast({
+              title: '删除地址成功',
+              icon: 'success',
+              duration: 1500,
+            })
+            //表单提交以后刷新当前页面
+            setTimeout(() => {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1500);
+          }).catch(err => {
+            wx.showToast({
+              title: '请求失败请稍候',
+              icon: 'none',
+              duration: 2000,
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

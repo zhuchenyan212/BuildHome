@@ -38,19 +38,6 @@ page {
   margin-left: 100rpx;
 }
 
-.container button {
-  width: 90%;
-  height: 76rpx;
-  line-height: 76rpx;
-  color: #fff;
-  background: rgba(220, 127, 32, 1);
-  opacity: 1;
-  text-align: center;
-  border-radius: 10rpx;
-  margin: 60rpx auto;
-  font-size: 32rpx;
-}
-
 switch {
   float: right;
   margin-right: 85rpx;
@@ -60,4 +47,23 @@ switch {
   font-size: 28rpx;
   color: #8f8f8f;
   padding-left: 100rpx;
+}
+
+.bottom {
+  padding: 10rpx;
+  height: 100rpx;
+  margin-top: 80rpx;
+}
+
+.bottom button {
+  width: 46%;
+  height: 76rpx;
+  line-height: 76rpx;
+  color: #fff;
+  background: rgba(220, 127, 32, 1);
+  opacity: 1;
+  text-align: center;
+  border-radius: 10rpx;
+  margin: 10rpx auto;
+  font-size: 32rpx;
 }

@@ -12,6 +12,10 @@ Page({
     for (let i = 0; i < that.data.jgjAddressEntities.length; i++) {
       if (that.data.jgjAddressEntities[i].id == e.currentTarget.dataset.id) {
         that.data.jgjAddressEntities[i].isSelect = !that.data.jgjAddressEntities[i].isSelect
+        console.log(this.data.jgjAddressEntities)
+        that.setData({
+          jgjAddressEntities: this.data.jgjAddressEntities
+        })
       }
     }
   },

@@ -6,31 +6,47 @@
       <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">已使用</view>
       <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">已过期</view>
     </scroll-view>
-    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight}}rpx">
-      <swiper-item wx:for="{{[0,1,2]}}">
-        <scroll-view scroll-y="true" class="scoll-h">
-          <block wx:for="{{[1,2,3]}}" wx:key="*this">
+    <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab" style="height:{{winHeight+100}}rpx">
+      <swiper-item wx:for="{{[0,1,2]}}" wx:key="index">
+        <scroll-view wx:if="{{currentTab == 0}}" class="scoll-h">
+          <block wx:for="{{couponList}}" wx:key="*this">
             <view class="item-ans bgon">
               <view class="expertInfo">
-                <view class="name">￥10.00
+                <view class="name">￥{{item.worth}}
                   <text>优惠券</text>
                 </view>
-                <view class="answerHistory">有效期2019.01.30 - 2019.05.30</view>
+                <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
               </view>
               <view class="allfont on">全场通用</view>
-              <view class="manjian on">满40.00元可用</view>
+              <view class="manjian on">满{{item.threshold}}元可用</view>
             </view>
           </block>
-          <block wx:for="{{[1,2]}}" wx:key="*this">
-            <view class="item-ans bgoff">
+        </scroll-view>
+        <scroll-view wx:if="{{currentTab == 1}}" class="scoll-h">
+          <block wx:for="{{couponList}}" wx:key="*this">
+            <view class="item-ans bgoff" data-id="{{item.id}}">
               <view class="expertInfo">
-                <view class="name">￥10.00
+                <view class="name">￥{{item.worth}}
                   <text>优惠券</text>
                 </view>
-                <view class="answerHistory">有效期2019.01.30 - 2019.05.30</view>
+                <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
               </view>
               <view class="allfont off">已经使用</view>
-              <view class="manjian off">满40.00元可用</view>
+              <view class="manjian off">满{{item.threshold}}元可用</view>
+            </view>
+          </block>
+        </scroll-view>
+        <scroll-view wx:if="{{currentTab == 2}}" class="scoll-h">
+          <block wx:for="{{couponList}}" wx:key="*this">
+            <view class="item-ans bgoff">
+              <view class="expertInfo">
+                <view class="name">￥{{item.worth}}
+                  <text>优惠券</text>
+                </view>
+                <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
+              </view>
+              <view class="allfont off">已经过期</view>
+              <view class="manjian off">满{{item.threshold}}元可用</view>
             </view>
           </block>
         </scroll-view>
