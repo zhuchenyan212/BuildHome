@@ -18,7 +18,7 @@ Page({
 
     var that = this;
     if (e.detail.current == 0) {
-      //请求服务器可用
+      //请求服务器==========可用
       $.http({
         url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=1',
         method: 'GET',
@@ -34,7 +34,7 @@ Page({
         })
       })
     } else if (e.detail.current == 1) {
-      //请求服务器不可用
+      //请求服务器===========不可用
       $.http({
         url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=0',
         method: 'GET',
@@ -50,7 +50,7 @@ Page({
         })
       })
     } else if (e.detail.current == 2) {
-      //请求服务器过期
+      //请求服务器============过期
       $.http({
         url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=2',
         method: 'GET',

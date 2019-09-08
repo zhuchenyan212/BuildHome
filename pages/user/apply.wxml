@@ -2,7 +2,7 @@
 <view class="container">
   <view class="imgwrap">
     <image src="/images/apply1.png" />
-    <image src="/images/apply2.png" />
+    <image src="/images/city1.png" />
     <image src="/images/apply3.png" />
   </view>
   <view class="formwrap">

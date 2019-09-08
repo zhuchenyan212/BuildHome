@@ -31,7 +31,7 @@
       <text class="small_text">全选</text>
       <text class="heji">合计:</text>
       <text class="price">￥{{totalMoney}}</text>
-      <button class="button-red" bindtap="toBuy" formType="submit">去下单</button>
+      <button class="button-red" bindtap="toBuy" formType="submit" hover-class="none">去下单</button>
     </view>
   </view>
 </view>

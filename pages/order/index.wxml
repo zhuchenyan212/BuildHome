@@ -11,227 +11,152 @@
     </view>
     <!-- 切换内容 -->
     <!-- 全部 -->
-    <view class=" {{currentTab == 0 ? 'show':'hide'}}">
-      <view class='orderItem' bindtap="orderDetail">
+    <view class="{{currentTab == 0 ? 'show':'hide'}}">
+      <view class='orderItem' wx:for="{{jgjOrdersEntities}}" wx:key="index">
         <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待付款</text>
+          <text class='left'>订单号：{{item.sn}}</text>
+          <text class='right'>{{item.status==1? "待付款" : item.status==2? "待发货" : item.status==3? "待收货" : "已完成"}}          </text>
         </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
+        <view class="orderInfo" bindtap="orderDetail" data-id="{{item.id}}">
+          <view class='Productitem clear' wx:for="{{item.ordersG}}" wx:key="index">
             <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
+              <image class="proImg" src="{{item.mainImg}}" />
               <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
+                <view class="proName clamp">{{item.name}}</view>
+                <view class="proNum">x{{item.num}}</view>
               </view>
             </view>
             <view class='proPrice right'>
-              ¥7200.00
+              ¥{{item.price}}
             </view>
           </view>
         </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
+        <view class="orderAll">共{{item.totalNum}}件 实付：
+          <text>¥{{item.price}}</text>
         </view>
         <view class="orderbottom">
-          <view class="onButton space">付款</view>
-        </view>
-      </view>
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待发货</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
-              </view>
-            </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
-          </view>
-        </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <view class="offButton space">取消订单</view>
-        </view>
-      </view>
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待收货</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
-              </view>
-            </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
-          </view>
-        </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <view class="onButton space">确认收货</view>
-        </view>
-      </view>
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>已完成</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
-              </view>
-            </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
-          </view>
-        </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <!-- <view class="onButton space">付款</view> -->
+          <view wx:if="{{item.status == 1}}" class="onButton space" data-prepayId="{{item.prepayId}}" data-nonceStr="{{item.nonceStr}}" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="payMoney">付款</view>
+          <view wx:if="{{item.status == 3}}" class="onButton space" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="sureProduct">确认收货</view>
         </view>
       </view>
     </view>
     <!-- 待付款 -->
-    <view class=" {{currentTab == 1 ? 'show':'hide'}}">
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待付款</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
+    <view class="{{currentTab == 1 ? 'show':'hide'}}">
+      <block wx:if='{{item.status == 1}}' wx:for="{{jgjOrdersEntities}}" wx:key="index">
+        <view class='orderItem'>
+          <view class='orderNav clear'>
+            <text class='left'>订单号：{{item.sn}}</text>
+            <text class='right'>{{item.status==1? "待付款" : item.status==2? "待发货" : item.status==3? "待收货" : "已完成"}}</text>
+          </view>
+          <view class="orderInfo" bindtap="orderDetail" data-id="{{item.id}}">
+            <view class='Productitem clear' wx:for="{{item.ordersG}}" wx:key="index">
+              <view class='left'>
+                <image class="proImg" src="{{item.mainImg}}" />
+                <view class="profot">
+                  <view class="proName clamp">{{item.name}}</view>
+                  <view class="proNum">x{{item.num}}</view>
+                </view>
+              </view>
+              <view class='proPrice right'>
+                ¥{{item.price}}
               </view>
             </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
+          </view>
+          <view class="orderAll">共{{item.totalNum}}件 实付：
+            <text>¥{{item.price}}</text>
+          </view>
+          <view class="orderbottom">
+            <view wx:if="{{item.status == 1}}" class="onButton space" data-prepayId="{{item.prepayId}}" data-nonceStr="{{item.nonceStr}}" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="payMoney">付款</view>
           </view>
         </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <view class="onButton space">付款</view>
-        </view>
-      </view>
+      </block>
     </view>
     <!-- 待发货 -->
-    <view class=" {{currentTab == 2 ? 'show':'hide'}}">
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待发货</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
+    <view class="{{currentTab == 2 ? 'show':'hide'}}">
+      <block wx:if='{{item.status == 2}}' wx:for="{{jgjOrdersEntities}}" wx:key="index">
+        <view class='orderItem'>
+          <view class='orderNav clear'>
+            <text class='left'>订单号：{{item.sn}}</text>
+            <text class='right'>{{item.status==1? "待付款" : item.status==2? "待发货" : item.status==3? "待收货" : "已完成"}}</text>
+          </view>
+          <view class="orderInfo" bindtap="orderDetail" data-id="{{item.id}}">
+            <view class='Productitem clear' wx:for="{{item.ordersG}}" wx:key="index">
+              <view class='left'>
+                <image class="proImg" src="{{item.mainImg}}" />
+                <view class="profot">
+                  <view class="proName clamp">{{item.name}}</view>
+                  <view class="proNum">x{{item.num}}</view>
+                </view>
+              </view>
+              <view class='proPrice right'>
+                ¥{{item.price}}
               </view>
             </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
+          </view>
+          <view class="orderAll">共{{item.totalNum}}件 实付：
+            <text>¥{{item.price}}</text>
           </view>
         </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <view class="offButton space">取消订单</view>
-        </view>
-      </view>
+      </block>
     </view>
     <!-- 待收货 -->
-    <view class=" {{currentTab == 3 ? 'show':'hide'}}">
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>待收货</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
+    <view class="{{currentTab == 3 ? 'show':'hide'}}">
+      <block wx:if='{{item.status == 3}}' wx:for="{{jgjOrdersEntities}}" wx:key="index">
+        <view class='orderItem'>
+          <view class='orderNav clear'>
+            <text class='left'>订单号：{{item.sn}}</text>
+            <text class='right'>{{item.status==1? "待付款" : item.status==2? "待发货" : item.status==3? "待收货" : "已完成"}}</text>
+          </view>
+          <view class="orderInfo" bindtap="orderDetail" data-id="{{item.id}}">
+            <view class='Productitem clear' wx:for="{{item.ordersG}}" wx:key="index">
+              <view class='left'>
+                <image class="proImg" src="{{item.mainImg}}" />
+                <view class="profot">
+                  <view class="proName clamp">{{item.name}}</view>
+                  <view class="proNum">x{{item.num}}</view>
+                </view>
+              </view>
+              <view class='proPrice right'>
+                ¥{{item.price}}
               </view>
             </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
+          </view>
+          <view class="orderAll">共{{item.totalNum}}件 实付：
+            <text>¥{{item.price}}</text>
+          </view>
+          <view class="orderbottom">
+            <view wx:if="{{item.status == 3}}" class="onButton space" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="sureProduct">确认收货</view>
           </view>
         </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <view class="onButton space">确认收货</view>
-        </view>
-      </view>
+      </block>
     </view>
     <!-- 已完成 -->
-    <view class=" {{currentTab == 4 ? 'show':'hide'}}">
-      <view class='orderItem'>
-        <view class='orderNav clear'>
-          <text class='left'>订单号：54654684694</text>
-          <text class='right'>已完成</text>
-        </view>
-        <view class="orderInfo">
-          <view class='Productitem clear'>
-            <view class='left'>
-              <image class="proImg" src="/images/mt.png" />
-              <view class="profot">
-                <view class="proName clamp">马桶安装维修</view>
-                <view class="proNum">x1</view>
+    <view class="{{currentTab == 4 ? 'show':'hide'}}">
+      <block wx:if='{{item.status == 4}}' wx:for="{{jgjOrdersEntities}}" wx:key="index">
+        <view class='orderItem'>
+          <view class='orderNav clear'>
+            <text class='left'>订单号：{{item.sn}}</text>
+            <text class='right'>{{item.status==1? "待付款" : item.status==2? "待发货" : item.status==3? "待收货" : "已完成"}}</text>
+          </view>
+          <view class="orderInfo" bindtap="orderDetail" data-id="{{item.id}}">
+            <view class='Productitem clear' wx:for="{{item.ordersG}}" wx:key="index">
+              <view class='left'>
+                <image class="proImg" src="{{item.mainImg}}" />
+                <view class="profot">
+                  <view class="proName clamp">{{item.name}}</view>
+                  <view class="proNum">x{{item.num}}</view>
+                </view>
+              </view>
+              <view class='proPrice right'>
+                ¥{{item.price}}
               </view>
             </view>
-            <view class='proPrice right'>
-              ¥7200.00
-            </view>
+          </view>
+          <view class="orderAll">共{{item.totalNum}}件 实付：
+            <text>¥{{item.price}}</text>
           </view>
         </view>
-        <view class="orderAll">共2件 实付：
-          <text>¥500.00</text>
-        </view>
-        <view class="orderbottom">
-          <!-- <view class="onButton space">付款</view> -->
-        </view>
-      </view>
+      </block>
     </view>
   </view>
 </view>

@@ -33,7 +33,7 @@ Page({
       wx.showToast({
         title: '请求失败请稍候',
         icon: 'none',
-        duration: 2000,
+        duration: '2000',
       })
     })
   },

@@ -6,7 +6,6 @@ Page({
 
   },
 
-
   saveInfo: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;

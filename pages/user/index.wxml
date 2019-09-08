@@ -18,25 +18,25 @@
     <view class="carditem">
       <navigator class="ft-13 font" url="/pages/order/index" hover-class="none">我的订单</navigator>
       <view class="ui-grids clear">
-        <navigator class="grid" url="" hover-class="none">
+        <navigator class="grid" url="/pages/order/index?currentTab=1" hover-class="none">
           <view class="ui_grid-img">
             <image src="/images/order1.png" />
           </view>
           <view class="ui_grid-label ellipsis">待付款</view>
         </navigator>
-        <navigator class="grid margin" url="" hover-class="none">
+        <navigator class="grid margin" url="/pages/order/index?currentTab=2" hover-class="none">
           <view class="ui_grid-img">
             <image src="/images/order2.png" />
           </view>
           <view class="ui_grid-label ellipsis">待发货</view>
         </navigator>
-        <navigator class="grid margin" url="" hover-class="none">
+        <navigator class="grid margin" url="/pages/order/index?currentTab=3" hover-class="none">
           <view class="ui_grid-img">
             <image src="/images/order3.png" />
           </view>
           <view class="ui_grid-label ellipsis">待收货</view>
         </navigator>
-        <navigator class="grid margin" url="" hover-class="none">
+        <navigator class="grid margin" url="/pages/order/index?currentTab=4" hover-class="none">
           <view class="ui_grid-img">
             <image src="/images/order4.png" />
           </view>

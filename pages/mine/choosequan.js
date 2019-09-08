@@ -1,15 +1,11 @@
-//获取应用实例
 var $ = require("../../utils/http.js");
 Page({
 
   data: {
-    messages: [] //消息列表
+    couponList: [] //优惠券数据
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function(options) {
+  onLoad: function() {
 
   },
 
@@ -24,15 +20,14 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-    var that = this;
-    //请求服务器
+    var that = this
+    //请求服务器可用
     $.http({
-      url: wx.getStorageSync('domain') + '/api/user/messages',
-      method: 'GET'
+      url: wx.getStorageSync('domain') + '/api/user/usersCoupons?available=1',
+      method: 'GET',
     }).then(res => {
-      console.log(res)
       that.setData({
-        messages: res.messages
+        couponList: res.jgjUsersCouponEntities
       })
     }).catch(err => {
       wx.showToast({
@@ -43,11 +38,22 @@ Page({
     })
   },
 
-  chatwe: function(e) {
-    console.log(e.currentTarget.dataset.user)
-    wx.navigateTo({
-      url: '../user/chating?user=' + e.currentTarget.dataset.user,
-    })
+  choosequan: function(e) {
+    var that = this;
+    console.log(e.currentTarget.dataset.id)
+    for (var i = 0; i < that.data.couponList.length; i++) {
+      if (that.data.couponList[i].id === e.currentTarget.dataset.id) {
+        //获取优惠券选中数据存入缓存
+        wx.setStorageSync('coupon', that.data.couponList[i]);
+        if (wx.getStorageSync('coupon') != '' || wx.getStorageSync('coupon') != null || wx.getStorageSync('coupon') != undefined) {
+          setTimeout(() => {
+            wx.navigateBack({
+              delta:1
+            })
+          }, 1000);
+        }
+      }
+    }
   },
 
   /**

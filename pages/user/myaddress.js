@@ -16,6 +16,15 @@ Page({
         that.setData({
           jgjAddressEntities: this.data.jgjAddressEntities
         })
+        //获取选中地址数据存入缓存
+        wx.setStorageSync('address', that.data.jgjAddressEntities[i]);
+        if (wx.getStorageSync('address') != '' || wx.getStorageSync('address') != null || wx.getStorageSync('address') != undefined) {
+          setTimeout(() => {
+            wx.redirectTo({
+              url: '/pages/mine/confirmOrder'
+            })
+          }, 500);
+        }
       }
     }
   },

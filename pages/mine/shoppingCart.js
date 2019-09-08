@@ -4,7 +4,6 @@ Page({
   data: {
     isAllSelect: true,
     totalMoney: 0,
-    //商品详情介绍
     jgjShopcartEntities: [],
   },
 
@@ -25,7 +24,7 @@ Page({
       })
       var money = 0;
       for (var i = 0; i < res.jgjShopcartEntities.length; i++) {
-        money += res.jgjShopcartEntities[i].price
+        money += res.jgjShopcartEntities[i].price * res.jgjShopcartEntities[i].num
         that.setData({
           totalMoney: money
         })
@@ -46,7 +45,6 @@ Page({
           })
         }
       }
-
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
@@ -66,13 +64,13 @@ Page({
     this.data.jgjShopcartEntities[index].selected = !this.data.jgjShopcartEntities[index].selected;
     //价钱统计
     if (this.data.jgjShopcartEntities[index].selected) {
-      this.data.totalMoney = this.data.totalMoney + this.data.jgjShopcartEntities[index].price;
+      this.data.totalMoney = this.data.totalMoney + this.data.jgjShopcartEntities[index].price * this.data.jgjShopcartEntities[index].num;
     } else {
-      this.data.totalMoney = this.data.totalMoney - this.data.jgjShopcartEntities[index].price;
+      this.data.totalMoney = this.data.totalMoney - this.data.jgjShopcartEntities[index].price * this.data.jgjShopcartEntities[index].num;
     }
     //是否全选判断
     for (i = 0; i < this.data.jgjShopcartEntities.length; i++) {
-      Allprice = Allprice + this.data.jgjShopcartEntities[i].price;
+      Allprice = Allprice + this.data.jgjShopcartEntities[i].price * this.data.jgjShopcartEntities[i].num;
     }
     if (Allprice == this.data.totalMoney) {
       this.data.isAllSelect = true;
@@ -93,7 +91,7 @@ Page({
     if (!this.data.isAllSelect) {
       for (i = 0; i < this.data.jgjShopcartEntities.length; i++) {
         this.data.jgjShopcartEntities[i].selected = true;
-        this.data.totalMoney = this.data.totalMoney + this.data.jgjShopcartEntities[i].price;
+        this.data.totalMoney = this.data.totalMoney + this.data.jgjShopcartEntities[i].price * this.data.jgjShopcartEntities[i].num;
       }
     } else {
       for (i = 0; i < this.data.jgjShopcartEntities.length; i++) {
@@ -185,11 +183,19 @@ Page({
     wx.showToast({
       title: '去结算',
       icon: 'success',
-      duration: 3000
+      duration: 1500
     });
-    wx.navigateTo({
-      url: '/pages/mine/confirmOrder',
-    })
+    var that = this;
+    var newArr = that.data.jgjShopcartEntities.filter(item => item.selected != false)
+    //获取购物车选中数据存入缓存
+    wx.setStorageSync('buyInfo', newArr);
+    if (wx.getStorageSync('buyInfo') != '' || wx.getStorageSync('buyInfo') != null || wx.getStorageSync('buyInfo') != undefined) {
+      setTimeout(() => {
+        wx.navigateTo({
+          url: '/pages/mine/confirmOrder',
+        })
+      }, 1000);
+    }
   },
 
   /**
@@ -210,7 +216,8 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function() {
-
+    var that = this;
+    console.log(that.data.jgjShopcartEntities)
   },
 
   /**

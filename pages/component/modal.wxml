@@ -1,0 +1,5 @@
+<template name="toolips">
+  <view class="toolips-box" hidden="{{toolips.hideToolips}}">
+    <view class="toolips">{{toolips.title}}</view>
+  </view>
+</template>

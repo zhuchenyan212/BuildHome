@@ -22,7 +22,7 @@ App({
   //获取用户信息
   getUserInfo: function() {
     var that = this;
-    wx.setStorageSync('domain', 'http://jgj.jiaguanjiazx.com:8081');
+    wx.setStorageSync('domain', 'https://jgj.jiaguanjiazx.com:8081');
 
     //获取缓存用户信息跳转首页
     console.log(wx.getStorageSync('user'))

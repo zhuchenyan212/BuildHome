@@ -1,0 +1,15 @@
+<!--pages/mine/choosequan.wxml-->
+<view class="container">
+  <block wx:for="{{couponList}}" wx:key="*this">
+    <view class="item-ans bgon" data-id="{{item.id}}" bindtap="choosequan">
+      <view class="expertInfo">
+        <view class="name">￥{{item.worth}}
+          <text>优惠券</text>
+        </view>
+        <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
+      </view>
+      <view class="allfont on">全场通用</view>
+      <view class="manjian on">满{{item.threshold}}元可用</view>
+    </view>
+  </block>
+</view>

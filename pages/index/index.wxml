@@ -30,7 +30,6 @@
     <view class="floor_box">
       <view class="title clear">
         <view class="left remai">优惠活动</view>
-        <!-- <navigator class="right color-9" url="/pages/index/activity" hover-class="none">更多 ></navigator> -->
       </view>
       <view class="list clear">
         <scroll-view scroll-x="true" class="scrollBox">
@@ -126,4 +125,17 @@
     </view>
   </view>
   <!-- 关于其他 -->
+  <view class="mask hide"></view>
+  <view class="couponWrap hide">
+    <view class="item-ans bgon">
+      <view class="expertInfo">
+        <view class="name">￥20
+          <text>优惠券</text>
+        </view>
+        <view class="answerHistory">有效期2012.8.05-2012.8.05</view>
+      </view>
+      <!-- <view class="allfont on">全场通用</view>
+      <view class="manjian on">满{{item.threshold}}元可用</view> -->
+    </view>
+  </view>
 </view>
