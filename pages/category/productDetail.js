@@ -130,9 +130,8 @@ Page({
 
   chatsalesman: function() {
     console.log('======与绑定的业务员聊天======')
-    console.log(wx.getStorageSync('salesman'))
     wx.navigateTo({
-      url: '../user/chating?user=' + wx.getStorageSync('salesman') ,
+      url: '../user/chating?user=' + wx.getStorageSync('userId'),
     })
   },
 

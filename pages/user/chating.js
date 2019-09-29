@@ -3,10 +3,11 @@ var utils = require("../../utils/util.js")
 
 Page({
   data: {
-    date: '', //聊天时间
+    date: utils.formatTime(new Date()), //聊天时间
     sendInfo: '', //获取发送的信息
     infoList: [], //获取消息列表
     senMessages: [], //发送消息列表
+    historyInfo:[], //历史聊天记录
     user: '', //业务员
     avatarurl: wx.getStorageSync('avatarurl'), //自己头像
     salesimg: wx.getStorageSync('salesimg'), //业务员头像
@@ -19,7 +20,7 @@ Page({
     })
     //建立连接
     wx.connectSocket({
-      url: "wss://jgj.jiaguanjiazx.com:8081/websocket/" + options.user,
+      url: "wss://jgj.jiaguanjiazx.com:8081/websocket/" + wx.getStorageSync('myuserId'),
     })
     //连接成功
     wx.onSocketOpen(function() {
@@ -48,32 +49,28 @@ Page({
   //发送消息
   send: function() {
     var that = this;
+    console.log(wx.getStorageSync('userId'))
     wx.sendSocketMessage({
       data: that.data.sendInfo + '|' + that.data.user
     })
-
     // 将用户发送的消息凭借数组
     var senMessages = that.data.senMessages;
     senMessages.push(that.data.sendInfo)
     that.setData({
       senMessages: senMessages
     })
-
     // 清空输入框
     this.setData({
       sendInfo: ''
     })
-
-    // 获取聊天时间
+    //获取聊天时间
     //获取发送时间
     if (utils.formatTime(new Date())) {
       that.setData({
         date: utils.formatTime(new Date()),
       })
     }
-
-    // 关闭
-    // wx.closeSocket()
+    that.applyHistory()
   },
 
   onShow: function() {
@@ -86,6 +83,29 @@ Page({
         infoList: infoList
       })
       console.log("收到服务器内容：" + JSON.stringify(res))
+    })
+    that.applyHistory()
+  },
+
+  // 获取历史聊天记录
+  applyHistory: function() {
+    var that = this;
+    // wx.getStorageSync('myuserId')
+    //请求服务器
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/PersonCard/getChatLog?userId=' + that.data.user,
+      method: 'GET'
+    }).then(res => {
+      console.log(res.data)
+      that.setData({
+        historyInfo: res.data,
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
     })
   }
 })

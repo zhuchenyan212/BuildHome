@@ -43,6 +43,7 @@ Page({
       // 缓存用户信息
       wx.setStorageSync('identity', res.userEntity.identity);
       wx.setStorageSync('salesman', res.userEntity.salesman);
+      wx.setStorageSync('myuserId', res.userEntity.userId);
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',

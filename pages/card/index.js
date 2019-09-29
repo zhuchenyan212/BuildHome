@@ -9,17 +9,39 @@ Page({
     decoration: '', //装修案例
     constructionSite: '', //装修工地
     active: '', //活动广告
+    openor: false, //是否打开名片二维码
+    salesmanimg: '', //业务员的二维码
     avatarurl: wx.getStorageSync('avatarurl'),
     salesman: wx.getStorageSync('salesman') //null没绑定业务员 有值为已绑定业务员
   },
 
-  onLoad: function() {
-    // wx.qy.getQrCode({
-    //   success: function (res) {
-    //     console.log(res)
-    //     var qrCode = res.qrCode
-    //   }
-    // })
+  onLoad: function(options) {
+    console.log(options.scene)
+    if (options.scene != undefined) {
+      //进入页面获取到业务员id就绑定业务员
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + options.scene,
+        method: 'PUT'
+      }).then(res => {
+        console.log(res)
+      }).catch(err => {
+        wx.showToast({
+          title: '请求失败请稍候',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
+
+  },
+
+  //是否打开名片二维码
+  openModal: function() {
+    var that = this;
+    // that.data.openor == !that.data.openor
+    that.setData({
+      openor: !that.data.openor
+    })
   },
 
   /**
@@ -32,6 +54,7 @@ Page({
   onShow: function() {
     var that = this;
     //请求服务器
+    //请求页面信息
     $.http({
       url: wx.getStorageSync('domain') + '/api/PersonCard/indexPage',
       method: 'GET'
@@ -45,7 +68,25 @@ Page({
       })
       if (wx.getStorageSync('identity') == 1 && wx.getStorageSync('salesman') != null) {
         wx.setStorageSync('salesimg', res.userEntity.avatarurl);
+        wx.setStorageSync('userId', res.userEntity.userId);
       }
+    }).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
+
+    //获取业务员二维码
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/PersonCard/getSalesManQrCode',
+      method: 'GET'
+    }).then(res => {
+      console.log(res)
+      that.setData({
+        salesmanimg: res.data
+      })
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
@@ -63,9 +104,8 @@ Page({
 
   chatWei: function() {
     console.log('======与绑定的业务员聊天======')
-    console.log(wx.getStorageSync('salesman'))
     wx.navigateTo({
-      url: '../user/chating?user=' + wx.getStorageSync('salesman'),
+      url: '../user/chating?user=' + wx.getStorageSync('userId'),
     })
   },
 
@@ -88,11 +128,11 @@ Page({
     return {
       title: "快来佳管家家居服务平台吧~", //分享标题
       imageUrl: "/images/nosar.png",
-      query: "", // 别人点击链接时会得到的数据
+      query: "salesmanid=" + wx.getStorageSync('userId'), // 别人点击链接时会得到的数据
       success: function success(res) {
         console.log("分享成功", res);
         wx.showShareMenu({
-          // 要求小程序返回分享目标信息
+          //要求小程序返回分享目标信息
           withShareTicket: true
         });
       },

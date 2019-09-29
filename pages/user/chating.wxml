@@ -2,8 +2,25 @@
   <view class="historycon">
     <scroll-view scroll-y="true" class="history">
       <block>
+        <view wx:for="{{historyInfo}}" wx:key>
+          <view>
+            <text class='chat-time'>{{item.createTime}}</text>
+          </view>
+          <view>
+          <view class='own-record'>
+              <view class='own-record-content'>{{item.content}}</view>
+              <view class='own-record-content-triangle'></view>
+              <image class='own-head-img' src='{{avatarurl}}'></image>
+            </view>
+            <view class='other-record'>
+              <image class='other-head-img' src='{{salesimg}}'></image>
+              <view class='other-record-content-triangle'></view>
+              <view class='other-record-content'>{{item.content}}</view>
+            </view>
+          </view>
+        </view>
         <!--此处为other -->
-        <view wx:for="{{infoList}}" wx:key>
+        <view class="hide" wx:for="{{infoList}}" wx:key>
           <view>
             <text class='chat-time'>{{date}}</text>
           </view>
@@ -16,7 +33,7 @@
           </view>
         </view>
         <!--此处为own -->
-        <view wx:for="{{senMessages}}" wx:key>
+        <view class="hide" wx:for="{{senMessages}}" wx:key>
           <view>
             <text class='chat-time'>{{date}}</text>
           </view>

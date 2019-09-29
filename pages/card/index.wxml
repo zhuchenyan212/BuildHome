@@ -15,7 +15,7 @@
         <view>电话：{{userEntity.mobile}}</view>
         <view>服务区域：{{userEntity.serviceRegion}}</view>
       </view>
-      <image class="erweima" src="/images/erweima.png" />
+      <image class="erweima" src="/images/erweima.png" bindtap="openModal" wx:if="{{identity == 2}}" />
       <view wx:if="{{identity == 2}}" class="Edit" bindtap="edit">
         <image src="/images/Edit.png" />
         <text>修改资料</text>
@@ -31,8 +31,7 @@
       <view bindtap="fixedNum">
         <image src="/images/iphone.png" /> 一键拨打
       </view>
-      <!-- wx:if="{{identity == 2}}" -->
-      <button bindtap="shareCard" open-type="share" hover-class="none">
+      <button wx:if="{{identity == 2}}" bindtap="shareCard" open-type="share" hover-class="none">
         <image src="/images/share.png" /> 分享名片
       </button>
     </view>
@@ -93,8 +92,8 @@
   <!-- 栏目 -->
 </view>
 <!-- 弹窗 -->
-<view class="showToast hide"></view>
-<view class="cover hide">
+<view class="showToast" wx:if="{{openor}}" bindtap="openModal"></view>
+<view class="cover" wx:if="{{openor}}">
   <view class="headErwe">
     <image class="touxiang" src="{{userEntity.avatarurl}}" />
     <view class="carInfo">
@@ -103,7 +102,7 @@
       <view>服务区域：{{userEntity.serviceRegion}}</view>
     </view>
     <view class="userma">
-      <!-- <image src="/images/ma.png" /> -->
+      <image src="{{salesmanimg}}" />
     </view>
   </view>
 </view>
