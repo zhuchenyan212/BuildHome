@@ -3,12 +3,26 @@
   <!-- 头部模块 -->
   <view class="headnav">
     <view class="headBg">
-      <view class="dingwei" bindtap="showInfo">
-        <image src="/images/bell.png" />
-        <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
+      <block wx:if="{{userEntity.identity == 1 && userEntity.salesman != null}}">
+        <view class="dingwei" bindtap="showInfo">
+          <image src="/images/bell.png" />
+          <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
+        </view>
+      </block>
+      <block wx:if="{{userEntity.identity == 2}}">
+        <view class="dingwei" bindtap="showInfo">
+          <image src="/images/bell.png" />
+          <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
+        </view>
+      </block>
+      <view wx:if="{{userEntity.avatarurl == null}}" style="padding-top:13rpx;">
+        <button class="headImg"></button>
+        <button class="getInfo" open-type="getUserInfo" bindgetuserinfo="getInfo">点击授权>></button>
       </view>
-      <image class="touxing" src="{{userEntity.avatarurl}}" />
-      <view class="fot" style="margin-top:4rpx;">{{userEntity.nickname}}</view>
+      <view wx:else style="padding-top:13rpx;">
+        <image class="touxing input" src="{{userEntity.avatarurl}}" />
+        <view class="fots" wx:if="{{userEntity.nickname != null}}">{{userEntity.nickname}}</view>
+      </view>
       <view class="item">
         <input class="fot input" bindinput='formPhone' bindblur="blur" placeholder="请输入手机号码" value="{{phone}}" />
         <image class="changephone" src="/images/changephone.png" />

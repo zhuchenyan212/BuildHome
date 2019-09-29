@@ -192,7 +192,7 @@ page {
 .other-record-content {
   background-color: #ffefdb;
   width: 380rpx;
-  border-radius: 7px;
+  border-radius: 5rpx;
   padding: 0rpx 30rpx 0rpx 30rpx;
 }
 
@@ -231,7 +231,7 @@ page {
 
 .own-record-content {
   background-color: #489775;
-  border-radius: 10rpx;
+  border-radius: 5rpx;
   padding: 8rpx 8rpx;
   color: #fff;
   display: flex;
@@ -241,7 +241,7 @@ page {
 
 .friends-record-content {
   background-color: #f0f0f0;
-  border-radius: 7px;
+  border-radius: 5rpx;
   padding: 0rpx 30rpx 0rpx 30rpx;
 }
 

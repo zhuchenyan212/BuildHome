@@ -100,6 +100,29 @@ page {
   margin-right: 6rpx;
 }
 
+.container .guangao .headbottom > button {
+  flex: 1;
+  height: 60rpx;
+  text-align: left;
+  line-height: 60rpx;
+  color: #342b2b;
+  font-size: 20rpx;
+  float: left;
+  margin-left: 70rpx;
+}
+
+.container .guangao .headbottom > button::after{
+  border: none;
+}
+
+.container .guangao .headbottom > button image {
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 16rpx;
+  float: left;
+  margin-right: 6rpx;
+}
+
 .container .caseList {
   padding: 0 24rpx;
   background: #fff;

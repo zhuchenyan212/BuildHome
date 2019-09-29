@@ -4,16 +4,22 @@ Page({
 
   data: {
     domain: wx.getStorageSync('domain'),
-    identity: wx.getStorageSync('identity'),
+    identity: wx.getStorageSync('identity'), //用户身份1为普通 2为业务员
     userEntity: '', //名片
     decoration: '', //装修案例
     constructionSite: '', //装修工地
-    active: '' //活动广告
+    active: '', //活动广告
+    avatarurl: wx.getStorageSync('avatarurl'),
+    salesman: wx.getStorageSync('salesman') //null没绑定业务员 有值为已绑定业务员
   },
 
-
   onLoad: function() {
-
+    // wx.qy.getQrCode({
+    //   success: function (res) {
+    //     console.log(res)
+    //     var qrCode = res.qrCode
+    //   }
+    // })
   },
 
   /**
@@ -32,12 +38,14 @@ Page({
     }).then(res => {
       console.log(res)
       that.setData({
-        identity: wx.getStorageSync('identity'),
         userEntity: res.userEntity,
         decoration: res.decoration,
         constructionSite: res.constructionSite,
         active: res.activityEntities
       })
+      if (wx.getStorageSync('identity') == 1 && wx.getStorageSync('salesman') != null) {
+        wx.setStorageSync('salesimg', res.userEntity.avatarurl);
+      }
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
@@ -54,8 +62,11 @@ Page({
   },
 
   chatWei: function() {
-    //是否绑定业务员
-    console.log('======绑定的业务员聊天======')
+    console.log('======与绑定的业务员聊天======')
+    console.log(wx.getStorageSync('salesman'))
+    wx.navigateTo({
+      url: '../user/chating?user=' + wx.getStorageSync('salesman'),
+    })
   },
 
   //一键拨打客服电话
@@ -70,6 +81,25 @@ Page({
         console.log("拨打电话失败！")
       }
     })
+  },
+
+  // 分享名片
+  shareCard: function() {
+    return {
+      title: "快来佳管家家居服务平台吧~", //分享标题
+      imageUrl: "/images/nosar.png",
+      query: "", // 别人点击链接时会得到的数据
+      success: function success(res) {
+        console.log("分享成功", res);
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+      },
+      fail: function fail(res) {
+        console.log("分享失败", res);
+      }
+    }
   },
 
   /**
@@ -100,10 +130,22 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
   onShareAppMessage: function() {
+    return {
+      title: "快来佳管家家居服务平台吧~", //分享标题
+      imageUrl: "/images/nosar.png",
+      query: "", // 别人点击链接时会得到的数据
+      success: function success(res) {
+        console.log("分享成功", res);
+        wx.showShareMenu({
+          // 要求小程序返回分享目标信息
+          withShareTicket: true
+        });
+      },
+      fail: function fail(res) {
+        console.log("分享失败", res);
+      }
+    }
+  },
 
-  }
 })

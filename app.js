@@ -1,4 +1,5 @@
 //app.js
+var $ = require("utils/http.js");
 App({
   data: {
     host: '',
@@ -15,22 +16,39 @@ App({
   onLaunch: function() {
     this.getUserInfo();
   },
-  onShow: function() {
-    this.getUserInfo();
-  },
 
   //获取用户信息
   getUserInfo: function() {
     var that = this;
     wx.setStorageSync('domain', 'https://jgj.jiaguanjiazx.com:8081');
 
-    //获取缓存用户信息跳转首页
-    console.log(wx.getStorageSync('user'))
-    if (wx.getStorageSync('user') != '' && wx.getStorageSync('user') != null) {
-      wx.reLaunch({
-        url: "/pages/index/index"
-      })
-    }
+    // 用户登录
+    wx.login({
+      success: res => {
+        if (res.errMsg == "login:ok") {
+          //请求服务器
+          $.http({
+            url: wx.getStorageSync('domain') + '/api/index/login',
+            method: 'GET',
+            data: {
+              code: res.code,
+            },
+          }).then(res => {
+            console.log('=====获取到用户的token========');
+            // 缓存后台返回的用户token
+            wx.setStorageSync('user', res.token);
+          }).catch(err => {
+            wx.showToast({
+              title: '请求失败请稍候',
+              icon: 'none',
+              duration: 2000,
+            })
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    })
   },
 
   //提示框弹窗

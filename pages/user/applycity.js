@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    global:'' //合伙人招募
   },
 
   saveInfo: function(e) {
@@ -85,8 +85,23 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
-
+  onShow: function () {
+    var that = this;
+    //请求服务器
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/user/getCooperationIMG',
+      method: 'GET'
+    }).then(res => {
+      that.setData({
+        global: res.data.businessman
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
   },
 
   /**

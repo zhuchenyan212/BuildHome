@@ -8,6 +8,8 @@ Page({
     telephone: wx.getStorageSync('telephone'),
     id: '', //类别
     jgjGoods: '', //详情数据
+    identity: wx.getStorageSync('identity'), //用户身份1为普通 2为业务员
+    salesman: wx.getStorageSync('salesman') //null没绑定业务员 有值为已绑定业务员
   },
 
   onLoad: function(options) {
@@ -126,9 +128,12 @@ Page({
     })
   },
 
-  chatWei: function() {
-    //是否绑定业务员
-    console.log('======绑定的业务员聊天======')
+  chatsalesman: function() {
+    console.log('======与绑定的业务员聊天======')
+    console.log(wx.getStorageSync('salesman'))
+    wx.navigateTo({
+      url: '../user/chating?user=' + wx.getStorageSync('salesman') ,
+    })
   },
 
   /**

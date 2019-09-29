@@ -3,9 +3,8 @@ var $ = require("../../utils/http.js");
 Page({
 
   data: {
-
+    global: '' //师傅招聘
   },
-
 
   saveInfo: function(e) {
     var that = this,
@@ -84,7 +83,22 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    //请求服务器
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/user/getCooperationIMG',
+      method: 'GET'
+    }).then(res => {
+      that.setData({
+        global: res.data.decorateman
+      })
+    }).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
   },
 
   /**

@@ -20,9 +20,9 @@
   <view class="posterWrap clear">
     <view class="left">海报说明</view>
     <view class="right" style="margin-right: -20px;">
-      <textarea maxlength="100" class="textarea" type="text" placeholder="请输入此图说明">
+      <textarea maxlength="100" class="textarea" type="text" placeholder="请输入此图说明(字数限制100以内)">
       </textarea>
-      <!-- <view class="fontmax">0/100</view> -->
     </view>
   </view>
+  <!-- <button data-url="{{item.url}}" bindtap="save">生成我的海报并保存到相册</button> -->
 </view>

@@ -54,10 +54,10 @@
           <text class="line"> ——</text>
         </view>
       </view>
-      <!-- <view class="p_box clear hide">
+      <view class="p_box clear">
         <form bindsubmit='saveUserInfo'>
           <view class="formitem">
-            <view class="left ft-12 font tit">姓名
+            <view class="left ft-12 font tit">小区
               <text class="red">*</text>
             </view>
             <view class="left">
@@ -65,7 +65,7 @@
             </view>
           </view>
           <view class="formitem">
-            <view class="left ft-12 font tit">手机号
+            <view class="left ft-12 font tit">电话
               <text class="red">*</text>
             </view>
             <view class="left">
@@ -74,7 +74,7 @@
           </view>
           <button form-type="submit" type="default" size="defaultSize" hover-class="none" class='bottomFont'>立即提交</button>
         </form>
-      </view> -->
+      </view>
       <!--公告列表-->
       <view class="notice_wrap">
         <view class="swiper-vertical">
@@ -125,17 +125,19 @@
     </view>
   </view>
   <!-- 关于其他 -->
-  <view class="mask hide"></view>
-  <view class="couponWrap hide">
-    <view class="item-ans bgon">
-      <view class="expertInfo">
-        <view class="name">￥20
-          <text>优惠券</text>
+
+  <view wx:if="{{show == true}}" bindtap="close">
+    <view class="mask"></view>
+    <image class="closeCoupon" src="/images/closeCoupon.png" />
+    <block class="couponWrap" wx:for="{{coupon}}" wx:key="index">
+      <view class="item-ans bgon">
+        <view class="expertInfo">
+          <view class="name">满{{item.threshold}}减{{item.worth}}
+            <text>优惠券</text>
+          </view>
+          <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
         </view>
-        <view class="answerHistory">有效期2012.8.05-2012.8.05</view>
       </view>
-      <!-- <view class="allfont on">全场通用</view>
-      <view class="manjian on">满{{item.threshold}}元可用</view> -->
-    </view>
+    </block>
   </view>
 </view>

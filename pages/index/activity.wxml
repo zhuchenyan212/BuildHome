@@ -2,7 +2,7 @@
 <view class="container">
   <!-- 广告图 -->
   <view class="guangao">
-    <image src="{{jgjActivity.introImg}}" />
+    <image src="{{jgjActivity.detailImg}}" />
   </view>
   <!-- 广告图 -->
 

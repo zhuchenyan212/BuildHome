@@ -2,7 +2,7 @@
 
 page {
   color: #333;
-  font-family: PingFangSC-Regular, sans-serif, PingFang-SC-Medium,PingFang SC;
+  font-family: PingFangSC-Regular, sans-serif, PingFang-SC-Medium, PingFang SC;
   height: 100%;
 }
 
@@ -77,46 +77,55 @@ page {
   color: #999;
 }
 
-.ft-10{
+.ft-10 {
   font-size: 10px;
 }
 
-.ft-11{
+.ft-11 {
   font-size: 11px;
 }
 
-.ft-12{
+.ft-12 {
   font-size: 12px;
 }
 
-.ft-13{
+.ft-13 {
   font-size: 13px;
 }
 
-.ft-14{
+.ft-14 {
   font-size: 14px;
 }
 
-.ft-15{
+.ft-15 {
   font-size: 15px;
 }
 
-.ft-16{
+.ft-16 {
   font-size: 16px;
 }
 
-.ft-17{
+.ft-17 {
   font-size: 17px;
 }
 
-.ft-18{
+.ft-18 {
   font-size: 18px;
 }
 
-.ft-19{
+.ft-19 {
   font-size: 19px;
 }
 
-.ft-20{
+.ft-20 {
   font-size: 20px;
+}
+
+/* *{
+  box-sizing:border-box;
+  -webkit-text-size-adjust: none; //解决页面字体忽大忽小
+} */
+
+view, text, input, button {
+  box-sizing: border-box;
 }

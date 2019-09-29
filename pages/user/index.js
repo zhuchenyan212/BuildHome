@@ -4,8 +4,10 @@ Page({
 
   data: {
     phone: '',
-    userEntity: {}, //用户信息
+    userEntity: '', //用户信息
     unReadMessageCount: '', //未读消息
+    identity: wx.getStorageSync('identity'), //用户身份1为普通 2为业务员
+    salesman: wx.getStorageSync('salesman') //业务员
   },
 
   /**
@@ -38,9 +40,9 @@ Page({
         unReadMessageCount: res.unReadMessageCount,
         phone: res.userEntity.mobile
       })
-      if (res.userEntity.identity != null) {
-        wx.setStorageSync('identity', res.userEntity.identity);
-      }
+      // 缓存用户信息
+      wx.setStorageSync('identity', res.userEntity.identity);
+      wx.setStorageSync('salesman', res.userEntity.salesman);
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
@@ -80,6 +82,47 @@ Page({
         })
       })
     }
+  },
+
+  // 获取用户信息登录
+  getInfo: function(e) {
+    console.log(e.detail.userInfo)
+    wx.login({
+      success: res => {
+        console.log(res)
+        if (res.errMsg == "login:ok") {
+          //请求服务器
+          $.http({
+            url: wx.getStorageSync('domain') + '/api/index/login',
+            method: 'GET',
+            data: {
+              code: res.code,
+              nickName: e.detail.userInfo.nickName,
+              avatarUrl: e.detail.userInfo.avatarUrl,
+            },
+          }).then(res => {
+            console.log('=====获取到用户的token========');
+            console.log(res)
+            // 缓存后台返回的用户token
+            wx.setStorageSync('user', res.token);
+            wx.setStorageSync('avatarUrl', e.detail.userInfo.avatarUrl);
+            wx.showToast({
+              title: '获取用户token成功',
+              icon: 'success',
+              duration: 2000,
+            })
+          }).catch(err => {
+            wx.showToast({
+              title: '请求失败请稍候',
+              icon: 'none',
+              duration: 2000,
+            })
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+      }
+    })
   },
 
   /**

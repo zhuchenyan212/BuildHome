@@ -3,28 +3,38 @@
   <view class="guangao">
     <image class="bgImg" src="/images/cardTop.png" />
     <view class="carditem">
-      <image class="touxiang" src="{{userEntity.avatarurl}}" />
-      <view class="carInfo">
+      <image class="touxiang" wx:if="{{identity == 2}}" src="{{avatarurl}}" />
+      <image class="touxiang" wx:else src="{{userEntity.avatarurl}}" />
+      <view class="carInfo" wx:if="{{identity == 2}}">
+        <view>姓名：某某某</view>
+        <view>电话：xxxxxxxxxxx</view>
+        <view>服务区域：xxxxxxxxxxxxxxx</view>
+      </view>
+      <view class="carInfo" wx:else>
         <view>姓名：{{userEntity.username}}</view>
         <view>电话：{{userEntity.mobile}}</view>
         <view>服务区域：{{userEntity.serviceRegion}}</view>
       </view>
       <image class="erweima" src="/images/erweima.png" />
-      <view wx:if="{{identity===2}}" class="Edit" bindtap="edit">
+      <view wx:if="{{identity == 2}}" class="Edit" bindtap="edit">
         <image src="/images/Edit.png" />
         <text>修改资料</text>
       </view>
     </view>
     <view class="headbottom">
-      <view bindtap="chatWei">
+      <view wx:if="{{identity == 1 && salesman != null}}" bindtap="chatWei">
         <image src="/images/line.png" /> 在线沟通
       </view>
+      <button wx:elif="{{identity == 1 && salesman == null}}" open-type="contact" bindcontact="handleContact" hover-class="none">
+        <image src="/images/line.png" /> 在线沟通
+      </button>
       <view bindtap="fixedNum">
         <image src="/images/iphone.png" /> 一键拨打
       </view>
-      <view>
+      <!-- wx:if="{{identity == 2}}" -->
+      <button bindtap="shareCard" open-type="share" hover-class="none">
         <image src="/images/share.png" /> 分享名片
-      </view>
+      </button>
     </view>
   </view>
   <!-- 广告图 -->
@@ -93,7 +103,7 @@
       <view>服务区域：{{userEntity.serviceRegion}}</view>
     </view>
     <view class="userma">
-      <image src="/images/ma.png" />
+      <!-- <image src="/images/ma.png" /> -->
     </view>
   </view>
 </view>

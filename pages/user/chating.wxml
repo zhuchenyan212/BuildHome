@@ -5,20 +5,26 @@
         <!--此处为other -->
         <view wx:for="{{infoList}}" wx:key>
           <view>
+            <text class='chat-time'>{{date}}</text>
+          </view>
+          <view>
             <view class='other-record'>
-              <!-- <image class='other-head-img' src='{{doctorImg}}'></image> -->
+              <image class='other-head-img' src='{{salesimg}}'></image>
               <view class='other-record-content-triangle'></view>
               <view class='other-record-content'>{{item}}</view>
             </view>
           </view>
         </view>
         <!--此处为own -->
-        <view wx:for="{{senMessage}}" wx:key>
+        <view wx:for="{{senMessages}}" wx:key>
+          <view>
+            <text class='chat-time'>{{date}}</text>
+          </view>
           <view>
             <view class='own-record'>
               <view class='own-record-content'>{{item}}</view>
               <view class='own-record-content-triangle'></view>
-              <!-- <image class='own-head-img' src='{{patientImg}}'></image> -->
+              <image class='own-head-img' src='{{avatarurl}}'></image>
             </view>
           </view>
         </view>
@@ -30,7 +36,7 @@
 <view class='hei' id="hei"></view>
 <view class='message'>
   <view class="sendmessage">
-    <input class="chat-input" type="emoji" bindinput="bindChange" confirm-type="done" value='{{input}}' placeholder="" />
+    <input class="chat-input" type="emoji" bindinput="bindChange" confirm-type="done" value='{{sendInfo}}' />
     <button class="btn" type="primary" plain="true" bindtap='send'>发送</button>
     <input style='display:none' type="" bindinput="bindChange" confirm-type="done" placeholder="" />
   </view>

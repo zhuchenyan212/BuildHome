@@ -67,14 +67,20 @@
   <!-- 底部模块 -->
   <view class="bottom_total">
     <view class="bottom_line">
-      <view class="otherUse" bindtap="fixedNum">
+      <view class="otherUse {{identity == 2?'wid':''}}" bindtap="fixedNum">
         <image src="/images/phone.png" />
         <view class="ft-11">一键拨号</view>
       </view>
-      <view class="otherUse" bindtap="chatWei">
-        <image src="/images/zixun.png" />
-        <view class="ft-11">立即咨询</view>
-      </view>
+      <block wx:if="{{identity == 1}}">
+        <button class="otherUse ft-11" wx:if="{{salesman == null}}" open-type="contact" bindcontact="handleContact" hover-class="none">
+          <image src="/images/zixun.png" />
+          <view class="ft-11">立即咨询</view>
+        </button>
+        <button class="otherUse ft-11" wx:elif="{{salesman != undefined && salesman != ''}}" bindtap="chatsalesman">
+          <image src="/images/zixun.png" />
+          <view class="ft-11">立即咨询</view>
+        </button>
+      </block>
     </view>
     <button class="button-red" bindtap="addshopingCart">加入购物车</button>
   </view>
