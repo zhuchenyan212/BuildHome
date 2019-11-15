@@ -76,10 +76,12 @@
           <image src="/images/zixun.png" />
           <view class="ft-11">立即咨询</view>
         </button>
-        <button class="otherUse ft-11" wx:elif="{{salesman != undefined && salesman != ''}}" bindtap="chatsalesman">
-          <image src="/images/zixun.png" />
-          <view class="ft-11">立即咨询</view>
-        </button>
+        <form class="otherUse ft-11" wx:elif="{{salesman != undefined && salesman != ''}}" report-submit='true' bindsubmit='getNumSuccess'>
+          <button class="btn" bindtap="chatsalesman" form-type="submit" hover-class="none">
+            <image src="/images/zixun.png" />
+            <view class="ft-11">立即咨询</view>
+          </button>
+        </form>
       </block>
     </view>
     <button class="button-red" bindtap="addshopingCart">加入购物车</button>

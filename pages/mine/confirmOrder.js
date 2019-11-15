@@ -2,11 +2,12 @@ var $ = require("../../utils/http.js");
 Page({
 
   data: {
-    jgjShopcartEntities: wx.getStorageSync('buyInfo'), //下单数据
-    address: wx.getStorageSync('address'), //地址数据
-    coupon: wx.getStorageSync('coupon'), //优惠券数据
+    jgjShopcartEntities: '', //下单数据
+    address: '', //地址数据
+    coupon: '', //优惠券数据
     len: 0, //可使用优惠券张数
-    money: 0 //商品总金额
+    money: 0, //商品总金额
+    id: '' //支付成功后修改订单状态id
   },
 
   /**
@@ -55,7 +56,10 @@ Page({
       console.log(money)
       that.setData({
         len: newArr.length, //优惠券长度
-        money: money //商品总金额
+        money: money, //商品总金额
+        jgjShopcartEntities: wx.getStorageSync('buyInfo'), //下单数据
+        address: wx.getStorageSync('address'), //地址数据
+        coupon: wx.getStorageSync('coupon'), //优惠券数据
       })
     }).catch(err => {
       wx.showToast({
@@ -102,6 +106,9 @@ Page({
         method: 'POST',
       }).then(res => {
         console.log(res)
+        that.setData({
+          id: res.jgjOrdersEntity.id //支付成功后修改订单状态id
+        })
         //清除订单缓存
         wx.removeStorageSync('coupon');
         wx.removeStorageSync('buyInfo');
@@ -125,11 +132,26 @@ Page({
                 icon: 'success',
                 duration: 1500,
               })
-              setTimeout(() => {
-                wx.redirectTo({
-                  url: '/pages/order/index',
+              // 微信支付成功修改订单状态==========================
+              $.http({
+                url: wx.getStorageSync('domain') + '/api/user/orders?id=' + that.data.id + '&status=2',
+                method: 'PUT',
+              }).then(res => {
+                console.log(res)
+                if (res.code == 0) {
+                  setTimeout(() => {
+                    wx.redirectTo({
+                      url: '/pages/order/index',
+                    })
+                  }, 2000);
+                }
+              }).catch(err => {
+                wx.showToast({
+                  title: '请求失败请稍候',
+                  icon: 'none',
+                  duration: '2000',
                 })
-              }, 2000);
+              })
             },
             fail(res) {
               wx.showToast({
@@ -188,11 +210,26 @@ Page({
                 icon: 'success',
                 duration: 1500,
               })
-              setTimeout(() => {
-                wx.redirectTo({
-                  url: '/pages/order/index',
+              // 微信支付成功修改订单状态==========================
+              $.http({
+                url: wx.getStorageSync('domain') + '/api/user/orders?id=' + that.data.id + '&status=2',
+                method: 'PUT',
+              }).then(res => {
+                console.log(res)
+                if (res.code == 0) {
+                  setTimeout(() => {
+                    wx.redirectTo({
+                      url: '/pages/order/index',
+                    })
+                  }, 2000);
+                }
+              }).catch(err => {
+                wx.showToast({
+                  title: '请求失败请稍候',
+                  icon: 'none',
+                  duration: '2000',
                 })
-              }, 2000);
+              })
             },
             fail(res) {
               wx.showToast({

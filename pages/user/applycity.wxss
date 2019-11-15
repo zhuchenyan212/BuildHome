@@ -1,5 +1,5 @@
 /* pages/user/apply.wxss */
-
+@import "../wxParse/wxParse.wxss";
 page {
   background: #f5f5f7;
 }

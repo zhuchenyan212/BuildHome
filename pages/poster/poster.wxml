@@ -1,28 +1,30 @@
 <!--pages/poster/poster.wxml-->
 <view class="container">
   <view class="posterWrap clear">
-    <view class="left">海报标题</view>
+    <view class="left">海报上传</view>
     <view class="left">
-      <input class="headTitle" type="text" placeholder="请输入自定义海报标题" />
+      <input class="headTitle" type="text" placeholder="海报宽度须大于500像素" disabled="disabled"/>
     </view>
   </view>
   <view class="posterWrap clear">
     <view class="left">上传图片</view>
     <view class="left">
-      <view class="ImgContain">
-        <image class="img" src="/images/addImg.png" />
-        <view class="position">
+      <view class="ImgContain" bindtap="chooseImage">
+        <image class="img" src="{{imageList}}" data-src="{{imageList}}"></image>
+        <!-- <view class="position">
           <image src="/images/error.png" />
-        </view>
+        </view> -->
       </view>
     </view>
   </view>
-  <view class="posterWrap clear">
-    <view class="left">海报说明</view>
-    <view class="right" style="margin-right: -20px;">
-      <textarea maxlength="100" class="textarea" type="text" placeholder="请输入此图说明(字数限制100以内)">
-      </textarea>
+  <form bindsubmit='saveAll'>
+    <view class="posterWrap clear">
+      <view class="left">海报说明</view>
+      <view class="right" style="margin-right: -20px;">
+      <textarea name="info" value='{{info}}' maxlength="100" class="textarea" type="text"placeholder="请输入此图说明(字数限制100以内)">
+        </textarea>
+      </view>
     </view>
-  </view>
-  <!-- <button data-url="{{item.url}}" bindtap="save">生成我的海报并保存到相册</button> -->
+    <button data-url="{{item.url}}" form-type="submit" size="defaultSize" hover-class="none" class='bottomFont'>生成我的海报并保存到相册</button>
+  </form>
 </view>

@@ -1,3 +1,5 @@
+<import src="/pages/component/getInfo.wxml" />
+<template is="getInfo" data="{{openor}}" />
 <view class="container">
   <!-- 广告图 -->
   <view class="guangao">
@@ -6,9 +8,12 @@
       <image class="touxiang" wx:if="{{identity == 2}}" src="{{avatarurl}}" />
       <image class="touxiang" wx:else src="{{userEntity.avatarurl}}" />
       <view class="carInfo" wx:if="{{identity == 2}}">
-        <view>姓名：某某某</view>
-        <view>电话：xxxxxxxxxxx</view>
-        <view>服务区域：xxxxxxxxxxxxxxx</view>
+        <view wx:if="{{userEntity.username == null}}">姓名：请编辑姓名</view>
+        <view wx:else>姓名：{{userEntity.username}}</view>
+        <view wx:if="{{userEntity.mobile == null}}">电话：请编辑电话</view>
+        <view wx:else>电话：{{userEntity.mobile}}</view>
+        <view wx:if="{{userEntity.serviceRegion == null}}">服务区域：请编辑服务区域</view>
+        <view wx:else>服务区域：{{userEntity.serviceRegion}}</view>
       </view>
       <view class="carInfo" wx:else>
         <view>姓名：{{userEntity.username}}</view>
@@ -22,16 +27,18 @@
       </view>
     </view>
     <view class="headbottom">
-      <view wx:if="{{identity == 1 && salesman != null}}" bindtap="chatWei">
-        <image src="/images/line.png" /> 在线沟通
-      </view>
-      <button wx:elif="{{identity == 1 && salesman == null}}" open-type="contact" bindcontact="handleContact" hover-class="none">
+      <form report-submit='true' bindsubmit='getNumSuccess' wx:if="{{identity == 1 && salesman != null}}">
+        <button bindtap="chatWei" hover-class="none" form-type="submit">
+          <image src="/images/line.png" /> 在线沟通
+        </button>
+      </form>
+      <button wx:else open-type="contact" bindcontact="handleContact" hover-class="none">
         <image src="/images/line.png" /> 在线沟通
       </button>
-      <view bindtap="fixedNum">
+      <button bindtap="fixedNum" wx:if="{{identity != 2}}">
         <image src="/images/iphone.png" /> 一键拨打
-      </view>
-      <button wx:if="{{identity == 2}}" bindtap="shareCard" open-type="share" hover-class="none">
+      </button>
+      <button wx:if="{{identity == 2}}" open-type="share" hover-class="none">
         <image src="/images/share.png" /> 分享名片
       </button>
     </view>
@@ -42,13 +49,14 @@
   <view class="caseList">
     <view class="title clear">
       <view class="left ft-13 font">装修案例</view>
+      <view class="right ft-13" data-type="1" bindtap="more">更多>></view>
     </view>
     <view class="list clear">
       <block wx:for="{{decoration}}" wx:key="index">
         <navigator class="items" url="/pages/card/caseDetail?id={{item.id}}" hover-class="none">
           <image class="listImg" src="{{item.img}}" />
           <view class="ft-13 font">{{item.name}}</view>
-          <view class="itemsize">{{item.style}}</view>
+          <view class="itemsize">{{item.unit}}{{item.houseType}}</view>
         </navigator>
       </block>
     </view>
@@ -59,13 +67,14 @@
   <view class="caseList">
     <view class="title clear">
       <view class="left ft-13 font">装修工地</view>
+      <view class="right ft-13" data-type="2" bindtap="more">更多>></view>
     </view>
     <view class="list clear">
       <block wx:for="{{constructionSite}}" wx:key="index">
         <navigator class="items" url="/pages/card/caseDetail?id={{item.id}}" hover-class="none">
           <image class="listImg" src="{{item.img}}" />
           <view class="ft-13 font">{{item.name}}</view>
-          <view class="itemsize">{{item.style}}</view>
+          <view class="itemsize">{{item.unit}}{{item.houseType}}</view>
         </navigator>
       </block>
     </view>
@@ -92,16 +101,25 @@
   <!-- 栏目 -->
 </view>
 <!-- 弹窗 -->
-<view class="showToast" wx:if="{{openor}}" bindtap="openModal"></view>
-<view class="cover" wx:if="{{openor}}">
-  <view class="headErwe">
-    <image class="touxiang" src="{{userEntity.avatarurl}}" />
-    <view class="carInfo">
+<view class="showToasts" wx:if="{{openors}}" bindtap="openModal"></view>
+<view class="covers" wx:if="{{openors}}">
+  <view class="headErwes">
+    <image class="touxiangs" wx:if="{{identity == 2}}" src="{{avatarurl}}" />
+    <image class="touxiangs" wx:else src="{{userEntity.avatarurl}}" />
+    <view class="carInfos" wx:if="{{identity == 2}}">
+      <view wx:if="{{userEntity.username == null}}">姓名：请去编辑姓名</view>
+      <view wx:else>姓名：{{userEntity.username}}</view>
+      <view wx:if="{{userEntity.mobile == null}}">电话：请填写电话</view>
+      <view wx:else>电话：{{userEntity.mobile}}</view>
+      <view wx:if="{{userEntity.serviceRegion == null}}">服务区域：请填写服务区域</view>
+      <view wx:else>服务区域：{{userEntity.serviceRegion}}</view>
+    </view>
+    <view class="carInfos" wx:else>
       <view>姓名：{{userEntity.username}}</view>
       <view>电话：{{userEntity.mobile}}</view>
       <view>服务区域：{{userEntity.serviceRegion}}</view>
     </view>
-    <view class="userma">
+    <view class="usermas">
       <image src="{{salesmanimg}}" />
     </view>
   </view>

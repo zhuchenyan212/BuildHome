@@ -1,15 +1,15 @@
 <!--pages/user/infoList.wxml-->
 <view class="container">
   <view class="wrapList">
-    <block wx:for="{{messages}}" wx:key="index">
-      <view class="list-item" data-user="{{item.from_user}}" bindtap="chatwe">
+    <form wx:for="{{messages}}" wx:key="index" report-submit='true' bindsubmit='getNumSuccess'>
+      <button class="list-item" form-type="submit" data-user="{{item.from_user}}" bindtap="chatwe" hover-class="none">
         <image src="{{item.avatarUrl}}" />
         <view class="font-wrap">
-          <view>{{item.username}} {{item.tel}}</view>
+          <view>{{item.username}}  {{item.tel}}</view>
           <view class="info">{{item.message}}</view>
         </view>
-        <view class="infonum">{{item.unReadMessageCount}}</view>
-      </view>
-    </block>
+        <view class="infonum" wx:if="{{item.unReadMessageCount > 0}}">{{item.unReadMessageCount}}</view>
+      </button>
+    </form>
   </view>
 </view>

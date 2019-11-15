@@ -1,11 +1,8 @@
 //获取应用实例
 var $ = require("../../utils/http.js");
+var WxParse = require('../wxParse/wxParse.js');
 Page({
-
-  data: {
-    global: '' //师傅招聘
-  },
-
+  data: {},
   saveInfo: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
@@ -89,9 +86,7 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/getCooperationIMG',
       method: 'GET'
     }).then(res => {
-      that.setData({
-        global: res.data.decorateman
-      })
+      WxParse.wxParse('article', 'html', res.data.decorateman, that, 5);
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',

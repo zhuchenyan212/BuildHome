@@ -1,4 +1,5 @@
 /* pages/user/apply.wxss */
+@import "../wxParse/wxParse.wxss";
 
 .container .imgwrap {
   width: 100%;

@@ -1,18 +1,11 @@
 <!--pages/card/more.wxml-->
 <view class="container">
-  <view class="list">
-    <navigator class="listitem" url="/pages/card/caseDetail">
-      <image src="/images/list3.png" />
+  <view class="list" wx:for="{{casesList}}" wx:key="index">
+    <navigator class="listitem" url="/pages/card/caseDetail?id={{item.id}}">
+      <image src="{{item.img}}" />
       <view class="listInfo">
-        <view class="ft-16 font">新中式</view>
-        <view class="text">130/三室一厅/中式</view>
-      </view>
-    </navigator>
-    <navigator class="listitem" url="/pages/card/caseDetail">
-      <image src="/images/list3.png" />
-      <view class="listInfo">
-        <view class="ft-16 font">新中式</view>
-        <view class="text">130/三室一厅/中式</view>
+        <view class="ft-16 font">{{item.name}}</view>
+        <view class="text">{{item.unit}}{{item.houseType}}</view>
       </view>
     </navigator>
   </view>

@@ -6,7 +6,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options.currentTab)
     var that = this;
     that.setData({
       currentTab: options.currentTab
@@ -26,7 +25,6 @@ Page({
   },
 
   orderDetail: function(e) {
-    console.log(e.currentTarget.dataset.id)
     wx.navigateTo({
       url: '/pages/order/detail?id=' + e.currentTarget.dataset.id,
     })
@@ -39,7 +37,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/orders',
       method: 'GET',
     }).then(res => {
-      console.log(res)
       that.setData({
         jgjOrdersEntities: res.jgjOrdersEntities
       })
@@ -54,9 +51,6 @@ Page({
 
   // 付款
   payMoney: function(e) {
-    console.log(e)
-    console.log(e.currentTarget.dataset.noncestr)
-    console.log(e.currentTarget.dataset.prepayid)
     wx.showModal({
       content: '是否确认支付？',
       success(res) {
@@ -67,7 +61,6 @@ Page({
             url: wx.getStorageSync('domain') + '/api/user/getSecondSign?non_str=' + e.currentTarget.dataset.noncestr + '&prepay_id=' + e.currentTarget.dataset.prepayid,
             method: 'GET',
           }).then(res => {
-            console.log(res)
             // 发起微信支付申请
             wx.requestPayment({
               timeStamp: res.timeStamp,
@@ -83,10 +76,17 @@ Page({
                 })
                 // 微信支付成功修改订单状态==========================
                 $.http({
-                  url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=' + e.currentTarget.dataset.status,
+                  url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=2',
                   method: 'PUT',
                 }).then(res => {
-                  console.log(res)
+                  wx.showToast({
+                    title: '订单支付成功',
+                    icon: 'none',
+                    duration: '2000',
+                  })
+                  wx.navigateTo({
+                    url: '../order/index',
+                  })
                 }).catch(err => {
                   wx.showToast({
                     title: '请求失败请稍候',
@@ -142,13 +142,54 @@ Page({
           console.log('用户点确定了')
           //请求服务器========确认收货
           $.http({
-            url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=' + e.currentTarget.dataset.status,
+            url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=4',
             method: 'PUT',
           }).then(res => {
             wx.showToast({
               title: '确认收货成功',
               icon: 'success',
               duration: 1500,
+            })
+            wx.navigateTo({
+              url: '../order/index',
+            })
+          }).catch(err => {
+            wx.showToast({
+              title: '请求失败请稍候',
+              icon: 'none',
+              duration: '2000',
+            })
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+          wx.showToast({
+            title: '您取消了操作',
+            icon: 'none',
+            duration: '1500'
+          })
+        }
+      }
+    })
+  },
+
+  // 取消订单
+  cancelOrder: function(e) {
+    wx.showModal({
+      content: '是否取消订单？',
+      success(res) {
+        if (res.confirm) {
+          console.log('用户点确定了')
+          $.http({
+            url: wx.getStorageSync('domain') + '/api/user/order?id=' + e.currentTarget.dataset.id + '&token=' + wx.getStorageSync('user'),
+            method: 'DELETE'
+          }).then(res => {
+            wx.showToast({
+              title: '取消订单成功',
+              icon: 'success',
+              duration: 1500,
+            })
+            wx.navigateTo({
+              url: '../order/index',
             })
           }).catch(err => {
             wx.showToast({

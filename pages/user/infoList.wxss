@@ -37,6 +37,7 @@ page {
 
 .container .wrapList .list-item .font-wrap .info {
   color: #342b2b;
+  text-align: left;
 }
 
 .container .wrapList .list-item .infonum {
@@ -49,6 +50,6 @@ page {
   color: #fff;
   float: right;
   text-align: center;
-  margin-right: 80rpx;
-  margin-top: 80rpx;
+  margin-right: 20rpx;
+  margin-top: 40rpx;
 }

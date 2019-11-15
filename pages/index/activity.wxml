@@ -22,7 +22,7 @@
             <view class="left ft-12 font tit">姓名
               <text class="red">*</text>
             </view>
-            <view class="left">
+            <view class="left oinput">
               <input type="text" name='username' value='{{username}}' />
             </view>
           </view>
@@ -30,7 +30,7 @@
             <view class="left ft-12 font tit">手机号
               <text class="red">*</text>
             </view>
-            <view class="left">
+            <view class="left oinput">
               <input type="number" name='phone' value='{{phone}}' maxlength="11" />
             </view>
           </view>

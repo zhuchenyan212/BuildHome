@@ -3,14 +3,18 @@ var utils = require("../../utils/util.js")
 
 Page({
   data: {
+    navMenu: ['发送'],
     date: utils.formatTime(new Date()), //聊天时间
     sendInfo: '', //获取发送的信息
     infoList: [], //获取消息列表
     senMessages: [], //发送消息列表
-    historyInfo:[], //历史聊天记录
-    user: '', //业务员
-    avatarurl: wx.getStorageSync('avatarurl'), //自己头像
-    salesimg: wx.getStorageSync('salesimg'), //业务员头像
+    historyInfo: [], //历史聊天记录
+    user: '', //业务员id
+    avatarurl: '', //自己头像
+    salesimg: '', //业务员头像
+    myuserId: '', //用户自己id
+    height: '',
+    scrollTop: 0
   },
 
   onLoad: function(options) {
@@ -49,15 +53,8 @@ Page({
   //发送消息
   send: function() {
     var that = this;
-    console.log(wx.getStorageSync('userId'))
     wx.sendSocketMessage({
       data: that.data.sendInfo + '|' + that.data.user
-    })
-    // 将用户发送的消息凭借数组
-    var senMessages = that.data.senMessages;
-    senMessages.push(that.data.sendInfo)
-    that.setData({
-      senMessages: senMessages
     })
     // 清空输入框
     this.setData({
@@ -70,7 +67,9 @@ Page({
         date: utils.formatTime(new Date()),
       })
     }
-    that.applyHistory()
+    setTimeout(() => {
+      that.applyHistory()
+    }, 500);
   },
 
   onShow: function() {
@@ -85,20 +84,32 @@ Page({
       console.log("收到服务器内容：" + JSON.stringify(res))
     })
     that.applyHistory()
+
+    that.setData({
+      avatarurl: wx.getStorageSync('avatarurl'), //自己头像
+      salesimg: wx.getStorageSync('salesimg'), //业务员头像
+      myuserId: wx.getStorageSync('myuserId'), //用户自己id
+    })
   },
 
   // 获取历史聊天记录
   applyHistory: function() {
     var that = this;
-    // wx.getStorageSync('myuserId')
     //请求服务器
     $.http({
       url: wx.getStorageSync('domain') + '/api/PersonCard/getChatLog?userId=' + that.data.user,
       method: 'GET'
     }).then(res => {
       console.log(res.data)
+      // 自动滑动到页面底部
+      // 获取当前窗口的高度
+      var height = wx.getSystemInfoSync().windowHeight;
       that.setData({
         historyInfo: res.data,
+      })
+      wx.pageScrollTo({
+        'scrollTop': res.data.length * 380,
+        'duration': 200
       })
     }).catch(err => {
       wx.showToast({
@@ -107,5 +118,13 @@ Page({
         duration: 2000,
       })
     })
-  }
+  },
+
+  //滑动页面
+  onPageScroll: function(e) {
+    this.setData({
+      scrollTop: e.scrollTop
+    })
+  },
+
 })

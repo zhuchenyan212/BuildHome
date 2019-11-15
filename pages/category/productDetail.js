@@ -5,11 +5,11 @@ Page({
 
   data: {
     domain: wx.getStorageSync('domain'),
-    telephone: wx.getStorageSync('telephone'),
+    telephone: '',
     id: '', //类别
     jgjGoods: '', //详情数据
-    identity: wx.getStorageSync('identity'), //用户身份1为普通 2为业务员
-    salesman: wx.getStorageSync('salesman') //null没绑定业务员 有值为已绑定业务员
+    identity: '', //用户身份1为普通 2为业务员
+    salesman: '' //null没绑定业务员 有值为已绑定业务员
   },
 
   onLoad: function(options) {
@@ -131,7 +131,27 @@ Page({
   chatsalesman: function() {
     console.log('======与绑定的业务员聊天======')
     wx.navigateTo({
-      url: '../user/chating?user=' + wx.getStorageSync('userId'),
+      url: '../user/chating?user=' + wx.getStorageSync('salesuserId'),
+    })
+  },
+
+  //在线沟通服务提醒
+  getNumSuccess: function(e) {
+    var arr = [];
+    arr.push(e.detail.formId)
+    $.http({
+      url: wx.getStorageSync('domain') + '/api/WXreply/setButtKey',
+      method: 'POST',
+      data: {
+        user_id: wx.getStorageSync('myuserId'),
+        buttKeyList: arr
+      }
+    }).then(res => {}).catch(err => {
+      wx.showToast({
+        title: '请求失败请稍候',
+        icon: 'none',
+        duration: 2000,
+      })
     })
   },
 
@@ -146,7 +166,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function() {
-
+    var that = this;
+    that.setData({
+      identity: wx.getStorageSync('identity'),
+      telephone: wx.getStorageSync('telephone'),
+      salesman: wx.getStorageSync('salesman')
+    })
   },
 
   /**

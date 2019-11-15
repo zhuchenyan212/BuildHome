@@ -4,7 +4,7 @@
   <view class="swiper-slider">
     <swiper indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="1000" indicator-color="rgba(0,0,0,.3)" indicator-active-color="rgba(255,255,255,.7)">
       <block wx:for="{{jgjService.imgs}}" wx:key="index">
-        <swiper-item>
+        <swiper-item wx:if="{{item != ''}}">
           <image src="{{item}}" class="slide-image" width="100%" height="356" />
         </swiper-item>
       </block>
@@ -16,7 +16,7 @@
   <view class="serviceWrap">
     <view class="serviceTitle font">{{jgjService.name}}</view>
     <view class="serviceContent">{{jgjService.intro}}</view>
-    <view class="serviceInfo">{{jgjService.price}}元</view>
+    <view class="serviceInfo">{{jgjService.price}}</view>
   </view>
   <!-- 模块介绍 -->
 
@@ -59,7 +59,7 @@
             <view class="left ft-12 font tit dc">电话
             </view>
             <view class="left">
-              <input type="text" name='telePhone' value='{{telePhone}}' maxlength="15" />
+              <input type="text" name='telePhone' value='{{telePhone}}' maxlength="11" />
             </view>
           </view>
           <button form-type="submit" type="default" size="defaultSize" hover-class="none">立即提交</button>

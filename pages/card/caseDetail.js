@@ -15,14 +15,12 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options.id)
     var that = this;
     //请求服务器
     $.http({
       url: wx.getStorageSync('domain') + '/api/PersonCard/cases/' + options.id,
       method: 'GET'
     }).then(res => {
-      console.log(res)
       that.setData({
         jgjCaseEntity: res.jgjCaseEntity
       })

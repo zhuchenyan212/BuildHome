@@ -1,0 +1,75 @@
+.showToast {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 90;
+  top: 0;
+  background-color: #000;
+  filter: alpha(opacity=52);
+  -moz-opacity: 0.52;
+  opacity: 0.52;
+}
+
+.babox {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  z-index: 999;
+}
+
+.cover {
+  width: 100%;
+  height: 450rpx;
+  background: #fff !important;
+  z-index: 999;
+  bottom: 0rpx;
+  position: fixed;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 100rpx;
+  height: 100rpx;
+  text-align: center;
+  float: left;
+  margin: 28rpx 0 0 60rpx;
+}
+
+.titles {
+  font-size: 14px;
+  font-weight: bold;
+  float: left;
+  margin: 56rpx 0 0 30rpx;
+}
+
+.aline-title {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  float: left;
+  padding-left: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 30rpx;
+}
+
+.show-title {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  float: left;
+  padding-left: 30px;
+  font-size: 14px;
+  color: #8f8f8f;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.getinfo {
+  width: 90%;
+  height: 42px;
+  line-height: 42px;
+  font-size: 14px;
+  color: #fff;
+  background: #dc7f20;
+}

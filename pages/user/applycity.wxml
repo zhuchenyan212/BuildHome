@@ -1,7 +1,10 @@
 <!--pages/user/applycity.wxml-->
+<import src="../wxParse/wxParse.wxml" />
 <view class="container">
   <view class="imgwrap">
-    <image src="{{global}}" />
+    <view class="wxParse">
+      <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+    </view>
   </view>
   <view class="formwrap">
     <form bindsubmit='saveInfo'>

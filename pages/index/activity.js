@@ -25,6 +25,10 @@ Page({
         jgjActivity: res.jgjActivity,
         jgjTakePartInEntities: res.jgjTakePartInEntities
       })
+      wx.setNavigationBarTitle({
+        //调整页面标题显示
+        title: res.jgjActivity.name
+      })
       if (res.jgjActivity.detail != null) {
         WxParse.wxParse('article', 'html', res.jgjActivity.detail, that, 5);
       }
@@ -66,25 +70,22 @@ Page({
     } else {
       //请求服务器
       $.http({
-        url: wx.getStorageSync('domain') + '/api/index/activities',
-        method: 'POST',
-        data: {
-          userName: e.detail.value.username,
-          mobile: e.detail.value.phone,
-          jgjActivityId: that.data.id
-        }
+        url: wx.getStorageSync('domain') + '/api/index/addactivities?jgjActivityId=' + that.data.id + '&mobile=' + e.detail.value.phone + '&userName=' + e.detail.value.username + '&userId=' + wx.getStorageSync('myuserId'),
+        method: 'POST'
       }).then(res => {
-        wx.showToast({
-          title: '信息提交成功',
-          icon: 'success',
-          duration: 1500,
-        })
-        //表单提交以后刷新当前页面
-        setTimeout(() => {
-          wx.redirectTo({
-            url: '../index/index'
+        if (res.code == 0) {
+          wx.showToast({
+            title: '信息提交成功',
+            icon: 'success',
+            duration: 1500,
           })
-        }, 2000);
+          //表单提交以后刷新当前页面
+          setTimeout(() => {
+            wx.switchTab({
+              url: '../index/index'
+            })
+          }, 2000);
+        }
       }).catch(err => {
         wx.showToast({
           title: '请求失败请稍候',

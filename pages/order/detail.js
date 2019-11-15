@@ -82,7 +82,7 @@ Page({
                 })
                 // 微信支付成功修改订单状态==========================
                 $.http({
-                  url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=' + e.currentTarget.dataset.status,
+                  url: wx.getStorageSync('domain') + '/api/user/orders?id=' + e.currentTarget.dataset.id + '&status=2',
                   method: 'PUT',
                 }).then(res => {
                   console.log(res)

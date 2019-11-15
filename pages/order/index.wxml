@@ -36,6 +36,7 @@
         </view>
         <view class="orderbottom">
           <view wx:if="{{item.status == 1}}" class="onButton space" data-prepayId="{{item.prepayId}}" data-nonceStr="{{item.nonceStr}}" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="payMoney">付款</view>
+          <view wx:if="{{item.status == 1}}" class="offButton space" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="cancelOrder">取消订单</view>
           <view wx:if="{{item.status == 3}}" class="onButton space" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="sureProduct">确认收货</view>
         </view>
       </view>
@@ -67,6 +68,7 @@
           </view>
           <view class="orderbottom">
             <view wx:if="{{item.status == 1}}" class="onButton space" data-prepayId="{{item.prepayId}}" data-nonceStr="{{item.nonceStr}}" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="payMoney">付款</view>
+            <view wx:if="{{item.status == 1}}" class="offButton space" data-id="{{item.id}}" data-status="{{item.status}}" bindtap="cancelOrder">取消订单</view>
           </view>
         </view>
       </block>

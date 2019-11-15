@@ -1,5 +1,5 @@
 /**app.wxss**/
-
+@import "/pages/component/getInfo.wxss";
 page {
   color: #333;
   font-family: PingFangSC-Regular, sans-serif, PingFang-SC-Medium, PingFang SC;

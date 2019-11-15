@@ -1,4 +1,7 @@
 <!--index.wxml-->
+<import src="../wxParse/wxParse.wxml" />
+<import src="/pages/component/getInfo.wxml" />
+<template is="getInfo" data="{{openor}}" />
 <view class="container">
   <!--广告轮播-->
   <view class="swiper-slider">
@@ -60,7 +63,7 @@
             <view class="left ft-12 font tit">小区
               <text class="red">*</text>
             </view>
-            <view class="left">
+            <view class="left oinput">
               <input type="text" name='name' value='{{name}}' />
             </view>
           </view>
@@ -68,7 +71,7 @@
             <view class="left ft-12 font tit">电话
               <text class="red">*</text>
             </view>
-            <view class="left">
+            <view class="left oinput">
               <input type="text" name='phone' value='{{phone}}' maxlength="11" />
             </view>
           </view>
@@ -99,7 +102,7 @@
 
   <!-- 服务模块 -->
   <view class="fuwu">
-    <image src="/images/fuwu.png" />
+    <image src="/images/@index1.jpg" />
   </view>
   <!-- 服务模块 -->
 
@@ -110,7 +113,9 @@
         <view class="left remai">企业优势</view>
       </view>
       <view class="item">
-        <image src="{{enterPrise}}" />
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:section.nodes}}" />
+        </view>
       </view>
     </view>
   </view>
@@ -120,12 +125,15 @@
         <view class="left remai">售后服务</view>
       </view>
       <view class="item">
-        <image src="{{afterSale}}" />
+        <view class="wxParse">
+          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
+        </view>
       </view>
     </view>
   </view>
   <!-- 关于其他 -->
 
+  <!-- 优惠券弹窗 -->
   <view wx:if="{{show == true}}" bindtap="close">
     <view class="mask"></view>
     <image class="closeCoupon" src="/images/closeCoupon.png" />

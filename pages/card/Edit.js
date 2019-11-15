@@ -9,7 +9,6 @@ Page({
   saveInfo: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(e.detail.value)
     if (e.detail.value.username == '') {
       wx.showToast({
         title: '请输入姓名',
@@ -51,8 +50,8 @@ Page({
         })
         //表单提交以后刷新当前页面
         setTimeout(() => {
-          wx.navigateBack({
-            delta: 1
+          wx.switchTab({
+            url: '../card/index',
           })
         }, 1500);
       }).catch(err => {

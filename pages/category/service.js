@@ -64,12 +64,8 @@ Page({
     } else {
       //请求服务器
       $.http({
-        url: wx.getStorageSync('domain') + '/api/index/appointment',
+        url: wx.getStorageSync('domain') + '/api/index/appointment?serviceId=' + that.data.id + '&mobile=' + e.detail.value.telePhone + '&unit=' + e.detail.value.unit + '&userId=' + wx.getStorageSync('myuserId'),
         method: 'POST',
-        data: {
-          unit: e.detail.value.unit,
-          mobile: e.detail.value.telePhone
-        }
       }).then(res => {
         wx.showToast({
           title: '信息提交成功',

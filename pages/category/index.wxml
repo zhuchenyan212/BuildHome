@@ -1,4 +1,6 @@
 <!--pages/category/index.wxml-->
+<import src="/pages/component/getInfo.wxml" />
+<template is="getInfo" data="{{openor}}" />
 <view class="container">
   <!--左侧栏-->
   <view class="nav_left">
@@ -20,6 +22,6 @@
       </block>
     </view>
     <!--如果无数据，则显示数据-->
-    <view class="nodata_text" wx:if="{{products.length <= 0}}">该分类暂无数据</view>
+    <view class="nodata_text" wx:if="{{products.length == 0}}">该分类暂无数据</view>
   </view>
 </view>

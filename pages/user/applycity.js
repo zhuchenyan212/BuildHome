@@ -1,13 +1,12 @@
 //获取应用实例
 var $ = require("../../utils/http.js");
+var WxParse = require('../wxParse/wxParse.js');
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-    global:'' //合伙人招募
-  },
+  data: {},
 
   saveInfo: function(e) {
     var that = this,
@@ -71,9 +70,7 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
-
-  },
+  onLoad: function(options) {},
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -85,16 +82,14 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
     var that = this;
     //请求服务器
     $.http({
       url: wx.getStorageSync('domain') + '/api/user/getCooperationIMG',
       method: 'GET'
     }).then(res => {
-      that.setData({
-        global: res.data.businessman
-      })
+      WxParse.wxParse('article', 'html', res.data.businessman, that, 5);
     }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',

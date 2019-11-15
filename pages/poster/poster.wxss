@@ -57,15 +57,16 @@ page {
   text-align: right;
 }
 
-button {
-  width: 90%;
-  height: 76rpx;
-  line-height: 76rpx;
-  color: #fff;
-  background: rgba(220, 127, 32, 1);
-  opacity: 1;
-  text-align: center;
-  border-radius: 10rpx;
-  margin-top: 24rpx;
-  font-size: 32rpx;
+.bottomFont {
+  width: 90% !important;
+  height: 76rpx !important;
+  line-height: 76rpx !important;
+  color: #fff !important;
+  background: rgba(220, 127, 32, 1) !important;
+  opacity: 1 !important;
+  text-align: center !important;
+  border-radius: 10rpx !important;
+  margin-top: 24rpx !important;
+  font-size: 32rpx !important;
+  border: none !important;
 }

@@ -163,6 +163,7 @@ swiper {
   height: 116rpx;
   text-align: center;
   box-sizing: border-box;
+  background: #fff;
 }
 
 .otherUse view {
@@ -196,6 +197,18 @@ swiper {
   line-height: 116rpx;
 }
 
-.wid{
+.wid {
   width: 100%;
+}
+
+.btn {
+  padding-left: 0px;
+  padding-right: 0px;
+  font-size: 11px;
+  line-height: 0px;
+  display: inline;
+}
+
+.btn::after {
+  border-radius: 0px;
 }

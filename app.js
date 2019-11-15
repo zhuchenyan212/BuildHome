@@ -10,10 +10,34 @@ App({
     loading: {
       loadingHidden: false, // loading
       content: '加载中...'
-    }
+    },
   },
 
   onLaunch: function() {
+    const updateManager = wx.getUpdateManager()
+    updateManager.onCheckForUpdate(function(res) {
+      console.log(res.hasUpdate)
+    })
+    updateManager.onUpdateReady(function() {
+      wx.showModal({
+        title: '更新提示',
+        content: '新版本已经准备好，是否重启应用？',
+        success: function(res) {
+          if (res.confirm) {
+            // 新的版本已经下载好，调用 applyUpdate 应用新版本并重启
+            updateManager.applyUpdate()
+          }
+        }
+      })
+    })
+    updateManager.onUpdateFailed(function() {
+      // 新版本下载失败
+      wx.showToast({
+        title: '新版本下载失败',
+        icon: 'none',
+        duration: 2000,
+      })
+    })
     this.getUserInfo();
   },
 
@@ -21,6 +45,7 @@ App({
   getUserInfo: function() {
     var that = this;
     wx.setStorageSync('domain', 'https://jgj.jiaguanjiazx.com:8081');
+    //wx.setStorageSync('domain', 'https://192.168.1.71:8081');
 
     // 用户登录
     wx.login({
@@ -35,8 +60,10 @@ App({
             },
           }).then(res => {
             console.log('=====获取到用户的token========');
+            console.log(res.token)
             // 缓存后台返回的用户token
             wx.setStorageSync('user', res.token);
+            wx.setStorageSync('openId', res.openId);
           }).catch(err => {
             wx.showToast({
               title: '请求失败请稍候',
