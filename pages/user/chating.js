@@ -32,12 +32,10 @@ Page({
     })
     // 监测连接关闭
     wx.onSocketClose(function(res) {
-      console.log(res)
       console.log('WebSocket 已关闭！')
     })
     // 监测连接错误
     wx.onSocketError(function(res) {
-      console.log(res)
       console.log('WebSocket连接打开失败，请检查！')
     })
   },
@@ -100,7 +98,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/PersonCard/getChatLog?userId=' + that.data.user,
       method: 'GET'
     }).then(res => {
-      console.log(res.data)
       // 自动滑动到页面底部
       // 获取当前窗口的高度
       var height = wx.getSystemInfoSync().windowHeight;

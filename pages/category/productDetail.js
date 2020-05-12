@@ -19,7 +19,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/jgjgoods/' + options.id,
       method: 'GET'
     }).then(res => {
-      console.log(res)
       that.setData({
         id: options.id,
         jgjGoods: res.jgjGoods

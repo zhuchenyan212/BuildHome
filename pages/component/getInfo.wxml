@@ -1,16 +1,17 @@
 <!-- 弹窗 -->
 <template name="getInfo">
-  <view class="showToast" wx:if="{{openor}}"></view>
-  <view class="babox" wx:if="{{openor}}">
-    <view class="cover">
-      <image class="logo" src="/images/logo.jpg"></image>
-      <view class="titles">佳管家家居服务平台申请</view>
-      <view class="aline-title">获取你的基本信息</view>
-      <view class="show-title">我们将基于你的基本信息为您带来更好的服务</view>
-      <view class="carInfo">
-        <button class="getinfo" open-type="getUserInfo" bindgetuserinfo="getInfo">确认</button>
-      </view>
-    </view>
-  </view>
+	<view class="showToast" wx:if="{{openor}}"></view>
+	<view class="babox" wx:if="{{openor}}">
+		<view class="cover">
+			<image class="logo" src="/images/logo.jpg"></image>
+			<view class="titles">佳管家家居服务平台申请</view>
+			<view class="aline-title">获取你的基本信息</view>
+			<view class="show-title">我们将基于你的基本信息为您带来更好的服务</view>
+			<view class="carInfo">
+				<button class="getinfos" wx:if="{{getphone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhone">获取手机号</button>
+				<button class="getinfo" wx:else open-type="getUserInfo" bindgetuserinfo="getInfo">获取信息</button>
+			</view>
+		</view>
+	</view>
 </template>
 <!-- 弹窗 -->

@@ -1,0 +1,22 @@
+<!--pages/discount/index.wxml-->
+<view>
+  <view class="headImg">
+    <image src="/images/kanjia.png" />
+  </view>
+  <view class="secondImg">
+    <image src="/images/process.png"></image>
+  </view>
+  <block wx:for="{{proList}}" wx:key="index">
+    <view class="prowrap">
+      <image class="proimg" src="{{item.main_img}}" />
+      <view class="pro_name">{{item.name}}</view>
+      <view class="pro_info">{{item.intro}}</view>
+      <view class="pro-choose">
+        <view class="left moeny">{{item.price}}元</view>
+        <view class="right">
+          <view class="operate" bindtap="changeurl" data-id="{{item.id}}">发起砍价</view>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

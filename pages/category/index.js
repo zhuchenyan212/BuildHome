@@ -9,7 +9,7 @@ Page({
     pageNo: 1, //页码
     limit: 15, //显示数据数量
     products: [], //商品容器
-    openor: '' //是否打开强制授权
+    openor: '', //是否打开强制授权
   },
 
   onShow: function() {
@@ -30,6 +30,7 @@ Page({
             // 缓存后台返回的用户token
             wx.setStorageSync('user', res.token);
             wx.setStorageSync('openId', res.openId);
+            wx.setStorageSync('myuserId', res.userEntity.userId);
             //请求服务器===是否强制授权
             if (res.openId) {
               $.http({

@@ -1,90 +1,90 @@
 <!--pages/mine/confirmOrder.wxml-->
 <wxs module="filters" src="../../utils/filters.wxs"></wxs>
 <view class="container">
-  <!-- 选择地址 -->
-  <view class="chooseAdress clear" bindtap="chooseAddress" wx:if='{{address == ""}}'>
-    <view class="left">请选择收货地址</view>
-    <view class="right">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <view class="cart_container" bindtap="chooseAddress" wx:else>
-    <view class="adressFont">
-      <view class="addresInfo">{{address.address}}{{address.addressDetail}}
-        <view class="lable" wx:if="{{address.defaultAddress}}">默认</view>
-      </view>
-      <view class="addressuser">{{address.receiver}} {{address.mobile}}</view>
-    </view>
-    <view class="edit">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <!-- 下单数据 -->
-  <view class="orderInfo">
-    <view class='Productitem clear' wx:for="{{jgjShopcartEntities}}" wx:key="index">
-      <view class='left'>
-        <image class="proImg" src="{{item.main_img}}" />
-        <view class="profot">
-          <view class="proName clamp">{{item.name}}</view>
-          <view class="proNum">x{{item.num}}</view>
-        </view>
-      </view>
-      <view class='proPrice right'>
-        ¥{{item.price}}
-      </view>
-    </view>
-  </view>
-  <!-- 选择优惠券 -->
-  <view class="chooseAdress clear" wx:if="{{len === 0}}">
-    <view class="left">使用优惠券
-      <text>有{{len}}张优惠券可用</text>
-    </view>
-    <view class="right">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <view class="chooseAdress clear" wx:else bindtap="choosequan">
-    <view class="left">使用优惠券
-      <text wx:if="{{coupon != ''}}">满{{coupon.threshold}}减{{coupon.worth}}</text>
-      <text wx:else>有{{len}}张优惠券可用(不可叠加)</text>
-    </view>
-    <view class="right">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <!-- 商品总计 -->
-  <view class="ordercontain">
-    <view class="orderItem">
-      <view class="left">商品总价</view>
-      <view class="right">¥{{money}}</view>
-    </view>
-    <view class="orderItem" wx:if="{{len > 0}}">
-      <view class="left">优惠</view>
-      <view class="right" wx:if="{{coupon != ''}}">-¥{{coupon.worth}}</view>
-      <view class="right" wx:else>-¥0.00</view>
-    </view>
-    <view class="orderItem">
-      <view class="left">订单金额</view>
-      <view class="right" wx:if="{{coupon != ''}}">¥{{filters.toFix(money-coupon.worth)}}</view>
-      <view class="right" wx:else>¥{{money}}</view>
-    </view>
-  </view>
-  <view class="orderPay clear">
-    <view class="left">
-      <image src="/images/weixin.png" />
-      <text>微信支付</text>
-    </view>
-    <view class="right">
-      <image src="/images/chooseon.png" />
-    </view>
-  </view>
-  <!-- 订单支付 -->
-  <view class="bottom_total">
-    <view class="rows">
-      <text class="heji">待支付:</text>
-      <text class="price" wx:if="{{coupon != ''}}">￥{{filters.toFix(money-coupon.worth)}}</text>
-      <text class="price" wx:else>￥{{money}}</text>
-      <button class="button-red" bindtap="weiPay" formType="submit" hover-class="none">立即支付</button>
-    </view>
-  </view>
+	<!-- 选择地址 -->
+	<view class="chooseAdress clear" bindtap="chooseAddress" wx:if='{{address == ""}}'>
+		<view class="left">请选择收货地址</view>
+		<view class="right">
+			<image src="/images/right.png" />
+		</view>
+	</view>
+	<view class="cart_container" bindtap="chooseAddress" wx:else>
+		<view class="adressFont">
+			<view class="addresInfo">{{address.address}}{{address.addressDetail}}
+				<view class="lable" wx:if="{{address.defaultAddress}}">默认</view>
+			</view>
+			<view class="addressuser">{{address.receiver}} {{address.mobile}}</view>
+		</view>
+		<view class="edit">
+			<image src="/images/right.png" />
+		</view>
+	</view>
+	<!-- 下单数据 -->
+	<view class="orderInfo">
+		<view class='Productitem clear' wx:for="{{jgjShopcartEntities}}" wx:key="index">
+			<view class='left'>
+				<image class="proImg" src="{{item.main_img}}" />
+				<view class="profot">
+					<view class="proName clamp">{{item.name}}</view>
+					<view class="proNum">x{{item.num}}</view>
+				</view>
+			</view>
+			<view class='proPrice right'>
+				¥{{item.price}}
+			</view>
+		</view>
+	</view>
+	<!-- 选择优惠券 -->
+	<view class="chooseAdress clear" wx:if="{{len === 0}}">
+		<view class="left">使用优惠券
+			<text>有{{len}}张优惠券可用</text>
+		</view>
+		<view class="right">
+			<image src="/images/right.png" />
+		</view>
+	</view>
+	<view class="chooseAdress clear" wx:else bindtap="choosequan">
+		<view class="left">使用优惠券
+			<text wx:if="{{coupon != ''}}">满{{coupon.threshold}}减{{coupon.worth}}</text>
+			<text wx:else>有{{len}}张优惠券可用(不可叠加)</text>
+		</view>
+		<view class="right">
+			<image src="/images/right.png" />
+		</view>
+	</view>
+	<!-- 商品总计 -->
+	<view class="ordercontain">
+		<view class="orderItem">
+			<view class="left">商品总价</view>
+			<view class="right">¥{{money}}</view>
+		</view>
+		<view class="orderItem" wx:if="{{len > 0}}">
+			<view class="left">优惠</view>
+			<view class="right" wx:if="{{coupon != ''}}">-¥{{coupon.worth}}</view>
+			<view class="right" wx:else>-¥0.00</view>
+		</view>
+		<view class="orderItem">
+			<view class="left">订单金额</view>
+			<view class="right" wx:if="{{coupon != ''}}">¥{{filters.toFix(money-coupon.worth)}}</view>
+			<view class="right" wx:else>¥{{money}}</view>
+		</view>
+	</view>
+	<view class="orderPay clear">
+		<view class="left">
+			<image src="/images/weixin.png" />
+			<text>微信支付</text>
+		</view>
+		<view class="right">
+			<image src="/images/chooseon.png" />
+		</view>
+	</view>
+	<!-- 订单支付 -->
+	<view class="bottom_total">
+		<view class="rows">
+			<text class="heji">待支付:</text>
+			<text class="price" wx:if="{{coupon != ''}}">￥{{filters.toFix(money-coupon.worth)}}</text>
+			<text class="price" wx:else>￥{{money}}</text>
+			<button class="button-red" bindtap="weiPay" formType="submit" hover-class="none">立即支付</button>
+		</view>
+	</view>
 </view>

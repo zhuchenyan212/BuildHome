@@ -11,7 +11,6 @@ Page({
    */
   onLoad: function(options) {
     var that = this;
-    console.log(options.type)
     //案例详情
     $.http({
       url: wx.getStorageSync('domain') + '/api/PersonCard/casesList/' + options.type,

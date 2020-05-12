@@ -1,0 +1,36 @@
+<!--pages/discount/detail.wxml-->
+<view class="container">
+	<view class="getdiscount">
+		<view class="mainwrap">
+			<image src="{{userEntity.avatarurl}}" />
+			<view class="name">{{userEntity.nickname}}</view>
+			<view class="toast">[ 我发现了一件好货，一起来砍价吧！ ]</view>
+		</view>
+		<view class="prowrap">
+			<image class="proimg" src="{{goodsdetail.mainImg}}" />
+			<view class="pro_name">{{goodsdetail.name}}</view>
+			<view class="red">¥{{goodsdetail.price}}</view>
+			<view class="time">活动截止时间：{{goodsdetail.goodsBargainEnd}}</view>
+		</view>
+	</view>
+	<view class="helpdiscount">
+		<view class="helptitle">已有{{friendNum.bargainUsersNumber}}人帮助砍价，还需要
+			<text class="peonum">{{goodsdetail.goodsBargainNumber-friendNum.bargainUsersNumber}}</text> 人帮助砍价
+		</view>
+		<view class="helpprocess">
+			<view class="process">
+				<view class="on" style="width: {{process}}%;"></view>
+			</view>
+		</view>
+		<view class="btndiscount" wx:if="{{discountOr == false}}" bindtap="helpdiscount">帮好友砍价</view>
+		<button class="btndiscount" wx:else open-type="share" hover-class="none">邀请好友砍价</button>
+		<view class="friendwrap" style="height:{{height}}rpx;">
+			<view class="frienditem" wx:for="{{friendList}}" wx:key="index">
+				<image src="{{item.avatarurl}}" />
+				<view class="friendname">{{item.nickname}} 砍价成功！</view>
+				<view class="frienddate">{{item.create_time}}</view>
+			</view>
+			<view class="more" bindtap="more" data-height="{{height}}">查看更多</view>
+		</view>
+	</view>
+</view>

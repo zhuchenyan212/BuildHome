@@ -1,151 +1,209 @@
 <!--index.wxml-->
 <import src="../wxParse/wxParse.wxml" />
 <import src="/pages/component/getInfo.wxml" />
-<template is="getInfo" data="{{openor}}" />
+<template is="getInfo" data="{{openor,getphone}}" />
 <view class="container">
-  <!--广告轮播-->
-  <view class="swiper-slider">
-    <swiper indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="1000" indicator-color="rgba(0,0,0,.3)" indicator-active-color="rgba(255,255,255,.7)">
-      <block wx:for="{{swiper}}" wx:key="index">
-        <swiper-item>
-          <image src="{{item.imgUrl}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" />
-        </swiper-item>
-      </block>
-    </swiper>
-  </view>
-  <!--广告轮播-->
+	<!--广告轮播-->
+	<view class="swiper-slider">
+		<swiper indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="1000" indicator-color="rgba(0,0,0,.3)" indicator-active-color="rgba(255,255,255,.7)">
+			<block wx:for="{{swiper}}" wx:key="index">
+				<swiper-item>
+					<image src="{{item.imgUrl}}" data-id="{{item.id}}" class="slide-image" width="355" height="150" />
+				</swiper-item>
+			</block>
+		</swiper>
+	</view>
+	<!--广告轮播-->
 
-  <!--模块展示-->
-  <view class="ui-grids clear">
-    <block wx:for="{{service}}" wx:key="index">
-      <navigator class="grid" url="/pages/category/service?id={{item.id}}" hover-class="none">
-        <view class="ui_grid-img">
-          <image src="{{item.mainImg}}" />
-        </view>
-        <view class="ui_grid-label ellipsis">{{item.name}}</view>
-      </navigator>
-    </block>
-  </view>
-  <!--模块展示-->
+	<!--模块展示-->
+	<view class="ui-grids clear">
+		<block wx:for="{{service}}" wx:key="index">
+			<navigator class="grid" url="/pages/category/service?id={{item.id}}" hover-class="none">
+				<view class="ui_grid-img">
+					<image src="{{item.mainImg}}" />
+				</view>
+				<view class="ui_grid-label ellipsis">{{item.name}}</view>
+			</navigator>
+		</block>
+	</view>
+	<!--模块展示-->
 
-  <!-- 活动模块 -->
-  <view class="floor">
-    <view class="floor_box">
-      <view class="title clear">
-        <view class="left remai">优惠活动</view>
-      </view>
-      <view class="list clear">
-        <scroll-view scroll-x="true" class="scrollBox">
-          <block wx:for="{{active}}" wx:key="index">
-            <navigator class="item" url="/pages/index/activity?id={{item.id}}" hover-class="none">
-              <image src="{{item.introImg}}" />
-            </navigator>
-          </block>
-        </scroll-view>
-      </view>
-    </view>
-  </view>
-  <!-- 活动模块 -->
+	<!-- 活动模块 -->
+	<view class="floor">
+		<view class="floor_box">
+			<view class="title clear">
+				<view class="left remai">优惠活动</view>
+			</view>
+			<view class="list clear">
+				<scroll-view scroll-x="true" class="scrollBox">
+					<block wx:for="{{active}}" wx:key="index">
+						<navigator class="item" url="/pages/index/activity?id={{item.id}}" hover-class="none">
+							<image src="{{item.introImg}}" />
+						</navigator>
+					</block>
+				</scroll-view>
+			</view>
+		</view>
+	</view>
+	<!-- 活动模块 -->
 
-  <!-- 表单模块 -->
-  <view class="catagory">
-    <view class="floor_box">
-      <view class="title">
-        <view class="ft-14">
-          <text class="line">—— </text>
-          <text class="font">目前已经有<text class="red">{{count}}</text>人参与活动</text>
-          <text class="line"> ——</text>
-        </view>
-      </view>
-      <view class="p_box clear">
-        <form bindsubmit='saveUserInfo'>
-          <view class="formitem">
-            <view class="left ft-12 font tit">小区
-              <text class="red">*</text>
-            </view>
-            <view class="left oinput">
-              <input type="text" name='name' value='{{name}}' />
-            </view>
-          </view>
-          <view class="formitem">
-            <view class="left ft-12 font tit">电话
-              <text class="red">*</text>
-            </view>
-            <view class="left oinput">
-              <input type="text" name='phone' value='{{phone}}' maxlength="11" />
-            </view>
-          </view>
-          <button form-type="submit" type="default" size="defaultSize" hover-class="none" class='bottomFont'>立即提交</button>
-        </form>
-      </view>
-      <!--公告列表-->
-      <view class="notice_wrap">
-        <view class="swiper-vertical">
-          <view class="slide-title">
-            <image src="/images/gg.png" />
-          </view>
-          <view class="swiper-info">
-            <swiper autoplay="true" interval="2000" vertical="true" circular="true" duration="500">
-              <block wx:for="{{news}}" wx:key="index">
-                <swiper-item>
-                  <navigator class="ellipsis" hover-class='none'>{{item.userName}} {{item.mobile}} {{item.createTime}}</navigator>
-                </swiper-item>
-              </block>
-            </swiper>
-          </view>
-        </view>
-      </view>
-      <!--公告列表-->
-    </view>
-  </view>
-  <!-- 表单模块 -->
+	<!-- 表单模块 -->
+	<view class="catagory">
+		<view class="floor_box">
+			<view class="title">
+				<view class="ft-14">
+					<text class="line">—— </text>
+					<text class="font">目前已经有<text class="red">{{count}}</text>人参与活动</text>
+					<text class="line"> ——</text>
+				</view>
+			</view>
+			<view class="p_box clear">
+				<form bindsubmit='saveUserInfo'>
+					<view class="formitem">
+						<view class="left ft-12 font tit">小区
+							<text class="red">*</text>
+						</view>
+						<view class="left oinput">
+							<input type="text" name='name' value='{{name}}' maxlength="10" />
+						</view>
+					</view>
+					<view class="formitem">
+						<view class="left ft-12 font tit">电话
+							<text class="red">*</text>
+						</view>
+						<view class="left oinput">
+							<input type="text" name='phone' value='{{phone}}' maxlength="11" />
+						</view>
+					</view>
+					<button form-type="submit" type="default" size="defaultSize" hover-class="none" class='bottomFont'>立即提交</button>
+				</form>
+			</view>
+			<!--公告列表-->
+			<view class="notice_wrap">
+				<view class="swiper-vertical">
+					<view class="slide-title">
+						<image src="/images/gg.png" />
+					</view>
+					<view class="swiper-info">
+						<swiper autoplay="true" interval="2000" vertical="true" circular="true" duration="500">
+							<block wx:for="{{news}}" wx:key="index">
+								<swiper-item>
+									<navigator class="ellipsis" hover-class='none'>{{item.userName}} {{item.mobile}} {{item.createTime}}</navigator>
+								</swiper-item>
+							</block>
+						</swiper>
+					</view>
+				</view>
+			</view>
+			<!--公告列表-->
+		</view>
+	</view>
+	<!-- 表单模块 -->
 
-  <!-- 服务模块 -->
-  <view class="fuwu">
-    <image src="/images/@index1.jpg" />
-  </view>
-  <!-- 服务模块 -->
+	<!-- 专题 -->
+	<view class="floors">
+		<view class="floors_box">
+			<view class="title clear">
+				<view class="left remai">专题</view>
+			</view>
+			<block wx:for="{{activity}}" wx:key="index">
+				<navigator class="item" url="/pages/index/activity?id={{item.id}}" hover-class="none">
+					<image src="{{item.introImg}}"></image>
+				</navigator>
+			</block>
+		</view>
+	</view>
+	<!-- 专题 -->
 
-  <!-- 关于其他 -->
-  <view class="floors">
-    <view class="floors_box">
-      <view class="title clear">
-        <view class="left remai">企业优势</view>
-      </view>
-      <view class="item">
-        <view class="wxParse">
-          <template is="wxParse" data="{{wxParseData:section.nodes}}" />
-        </view>
-      </view>
-    </view>
-  </view>
-  <view class="floors">
-    <view class="floors_box">
-      <view class="title clear">
-        <view class="left remai">售后服务</view>
-      </view>
-      <view class="item">
-        <view class="wxParse">
-          <template is="wxParse" data="{{wxParseData:article.nodes}}" />
-        </view>
-      </view>
-    </view>
-  </view>
-  <!-- 关于其他 -->
+	<!-- 优惠卷 -->
+	<view class="quanwrap">
+		<block wx:for="{{quanList}}" wx:key="index">
+			<view class="quanItem" bindtap="getCoupon" data-id="{{item.id}}" style="{{item.weight == 0?'':'opacity:0.5;'}}" data-content="{{item.content}}" data-worth="{{item.worth}}" data-threshold="{{item.threshold}}" data-endtime="{{item.endTime}}">
+				<view class="leftquan">
+					<view class="money">
+						<view style="font-size:26rpx;">¥</view>
+						<view style="font-size:38rpx;">{{item.worth}}</view>
+					</view>
+					<view class="use">
+						<view style="font-size:22rpx;" class="ellipsis">{{item.content}}</view>
+						<view style="font-size:18rpx;">满{{item.threshold}}可用</view>
+						<view class="dataquan">{{item.endTime}}前使用</view>
+					</view>
+				</view>
+				<view class="rightquan align-center-vertical">点击领取</view>
+			</view>
+		</block>
+	</view>
+	<!-- 优惠卷 -->
 
-  <!-- 优惠券弹窗 -->
-  <view wx:if="{{show == true}}" bindtap="close">
-    <view class="mask"></view>
-    <image class="closeCoupon" src="/images/closeCoupon.png" />
-    <block class="couponWrap" wx:for="{{coupon}}" wx:key="index">
-      <view class="item-ans bgon">
-        <view class="expertInfo">
-          <view class="name">满{{item.threshold}}减{{item.worth}}
-            <text>优惠券</text>
-          </view>
-          <view class="answerHistory">有效期{{item.startTime}}-{{item.endTime}}</view>
-        </view>
-      </view>
-    </block>
-  </view>
+	<!-- 砍价 -->
+	<view class="floors">
+		<view class="floors_box">
+			<view class="title clear">
+				<view class="left remai">砍价</view>
+			</view>
+			<view class="item" bindtap="gotokanjia" hover-class="none">
+				<image src="{{kanjia}}"></image>
+			</view>
+		</view>
+	</view>
+	<!-- 砍价 -->
+
+	<!-- 热门商品 -->
+	<view class="remen">
+		<view class="remenTitle">热门商品</view>
+		<navigator class="productItem" wx:for="{{remenList}}" wx:key="index" url="/pages/category/productDetail?id={{item.id}}">
+			<image src="{{item.mainImg}}"></image>
+			<view class="proinfo">
+				<view class="protitle">{{item.name}}</view>
+				<view class="promoney">¥{{item.price}}</view>
+			</view>
+		</navigator>
+		<!-- <view class="more">更多商品>></view> -->
+	</view>
+	<!-- 热门商品 -->
+
+	<!-- 服务模块 -->
+	<view class="fuwu">
+		<image src="/images/@index1.jpg" />
+	</view>
+	<!-- 服务模块 -->
+
+	<!-- 关于其他 -->
+	<view class="floors">
+		<view class="floors_box">
+			<view class="title clear">
+				<view class="left remai">企业优势</view>
+			</view>
+			<view class="item">
+				<view class="wxParse">
+					<template is="wxParse" data="{{wxParseData:section.nodes}}" />
+				</view>
+			</view>
+		</view>
+	</view>
+	<view class="floors">
+		<view class="floors_box">
+			<view class="title clear">
+				<view class="left remai">售后服务</view>
+			</view>
+			<view class="item">
+				<view class="wxParse">
+					<template is="wxParse" data="{{wxParseData:article.nodes}}" />
+				</view>
+			</view>
+		</view>
+	</view>
+	<!-- 关于其他 -->
+</view>
+
+<!-- 优惠券弹窗 -->
+<view class="showToasts" wx:if="{{openors}}" bindtap="openModal">
+	<view class="covers" wx:if="{{openors}}">
+		<view class="worth">
+			￥{{worth}}
+		</view>
+		<view class="content">{{content}}满{{threshold}}可用，优惠券截止使用日期{{endtime}}</view>
+		<view class="attrcoupon" bindtap="attrcoupon" data-id="{{couponId}}">立即领取</view>
+	</view>
 </view>

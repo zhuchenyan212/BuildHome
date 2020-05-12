@@ -7,11 +7,14 @@
 		"urlCheck": true,
 		"es6": true,
 		"enhance": true,
-		"postcss": false,
-		"minified": false,
+		"postcss": true,
+		"preloadBackgroundData": false,
+		"minified": true,
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
@@ -20,12 +23,13 @@
 			"ignore": [],
 			"disablePlugins": [],
 			"outputPath": ""
-		}
+		},
+		"bundle": true
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.96",
 	"appid": "wxe613838a86924ad5",
-	"projectname": "jgj",
+	"projectname": "%E4%BD%B3%E7%AE%A1%E5%AE%B6%E5%AE%B6%E5%B1%85%E6%9C%8D%E5%8A%A1%E5%B9%B3%E5%8F%B0",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},

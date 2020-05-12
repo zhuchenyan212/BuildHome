@@ -1,0 +1,25 @@
+<!--pages/store/detail.wxml-->
+<view class="searchwrap">
+  <view class="index_search_btn">
+    <image class="index_search" src="/images/searchLogo.png" bindtap="click"></image>
+    <input type="text" placeholder="搜索" bindblur="getsearchkey" bindconfirm="click" />
+  </view>
+</view>
+<view class="brand" wx:for="{{JgjGoodsBrandList}}" wx:key="index">
+  <image src="{{item.nramdImg}}" />
+  <view class="brand_name">{{item.nramdName}}</view>
+  <view class="brand_info">{{item.nramd_content}}</view>
+</view>
+<block wx:for="{{goodsList}}" wx:key="index">
+  <view class="prowrap" bindtap="gotodetail" data-id="{{item.id}}">
+    <image class="proimg" src="{{item.mainImg}}" />
+    <view class="pro_name">{{item.name}}</view>
+    <view class="pro_info">{{item.intro}}</view>
+    <view class="pro-choose">
+      <view class="left moeny">{{item.price}}元</view>
+      <view class="right" catchtap="addshopingCart" data-id="{{item.id}}">
+        <image src="/images/add.png" />
+      </view>
+    </view>
+  </view>
+</block>

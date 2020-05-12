@@ -41,7 +41,6 @@ Page({
   addAddress: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(that.data.isChecked)
     if (e.detail.value.receiver == '') {
       wx.showToast({
         title: '请输入姓名',
@@ -107,7 +106,6 @@ Page({
 
   // 删除收货地址
   deletItme: function(e) {
-    console.log(e.currentTarget.dataset.id)
     wx.showModal({
       content: '确认删除当前收货地址？',
       success(res) {

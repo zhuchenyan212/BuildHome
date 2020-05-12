@@ -14,22 +14,27 @@ Page({
     salesmanimg: '', //业务员的二维码
     avatarurl: '',
     salesman: '', //null没绑定业务员 有值为已绑定业务员
-    openor: '', //是否打开强制授权
-    salesmanId: '' //业务员id
+    openor: true, //是否打开强制授权
+    getphone: false, //是否显示获取手机号
+    salesmanId: '', //业务员id
+    getphone: false
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
-    that.setData({
-      salesmanId: options.myuserId
-    })
-    wx.setStorageSync('salesmanId', options.myuserId)
+    console.log(options)
+    if (options.scene) {
+      that.setData({
+        salesmanId: options.scene
+      })
+      wx.setStorageSync('salesmanId', options.scene)
+    }
     //分享绑定业务员
-    console.log("===绑定业务人员=======" + options.myuserId + "+============")
-    if (options.myuserId) {
+    console.log("===绑定业务人员=======" + options.scene + "+============")
+    if (options.scene) {
       //进入页面获取到业务员id就绑定业务员
       $.http({
-        url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + options.myuserId,
+        url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + options.scene,
         method: 'PUT'
       }).then(res => {
         console.log("===绑定结果=======" + res + "+============")
@@ -40,7 +45,7 @@ Page({
   },
 
   //是否打开名片二维码
-  openModal: function() {
+  openModal: function () {
     var that = this;
     that.setData({
       openors: !that.data.openors
@@ -50,13 +55,13 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
-  onShow: function() {
+  onShow: function () {
     var that = this;
-    //请求服务器
+    //请求首页信息
     $.http({
       url: wx.getStorageSync('domain') + '/api/PersonCard/indexPage',
       method: 'GET'
@@ -82,13 +87,12 @@ Page({
         duration: 2000,
       })
     })
+    //获取业务员二维码
     if (wx.getStorageSync('identity') == 2) {
-      //获取业务员二维码
       $.http({
         url: wx.getStorageSync('domain') + '/api/PersonCard/getSalesManQrCode',
         method: 'GET'
       }).then(res => {
-        console.log(res)
         that.setData({
           salesmanimg: res.data
         })
@@ -100,7 +104,6 @@ Page({
         })
       })
     }
-
     // 调用登录
     wx.login({
       success: res => {
@@ -113,24 +116,25 @@ Page({
               code: res.code,
             },
           }).then(res => {
-            console.log('=====获取到用户的token========');
             // 缓存后台返回的用户token
             wx.setStorageSync('user', res.token);
             wx.setStorageSync('openId', res.openId);
-            //请求服务器===是否强制授权
-            if (res.openId) {
+            wx.setStorageSync('session_key', res.session_key);
+            wx.setStorageSync('myuserId', res.userEntity.userId);
+             // 是否强制授权
+             if(res.openId){
               $.http({
                 url: wx.getStorageSync('domain') + '/api/WXreply/DeceptionType?openId=' + res.openId,
                 method: 'POST',
               }).then(res => {
                 if (res.msg == 0) {
-                  that.setData({
+                  this.setData({
                     openor: false
                   })
                   wx.setStorageSync('openor', false);
                 } else {
                   // 调用授权弹窗
-                  that.setData({
+                  this.setData({
                     openor: true
                   })
                   wx.setStorageSync('openor', true);
@@ -155,21 +159,37 @@ Page({
         }
       }
     })
-
-    //进入页面获取到业务员id就绑定业务员
-    $.http({
-      url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + that.data.salesmanId,
-      method: 'PUT'
-    }).then(res => {
-      console.log("===绑定结果=======" + res + "+============")
-    }).catch(err => {
-      console.log('请求失败请稍候')
-    })
-
-    if (wx.getStorageSync('salesmanId')) {
+    //请求服务器===是否强制授权
+    if (wx.getStorageSync('openId')) {
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/WXreply/DeceptionType?openId=' + wx.getStorageSync('openId'),
+        method: 'POST',
+      }).then(res => {
+        if (res.msg == 0) {
+          this.setData({
+            openor: false
+          })
+          wx.setStorageSync('openor', false);
+        } else {
+          // 调用授权弹窗
+          this.setData({
+            openor: true
+          })
+          wx.setStorageSync('openor', true);
+        }
+      }).catch(err => {
+        wx.showToast({
+          title: '请求失败请稍候5',
+          icon: 'none',
+          duration: 2000,
+        })
+      })
+    }
+    //再次绑定业务员
+    if(this.data.salesmanId){
       //进入页面获取到业务员id就绑定业务员
       $.http({
-        url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + wx.getStorageSync('salesmanId'),
+        url: wx.getStorageSync('domain') + '/api/PersonCard/bindSalesMan?bindSalesMan=' + this.data.salesmanId,
         method: 'PUT'
       }).then(res => {
         console.log("===绑定结果=======" + res + "+============")
@@ -179,13 +199,13 @@ Page({
     }
   },
 
-  edit: function() {
+  edit: function () {
     wx.navigateTo({
       url: '../card/Edit',
     })
   },
 
-  chatWei: function() {
+  chatWei: function () {
     console.log('======与绑定的业务员聊天======')
     wx.navigateTo({
       url: '../user/chating?user=' + wx.getStorageSync('salesuserId'),
@@ -193,45 +213,23 @@ Page({
   },
 
   //一键拨打客服电话
-  fixedNum: function() {
-    // var num = wx.getStorageSync("telephone")
+  fixedNum: function () {
     var that = this;
     wx.makePhoneCall({
       phoneNumber: that.data.mobile,
-      success: function() {
+      success: function () {
         console.log("拨打电话成功！")
       },
-      fail: function() {
+      fail: function () {
         console.log("拨打电话失败！")
       }
     })
   },
 
-  // // 分享名片
-  // shareCard: function(res) {
-  //   console.log('===分享名片=' + res + '==')
-  //   return {
-  //     title: "快来佳管家家居服务平台吧~", //分享标题
-  //     imageUrl: "/images/nosar.png",
-  //     path: '/pages/card/index?myuserId=' + wx.getStorageSync('myuserId'), // 别人点击链接时会得到的数据
-  //     success: function success(res) {
-  //       console.log("分享成功", res);
-  //       wx.showShareMenu({
-  //         //要求小程序返回分享目标信息
-  //         withShareTicket: true
-  //       });
-  //     },
-  //     fail: function fail(res) {
-  //       console.log("分享失败", res);
-  //     }
-  //   }
-  // },
-
   //在线沟通服务提醒
-  getNumSuccess: function(e) {
+  getNumSuccess: function (e) {
     var arr = [];
     arr.push(e.detail.formId)
-    console.log(arr)
     $.http({
       url: wx.getStorageSync('domain') + '/api/WXreply/setButtKey',
       method: 'POST',
@@ -239,7 +237,7 @@ Page({
         user_id: wx.getStorageSync('myuserId'),
         buttKeyList: arr
       }
-    }).then(res => {}).catch(err => {
+    }).then(res => { }).catch(err => {
       wx.showToast({
         title: '请求失败请稍候',
         icon: 'none',
@@ -249,15 +247,14 @@ Page({
   },
 
   // 更多案例
-  more: function(e) {
-    console.log()
+  more: function (e) {
     wx.navigateTo({
       url: '../card/more?type=' + e.currentTarget.dataset.type,
     })
   },
 
   // 获取用户信息登录
-  getInfo: function(e) {
+  getInfo: function (e) {
     wx.login({
       success: res => {
         if (res.errMsg == "login:ok") {
@@ -281,7 +278,9 @@ Page({
               icon: 'success',
               duration: 2000,
             })
-            this.onShow()
+            this.setData({
+              getphone: true //打开获取手机号
+            })
           }).catch(err => {
             wx.showToast({
               title: '请求失败请稍候',
@@ -296,35 +295,58 @@ Page({
     })
   },
 
+  //获取用户手机号
+  getPhone: function (e) {
+    if (e.detail.errMsg == "getPhoneNumber:ok") {
+      $.http({
+        url: wx.getStorageSync('domain') + '/api/index/getUserPhone',
+        method: 'GET',
+        data: {
+          encryptedData: e.detail.encryptedData,
+          iv: e.detail.iv,
+          sessionKey: wx.getStorageSync('session_key'),
+          user_id: wx.getStorageSync('myuserId')
+        }
+      }).then(res => {
+        if (res.code == 0) {
+          this.onShow()
+        }
+      }).catch(err => {
+        console.log('请求失败请稍候')
+      })
+    }
+  },
+
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
-  onShareAppMessage: function(res) {
+  //分享小程序
+  onShareAppMessage: function (res) {
     if (res.from === 'button') {
       console.log('www')
     }
@@ -332,7 +354,7 @@ Page({
     return {
       title: "快来佳管家家居服务平台吧~", //分享标题
       imageUrl: "/images/nosar.png",
-      path: '/pages/card/index?myuserId=' + wx.getStorageSync('myuserId'), // 别人点击链接时会得到的数据
+      path: '/pages/card/index?scene=' + wx.getStorageSync('myuserId'), // 别人点击链接时会得到的数据
       success: function success(res) {
         console.log("分享成功", res);
         wx.showShareMenu({
@@ -344,9 +366,5 @@ Page({
         console.log("分享失败", res);
       }
     }
-  },
-
-  //黄龙植 铁憨憨 性格火爆 内心纯情 热情如火 直白 英勇 贴心 正义 可爱 执行力强 男子气概 守护 不放弃 触动 善良 仗义
-  //山茶 宇宙无敌温柔大姐姐 勇敢 坚强 坚定 坚持 守护 底线 防守 清纯 善良 美丽 可爱 随和 反击 镇定 感动 温柔 识时务
-
+  }
 })

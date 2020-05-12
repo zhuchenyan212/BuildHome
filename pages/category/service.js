@@ -19,7 +19,6 @@ Page({
         id: options.id
       }
     }).then(res => {
-      console.log(res)
       that.setData({
         id: options.id,
         jgjService: res.jgjService
@@ -39,7 +38,6 @@ Page({
   saveInfo: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(e.detail.value)
     if (e.detail.value.unit == '') {
       wx.showToast({
         title: '请输入小区名称',

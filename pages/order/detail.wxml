@@ -1,90 +1,98 @@
 <!--pages/order/detail.wxml-->
 <view class="container">
-  <!-- 头部模块 -->
-  <view class="headnav">
-    <view class="headBg">
-      <view class="orderstatus" wx:if="{{mainOrder.status == 1}}">待付款</view>
-      <view class="orderstatus" wx:if="{{mainOrder.status == 2}}">待发货</view>
-      <view class="orderstatus" wx:if="{{mainOrder.status == 3}}">待收货</view>
-      <view class="orderstatus" wx:if="{{mainOrder.status == 4}}">已完成</view>
-      <image src="/images/righton.png" />
-    </view>
-    <!-- 订单模块 -->
-    <view class="carditem">
-      <navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 1}}">请尽快支付</navigator>
-      <navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 2}}">订单已付款，等待发货</navigator>
-      <navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 3}}">订单已发货，等待收货</navigator>
-      <navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 4}}">已确认收货，订单已完成</navigator>
-      <view class="orderbottom">
-        <view class="onButton space" wx:if="{{mainOrder.status == 1}}" data-prepayId="{{mainOrder.prepayId}}" data-nonceStr="{{mainOrder.nonceStr}}" data-id="{{mainOrder.id}}" data-status="{{mainOrder.status}}" bindtap="payMoney">付款</view>
-        <view class="onButton space" wx:if="{{mainOrder.status == 3}}" data-id="{{mainOrder.id}}" data-status="{{mainOrder.status}}" bindtap="sureProduct">确认收货</view>
-      </view>
-    </view>
-    <!-- 订单模块 -->
-  </view>
-  <!-- 头部模块 -->
-  <!-- 订单信息 -->
-  <view class="cart_container">
-    <view class="adressFont">
-      <view class="addresInfo">{{mainOrder.receiveAddress}}
-        <!-- <view class="lable">默认</view> -->
-      </view>
-      <view class="addressuser">{{mainOrder.buyerName}} {{mainOrder.buyerMobile}}</view>
-    </view>
-    <view class="edit">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <view class="orderInfo">
-    <view class='Productitem clear' wx:for="{{jgjOrdersGEntities}}" wx:key="index">
-      <view class='left'>
-        <image class="proImg" src="{{item.mainImg}}" />
-        <view class="profot">
-          <view class="proName clamp">{{item.name}}</view>
-          <view class="proNum">x{{item.num}}</view>
-        </view>
-      </view>
-      <view class='proPrice right'>
-        ¥{{item.price}}
-      </view>
-    </view>
-  </view>
-  <view class="chooseAdress clear">
-    <view class="left">优惠信息
-      <text wx:if="{{jgjUsersCouponEntity.worth != '' && jgjUsersCouponEntity.worth != undefined && jgjUsersCouponEntity.worth != null}}">满{{jgjUsersCouponEntity.threshold}}减{{jgjUsersCouponEntity.worth}}</text>
-      <text wx:else>暂未使用优惠券</text>
-    </view>
-    <view class="right">
-      <image src="/images/right.png" />
-    </view>
-  </view>
-  <view class="ordercontain">
-    <view class="orderItem">
-      <view class="left">商品总价</view>
-      <view class="right">¥{{mainOrder.price}}</view>
-    </view>
-    <view class="orderItem" wx:if="{{mainOrder.couponValue != null}}">
-      <view class="left">优惠</view>
-      <view class="right">-¥{{mainOrder.couponValue}}</view>
-    </view>
-    <view class="orderItem">
-      <view class="left">订单金额</view>
-      <view class="right">¥{{mainOrder.pricePayed}}</view>
-    </view>
-  </view>
-  <view class="ordercontains">
-    <view class="orderItems">
-      <view class="left">订单编号</view>
-      <view class="right">{{mainOrder.sn}}</view>
-    </view>
-    <view class="orderItems">
-      <view class="left">下单时间</view>
-      <view class="right">{{mainOrder.createTime}}</view>
-    </view>
-    <view class="orderItems">
-      <view class="left">支付方式</view>
-      <view class="right">微信支付</view>
-    </view>
-  </view>
-  <!-- 订单信息 -->
+	<!-- 头部模块 -->
+	<view class="headnav">
+		<view class="headBg">
+			<view class="orderstatus" wx:if="{{mainOrder.status == 1}}">待付款</view>
+			<view class="orderstatus" wx:if="{{mainOrder.status == 2}}">待发货</view>
+			<view class="orderstatus" wx:if="{{mainOrder.status == 3}}">待收货</view>
+			<view class="orderstatus" wx:if="{{mainOrder.status == 4}}">已完成</view>
+			<image src="/images/righton.png" />
+		</view>
+		<!-- 订单模块 -->
+		<view class="carditem" wx:if='{{mainOrder.receiveAddress != null}}'>
+			<navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 1}}">请尽快支付</navigator>
+			<navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 2}}">订单已付款，等待发货</navigator>
+			<navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 3}}">订单已发货，等待收货</navigator>
+			<navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 4}}">已确认收货，订单已完成</navigator>
+			<view class="orderbottom">
+				<view class="onButton space" wx:if="{{mainOrder.status == 1}}" data-prepayId="{{mainOrder.prepayId}}" data-nonceStr="{{mainOrder.nonceStr}}" data-id="{{mainOrder.id}}" data-status="{{mainOrder.status}}" bindtap="payMoney">付款</view>
+				<view class="onButton space" wx:if="{{mainOrder.status == 3}}" data-id="{{mainOrder.id}}" data-status="{{mainOrder.status}}" bindtap="sureProduct">确认收货</view>
+			</view>
+		</view>
+		<view class="carditem" wx:if='{{okpay == true}}'>
+			<navigator class="ft-13 font" url="" hover-class="none" wx:if="{{mainOrder.status == 1}}">请尽快支付</navigator>
+			<view class="orderbottom">
+				<view class="onButton space" wx:if="{{mainOrder.status == 1}}" data-prepayId="{{mainOrder.prepayId}}" data-nonceStr="{{mainOrder.nonceStr}}" data-id="{{mainOrder.id}}" data-status="{{mainOrder.status}}" bindtap="pingtuanpay">付款</view>
+			</view>
+		</view>
+	</view>
+	<!-- 订单信息 -->
+	<view class="cart_container">
+		<view class="adressFont" wx:if='{{mainOrder.receiveAddress != null}}'>
+			<view class="addresInfo">{{mainOrder.receiveAddress}}</view>
+			<view class="addressuser">{{mainOrder.buyerName}} {{mainOrder.buyerMobile}}</view>
+		</view>
+		<view class="adressFont" wx:if='{{mainOrder.receiveAddress == null && address != ""}}'>
+			<view class="addresInfo">{{address.address}} {{address.addressDetail}}</view>
+			<view class="addressuser">{{address.receiver}} {{address.mobile}}</view>
+		</view>
+		<view class="adressFont" wx:if='{{mainOrder.receiveAddress == null && address == ""}}'>
+			<view class="addresInfo">请选择地址</view>
+		</view>
+		<view class="edit" wx:if='{{mainOrder.receiveAddress == null}}'>
+			<image src="/images/right.png" bindtap="chooseaddress" />
+		</view>
+	</view>
+	<view class="orderInfo">
+		<view class='Productitem clear' wx:for="{{jgjOrdersGEntities}}" wx:key="index">
+			<view class='left'>
+				<image class="proImg" src="{{item.mainImg}}" />
+				<view class="profot">
+					<view class="proName clamp">{{item.name}}</view>
+					<view class="proNum">x{{item.num}}</view>
+				</view>
+			</view>
+			<view class='proPrice right'>
+				¥{{item.price}}
+			</view>
+		</view>
+	</view>
+	<view class="chooseAdress clear">
+		<view class="left">优惠信息
+			<text wx:if="{{jgjUsersCouponEntity.worth != '' && jgjUsersCouponEntity.worth != undefined && jgjUsersCouponEntity.worth != null}}">满{{jgjUsersCouponEntity.threshold}}减{{jgjUsersCouponEntity.worth}}</text>
+			<text wx:else>暂未使用优惠券</text>
+		</view>
+		<view class="right">
+			<image src="/images/right.png" />
+		</view>
+	</view>
+	<view class="ordercontain">
+		<view class="orderItem">
+			<view class="left">商品总价</view>
+			<view class="right">¥{{mainOrder.price}}</view>
+		</view>
+		<view class="orderItem" wx:if="{{mainOrder.couponValue != null}}">
+			<view class="left">优惠</view>
+			<view class="right">-¥{{mainOrder.couponValue}}</view>
+		</view>
+		<view class="orderItem">
+			<view class="left">订单金额</view>
+			<view class="right">¥{{mainOrder.pricePayed}}</view>
+		</view>
+	</view>
+	<view class="ordercontains">
+		<view class="orderItems">
+			<view class="left">订单编号</view>
+			<view class="right">{{mainOrder.sn}}</view>
+		</view>
+		<view class="orderItems">
+			<view class="left">下单时间</view>
+			<view class="right">{{mainOrder.createTime}}</view>
+		</view>
+		<view class="orderItems">
+			<view class="left">支付方式</view>
+			<view class="right">微信支付</view>
+		</view>
+	</view>
 </view>

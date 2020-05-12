@@ -1,5 +1,6 @@
 /**app.wxss**/
 @import "/pages/component/getInfo.wxss";
+
 page {
   color: #333;
   font-family: PingFangSC-Regular, sans-serif, PingFang-SC-Medium, PingFang SC;
@@ -55,6 +56,14 @@ page {
   overflow: hidden;
   word-break: break-all;
   text-overflow: ellipsis;
+}
+
+/*flex垂直居中对其 */
+.align-center-vertical{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: column;
 }
 
 .flex {
@@ -121,11 +130,9 @@ page {
   font-size: 20px;
 }
 
-/* *{
-  box-sizing:border-box;
-  -webkit-text-size-adjust: none; //解决页面字体忽大忽小
-} */
-
-view, text, input, button {
+view,
+text,
+input,
+button {
   box-sizing: border-box;
 }

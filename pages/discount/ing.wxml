@@ -1,0 +1,50 @@
+<!--pages/discount/ing.wxml-->
+<view>
+	<view class="headImg">
+		<image src="/images/kanjia.png" />
+	</view>
+	<view class="getMore">
+		<image class="ing" src="/images/ing.png" />
+		<view class="Morepro">
+			<swiper indicator-dots="true" autoplay="true" interval="3000" circular="true" duration="1000" indicator-color="#DEDBD9" indicator-active-color="#606060">
+				<block wx:for="{{userkanList}}" wx:key="index">
+					<swiper-item>
+						<view class="prowraps">
+							<image class="proimgs" src="{{item.mainImg}}" />
+							<view class="pro_names">{{item.name}}</view>
+							<view class="pro_infos">已有{{item.goodsWeight}}人帮助砍价，还需
+								<text class="red">{{item.goodsBargainNumber - item.goodsWeight}}</text>人帮助砍价</view>
+							<view class="process">
+								<view class="on" style="width: {{(item.goodsWeight/item.goodsBargainNumber)*100}}%;"></view>
+							</view>
+							<view class="time">
+								<view class='countV' style='margin-left:10rpx;'>{{item.day}}天</view>
+								<view class='point'>:</view>
+								<view class='countV'>{{item.hour}}时</view>
+								<view class='point'>:</view>
+								<view class='countV'>{{item.minute}}分</view>
+								<text>后结束</text>
+							</view>
+							<view class="pro-chooses">
+								<view class="operates" data-id="{{item.id}}" bindtap="kanjiadetail">继续砍价</view>
+							</view>
+						</view>
+					</swiper-item>
+				</block>
+			</swiper>
+		</view>
+	</view>
+	<block wx:for="{{proList}}" wx:key="index">
+		<view class="prowrap">
+			<image class="proimg" src="{{item.main_img}}" />
+			<view class="pro_name">{{item.name}}</view>
+			<view class="pro_info">{{item.intro}}</view>
+			<view class="pro-choose">
+				<view class="left moeny">{{item.price}}元</view>
+				<view class="right">
+					<view class="operate" bindtap="changeurl" data-id="{{item.id}}">发起砍价</view>
+				</view>
+			</view>
+		</view>
+	</block>
+</view>

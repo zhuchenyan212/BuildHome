@@ -1,0 +1,82 @@
+/* pages/discount/index.wxss */
+
+page {
+  background: #f5f5f5;
+}
+
+.headImg {
+  width: 100%;
+  height: 266rpx;
+}
+
+.headImg image {
+  width: 100%;
+  height: 100%;
+}
+
+.secondImg {
+  width: 100%;
+  height: 220rpx;
+  background: linear-gradient(180deg, rgba(231, 134, 67, 1) 0%, rgba(242, 66, 66, 1) 100%);
+  padding: 16rpx 20rpx;
+  margin-bottom: 36rpx;
+}
+
+.secondImg image {
+  width: 100%;
+  height: 176rpx;
+}
+
+.prowrap {
+  height: 228rpx;
+  margin-bottom: 2rpx;
+  background: #fff;
+}
+
+.prowrap .proimg {
+  width: 220rpx;
+  height: 228rpx;
+  float: left;
+}
+
+.pro_name {
+  color: #342b2b;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding-top: 20rpx;
+  padding-left: 250rpx;
+}
+
+.pro_info {
+  color: #8f8f8f;
+  font-size: 24rpx;
+  padding-left: 28rpx;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-bottom: 18rpx;
+  margin-top: 18rpx;
+}
+
+.pro-choose {
+  padding-left: 250rpx;
+  height: 45rpx;
+}
+
+.moeny {
+  color: #dc7f20;
+  font-size: 24rpx;
+}
+
+.operate {
+  width: 124rpx;
+  height: 48rpx;
+  line-height: 48rpx;
+  color: #fff;
+  background: rgba(206, 64, 49, 1);
+  opacity: 1;
+  font-size: 24rpx;
+  border-radius: 8rpx;
+  text-align: center;
+  margin: 35rpx 26rpx;
+}

@@ -1,0 +1,143 @@
+page {
+  background: #f5f5f5;
+}
+
+.searchwrap {
+  width: 100%;
+  padding: 22rpx 24rpx;
+  background: #fff;
+  margin-bottom: 10rpx;
+}
+
+.index_search_btn {
+  height: 64rpx;
+  background-color: #ebebeb;
+  color: #8f8f8f;
+  font-size: 28rpx;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 70rpx;
+  padding-left: 28rpx;
+}
+
+.index_search {
+  margin-right: 6rpx;
+  width: 32rpx;
+  height: 32rpx;
+}
+
+/*总体主盒子*/
+
+.container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+/*左侧栏主盒子*/
+
+.nav_left {
+  display: inline-block;
+  width: 25%;
+  height: 100%;
+  background-color: #fff;
+  text-align: center;
+}
+
+/*左侧栏list的item*/
+
+.nav_left_items {
+  height: 95rpx;
+  line-height: 95rpx;
+  font-size: 24rpx;
+  overflow: hidden;
+}
+
+/*左侧栏list的item被选中时*/
+
+.active {
+  background: #fff;
+  color: #dc7f20;
+  border-left: 12rpx solid #dc7f20;
+}
+
+/*右侧栏主盒子*/
+
+.nav_right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  flex: 1;
+  width: 75%;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 12rpx 24rpx;
+}
+
+/* 广告图 */
+
+.tupian {
+  width: 100%;
+  height: 215rpx;
+}
+
+.xiaoshuotu {
+  width: 100%;
+  height: 100%;
+}
+
+.brandType {
+  color: #dc7f20;
+  font-size: 28rpx;
+  margin: 14rpx 0;
+}
+
+/*右侧栏list的item*/
+
+.nav_right_items {
+  width: 100%;
+  height: 154rpx;
+  border-width: 2rpx;
+  border-bottom-style: solid;
+  border-color: #d8d8d8;
+  float: left;
+  margin-bottom: 15rpx;
+
+}
+
+.navigate {
+  height: 154rpx;
+  margin-bottom: 12rpx;
+  background: #fff;
+  padding: 18rpx;
+}
+
+.navigate image {
+  width: 120rpx;
+  height: 120rpx;
+  float: left;
+}
+
+.brand_name {
+  color: #342b2b;
+  font-size: 28rpx;
+  font-weight: bold;
+  padding-top: 18rpx;
+  padding-left: 128rpx;
+}
+
+.brand_info {
+  color: #8f8f8f;
+  font-size: 24rpx;
+  padding-left: 128rpx;
+}
+
+.nodata_text {
+  width: 100%;
+  text-align: center;
+  font-size: 22rpx;
+  position: absolute;
+  top: 250px;
+}

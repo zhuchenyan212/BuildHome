@@ -1,5 +1,5 @@
 <import src="/pages/component/getInfo.wxml" />
-<template is="getInfo" data="{{openor}}" />
+<template is="getInfo" data="{{openor,getphone}}" />
 <view class="container">
   <!-- 广告图 -->
   <view class="guangao">

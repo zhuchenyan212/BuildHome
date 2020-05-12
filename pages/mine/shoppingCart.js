@@ -7,18 +7,17 @@ Page({
     jgjShopcartEntities: [],
   },
 
-  onShow: function() {
+  onShow: function () {
     this.applyData()
   },
 
-  applyData: function() {
+  applyData: function () {
     var that = this;
     //请求服务器
     $.http({
       url: wx.getStorageSync('domain') + '/api/user/usersShoppingCart',
       method: 'GET',
     }).then(res => {
-      console.log(res)
       that.setData({
         jgjShopcartEntities: res.jgjShopcartEntities
       })
@@ -35,7 +34,6 @@ Page({
             url: wx.getStorageSync('domain') + '/api/user/usersShoppingCart?id=' + res.jgjShopcartEntities[i].id,
             method: 'DELETE',
           }).then(res => {
-            console.log(res)
           }).catch(err => {
             wx.showToast({
               title: '请求失败请稍候',
@@ -55,7 +53,7 @@ Page({
   },
 
   //勾选事件处理函数  
-  switchSelect: function(e) {
+  switchSelect: function (e) {
     // 获取item项的id，和数组的下标值  
     var Allprice = 0,
       i = 0;
@@ -73,19 +71,24 @@ Page({
       Allprice = Allprice + this.data.jgjShopcartEntities[i].price * this.data.jgjShopcartEntities[i].num;
     }
     if (Allprice == this.data.totalMoney) {
-      this.data.isAllSelect = true;
+      // this.data.isAllSelect = true;
+      this.setData({
+        isAllSelect: true,
+      })
     } else {
-      this.data.isAllSelect = false;
+      // this.data.isAllSelect = false;
+      this.setData({
+        isAllSelect: false,
+      })
     }
     this.setData({
       jgjShopcartEntities: this.data.jgjShopcartEntities,
       totalMoney: this.data.totalMoney,
-      isAllSelect: this.data.isAllSelect,
     })
   },
 
   //全选
-  allSelect: function(e) {
+  allSelect: function (e) {
     //处理全选逻辑
     let i = 0;
     if (!this.data.isAllSelect) {
@@ -107,7 +110,7 @@ Page({
   },
 
   /* 减数 */
-  delCount: function(e) {
+  delCount: function (e) {
     var that = this;
     var num = 0;
     num = e.target.dataset.num - 1;
@@ -116,7 +119,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/usersShoppingCart?id=' + e.target.dataset.id + '&num=' + num + '&selected=true',
       method: 'PUT',
     }).then(res => {
-      console.log(res)
       that.applyData()
     }).catch(err => {
       wx.showToast({
@@ -128,7 +130,7 @@ Page({
   },
 
   /* 加数 */
-  addCount: function(e) {
+  addCount: function (e) {
     var that = this;
     var num = 0;
     num = e.target.dataset.num + 1;
@@ -137,7 +139,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/usersShoppingCart?id=' + e.target.dataset.id + '&num=' + num + '&selected=true',
       method: 'PUT',
     }).then(res => {
-      console.log(res)
       that.applyData()
     }).catch(err => {
       wx.showToast({
@@ -149,8 +150,7 @@ Page({
   },
 
   /* 删除item */
-  delGoods: function(e) {
-    console.log(e.currentTarget.dataset.id)
+  delGoods: function (e) {
     var that = this
     wx.showModal({
       content: '确认删除当前商品？',
@@ -162,7 +162,6 @@ Page({
             url: wx.getStorageSync('domain') + '/api/user/usersShoppingCart?id=' + e.currentTarget.dataset.id,
             method: 'DELETE',
           }).then(res => {
-            console.log(res)
             that.applyData()
           }).catch(err => {
             wx.showToast({
@@ -182,7 +181,7 @@ Page({
   toBuy() {
     wx.showToast({
       title: '去结算',
-      icon: 'success',
+      icon: 'none',
       duration: 1500
     });
     var that = this;
@@ -201,50 +200,49 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function() {
+  onLoad: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
     var that = this;
-    console.log(that.data.jgjShopcartEntities)
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })

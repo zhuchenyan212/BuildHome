@@ -8,7 +8,6 @@ Page({
     swiper: [
       ["/images/a1.png"],
       ["/images/a1.png"],
-      ["/images/a1.png"],
       ["/images/a1.png"]
     ],
     jgjCaseEntity: {}

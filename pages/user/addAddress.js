@@ -39,8 +39,6 @@ Page({
   addAddress: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(e.detail.value)
-    console.log(that.data.region)
     if (e.detail.value.receiver == '') {
       wx.showToast({
         title: '请输入姓名',

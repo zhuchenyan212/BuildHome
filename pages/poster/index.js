@@ -30,12 +30,10 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/poster',
       method: 'GET'
     }).then(res => {
-      console.log(res)
       that.setData({
         jgjPosterEntities: res.jgjPosterEntities
       })
     }).catch(err => {
-      console.log(err)
       wx.showToast({
         title: '请求失败请稍候',
         icon: 'none',
@@ -58,7 +56,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/PersonCard/getCustomPoster?posterIMGURL=' + e.currentTarget.dataset.url + '&content=长按识别二维码，看我最新装修案例',
       method: 'GET'
     }).then(res => {
-      console.log(res)
       if (res.code == 0) {
         //保存图片
         that.setData({

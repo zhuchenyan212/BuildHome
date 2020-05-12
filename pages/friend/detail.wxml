@@ -1,0 +1,19 @@
+<view class="container">
+	<view class="containers">
+		<view class="wrapList">
+			<view class="font-wrap" wx:for="{{friendList}}" wx:key='index'>
+				<block wx:if="{{item.profitType == 1}}">
+					<view>
+						您的直属朋友{{item.userName}}完成签约，您获取推广反馈金{{item.profitMoney / 100}}元
+					</view>
+				</block>
+				<block wx:else>
+					<view>
+						您的朋友{{item.userName}}的下线用户完成签约，您获取推广反馈金{{item.profitMoney / 100}}元
+					</view>
+				</block>
+				<view class="info">{{item.profitDate}}</view>
+			</view>
+		</view>
+	</view>
+</view>

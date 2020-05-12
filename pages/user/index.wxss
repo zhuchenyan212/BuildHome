@@ -200,3 +200,14 @@ page {
 .btnSub::after {
   border: none;
 }
+
+.bottomV {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 60rpx;
+}
+
+.bottomInfo {
+  font-size: 24rpx;
+  color: #322926;
+}

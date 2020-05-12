@@ -1,0 +1,30 @@
+<view class="container">
+	<!-- 头部模块 -->
+	<view class="headnav">
+		<view class="headBg">
+			<view class="money">{{money}}元</view>
+			<text>现金总收益</text>
+			<view class="seedetail" bindtap="changedetail">查看详情</view>
+		</view>
+	</view>
+	<!-- 数据模块 -->
+	<view class="containers">
+		<view class="title">好友列表</view>
+		<view class="wrapList">
+			<view class="list-item" wx:for="{{friendList}}" wx:key='index'>
+				<image src="{{item.avatarurl}}" />
+				<view class="font-wrap">
+					<view>{{item.nickname}}</view>
+					<view>
+						<text>备注：</text>
+						<input class="beizhu" type="text" value="{{item.remarks}}" bindblur="changeBezhu" data-userid="{{item.userId}}" />
+					</view>
+					<!-- <view wx:if="{{item.serviceRegion == 1 && item.openid == null}}">返利次数：0</view>
+					<view wx:else>返利次数：{{item.serviceRegion}}</view>
+					<view wx:if='{{item.openid != null}}'>返利金额：{{item.openid}}</view> -->
+					<view class="info">手机号：{{item.mobile}}</view>
+				</view>
+			</view>
+		</view>
+	</view>
+</view>

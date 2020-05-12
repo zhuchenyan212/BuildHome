@@ -1,0 +1,35 @@
+<import src="/pages/component/getInfo.wxml" />
+<template is="getInfo" data="{{openor,getphone}}" />
+<view class="searchwrap">
+	<view class="index_search_btn" bindtap="click">
+		<image class="index_search" src="/images/searchLogo.png"></image>
+		<text>搜索</text>
+	</view>
+</view>
+<view class="container">
+	<!--左侧栏-->
+	<view class="nav_left">
+		<block wx:for="{{leftmenu}}" wx:key="id">
+			<view class="nav_left_items {{curNav == item.id ? 'active' : ''}}" data-num='{{curNav}}' bindtap="switchRightTab" data-index="{{index}}" data-id="{{item.id}}">{{item.name}}</view>
+		</block>
+	</view>
+	<!--右侧栏-->
+	<view class="nav_right">
+		<!-- 广告盒子 -->
+		<view class='tupian'>
+			<image wx:for="{{activity}}" wx:key="index" src='{{item.introImg}}' class='xiaoshuotu'></image>
+		</view>
+		<view class="brandType">品牌类目</view>
+		<block wx:if="{{rightbrand.length > 0}}">
+			<view class="nav_right_items" wx:for="{{rightbrand}}" wx:key="nramdId">
+				<view class="navigate" bindtap="navigate" wx:key="index" hover-class="none" data-id="{{item.nramdId}}" data-type="{{item.nramdTypeId}}">
+					<image src="{{item.nramdImg}}" />
+					<view class="brand_name">{{item.nramdName}}</view>
+					<view class="brand_info">{{item.nramdContent}}</view>
+				</view>
+			</view>
+		</block>
+		<!--如果无数据，则显示数据-->
+		<view class="nodata_text" wx:else>该分类暂无数据</view>
+	</view>
+</view>

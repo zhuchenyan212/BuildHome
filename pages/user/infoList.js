@@ -30,7 +30,6 @@ Page({
       url: wx.getStorageSync('domain') + '/api/user/messages',
       method: 'GET'
     }).then(res => {
-      console.log(res)
       that.setData({
         messages: res.messages
       })

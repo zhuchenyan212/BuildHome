@@ -1,156 +1,167 @@
 <!--pages/user/index.wxml-->
 <import src="/pages/component/getInfo.wxml" />
-<template is="getInfo" data="{{openor}}" />
+<template is="getInfo" data="{{openor,getphone}}" />
 <view class="container">
-  <!-- 头部模块 -->
-  <view class="headnav">
-    <view class="headBg">
-      <block wx:if="{{userEntity.identity == 1 && userEntity.salesman != null}}">
-        <view class="dingwei" bindtap="showInfo">
-          <form report-submit='true' bindsubmit='getNumSuccess'>
-            <button form-type="submit" hover-class="none" style="position: inherit;">
-              <image src="/images/bell.png" />
-            </button>
-          </form>
-          <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
-        </view>
-      </block>
-      <block wx:if="{{userEntity.identity == 2}}">
-        <view class="dingwei" bindtap="showInfo">
-          <form report-submit='true' bindsubmit='getNumSuccess'>
-            <button form-type="submit" hover-class="none" style="position: inherit;">
-              <image src="/images/bell.png" />
-            </button>
-          </form>
-          <view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
-        </view>
-      </block>
-      <view wx:if="{{userEntity.avatarurl == null}}" style="padding-top:13rpx;">
-        <button class="headImg"></button>
-        <button class="getInfo" open-type="getUserInfo" bindgetuserinfo="getInfo">点击授权>></button>
-      </view>
-      <view wx:else style="padding-top:13rpx;">
-        <image class="touxing input" src="{{userEntity.avatarurl}}" />
-        <view class="fots" wx:if="{{userEntity.nickname != null}}">{{userEntity.nickname}}</view>
-      </view>
-      <view class="item">
-        <input class="fot input" bindinput='formPhone' bindblur="blur" placeholder="请输入手机号码" value="{{phone}}" />
-        <image class="changephone" src="/images/changephone.png" />
-      </view>
-    </view>
-    <!-- 订单模块 -->
-    <view class="carditem">
-      <navigator class="ft-13 font" url="/pages/order/index?currentTab=0" hover-class="none">
-        <form report-submit='true' bindsubmit='getNumSuccess'>
-          <button form-type="submit" hover-class="none" class="btnSub">
-            我的订单
-          </button>
-        </form>
-      </navigator>
-      <view class="ui-grids clear">
-        <navigator class="grid" url="/pages/order/index?currentTab=1" hover-class="none">
-          <view class="ui_grid-img">
-            <form report-submit='true' bindsubmit='getNumSuccess'>
-              <button form-type="submit" hover-class="none" class="btnSub">
-                <image src="/images/order1.png" />
-              </button>
-            </form>
-          </view>
-          <view class="ui_grid-label ellipsis">待付款</view>
-        </navigator>
-        <navigator class="grid margin" url="/pages/order/index?currentTab=2" hover-class="none">
-          <view class="ui_grid-img">
-            <form report-submit='true' bindsubmit='getNumSuccess'>
-              <button form-type="submit" hover-class="none" class="btnSub">
-                <image src="/images/order2.png" />
-              </button>
-            </form>
-          </view>
-          <view class="ui_grid-label ellipsis">待发货</view>
-        </navigator>
-        <navigator class="grid margin" url="/pages/order/index?currentTab=3" hover-class="none">
-          <view class="ui_grid-img">
-            <form report-submit='true' bindsubmit='getNumSuccess'>
-              <button form-type="submit" hover-class="none" class="btnSub">
-                <image src="/images/order3.png" />
-              </button>
-            </form>
-          </view>
-          <view class="ui_grid-label ellipsis">待收货</view>
-        </navigator>
-        <navigator class="grid margin" url="/pages/order/index?currentTab=4" hover-class="none">
-          <view class="ui_grid-img">
-            <form report-submit='true' bindsubmit='getNumSuccess'>
-              <button form-type="submit" hover-class="none" class="btnSub">
-                <image src="/images/order4.png" />
-              </button>
-            </form>
-          </view>
-          <view class="ui_grid-label ellipsis">已完成</view>
-        </navigator>
-      </view>
-    </view>
-    <!-- 订单模块 -->
-  </view>
-  <!-- 头部模块 -->
-  <!-- 其他模块 -->
-  <view class="listmenu">
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator class="menu-item" url="/pages/mine/shoppingCart" hover-class="none">
-          <image src="/images/car.png" />
-          <text>购物车</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator class="menu-item" url="/pages/mine/quan" hover-class="none">
-          <image src="/images/quan.png" />
-          <text>我的优惠券</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator class="menu-item" url="/pages/user/myaddress" hover-class="none">
-          <image src="/images/adress.png" />
-          <text>我的地址</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator class="menu-item" url="/pages/user/apply" hover-class="none">
-          <image src="/images/apply.png" />
-          <text>申请成为维修师傅</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator class="menu-item" url="/pages/user/applycity" hover-class="none">
-          <image src="/images/cityapply.png" />
-          <text>城市合伙人申请</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator wx:if="{{identity == 2}}" class="menu-item" url="/pages/poster/index" hover-class="none">
-          <image src="/images/cityapply.png" />
-          <text>单图海报</text>
-        </navigator>
-      </button>
-    </form>
-    <form report-submit='true' bindsubmit='getNumSuccess'>
-      <button form-type="submit" hover-class="none" class="btnSub">
-        <navigator wx:if="{{identity == 2}}" class="menu-item" url="/pages/poster/poster" hover-class="none">
-          <image src="/images/cityapply.png" />
-          <text>自定义海报</text>
-        </navigator>
-      </button>
-    </form>
-  </view>
-  <!-- 其他模块 -->
+	<!-- 头部模块 -->
+	<view class="headnav">
+		<view class="headBg">
+			<block wx:if="{{userEntity.identity == 1 && userEntity.salesman != null}}">
+				<view class="dingwei" bindtap="showInfo">
+					<form report-submit='true' bindsubmit='getNumSuccess'>
+						<button form-type="submit" hover-class="none" style="position: inherit;">
+							<image src="/images/bell.png" />
+						</button>
+					</form>
+					<view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
+				</view>
+			</block>
+			<block wx:if="{{userEntity.identity == 2}}">
+				<view class="dingwei" bindtap="showInfo">
+					<form report-submit='true' bindsubmit='getNumSuccess'>
+						<button form-type="submit" hover-class="none" style="position: inherit;">
+							<image src="/images/bell.png" />
+						</button>
+					</form>
+					<view class="infoNum" wx:if="{{unReadMessageCount > 0}}">{{unReadMessageCount}}</view>
+				</view>
+			</block>
+			<view wx:if="{{userEntity.avatarurl == null}}" style="padding-top:13rpx;">
+				<button class="headImg"></button>
+				<button class="getInfo" open-type="getUserInfo" bindgetuserinfo="getInfo">点击授权>></button>
+			</view>
+			<view wx:else style="padding-top:13rpx;">
+				<image class="touxing input" src="{{userEntity.avatarurl}}" />
+				<view class="fots" wx:if="{{userEntity.nickname != null}}">{{userEntity.nickname}}</view>
+			</view>
+			<view class="item">
+				<input class="fot input" bindinput='formPhone' bindblur="blur" placeholder="请输入手机号码" value="{{phone}}" />
+				<image class="changephone" src="/images/changephone.png" />
+			</view>
+		</view>
+		<!-- 订单模块 -->
+		<view class="carditem">
+			<navigator class="ft-13 font" url="/pages/order/index?currentTab=0" hover-class="none">
+				<form report-submit='true' bindsubmit='getNumSuccess'>
+					<button form-type="submit" hover-class="none" class="btnSub">
+						我的订单
+					</button>
+				</form>
+			</navigator>
+			<view class="ui-grids clear">
+				<navigator class="grid" url="/pages/order/index?currentTab=1" hover-class="none">
+					<view class="ui_grid-img">
+						<form report-submit='true' bindsubmit='getNumSuccess'>
+							<button form-type="submit" hover-class="none" class="btnSub">
+								<image src="/images/order1.png" />
+							</button>
+						</form>
+					</view>
+					<view class="ui_grid-label ellipsis">待付款</view>
+				</navigator>
+				<navigator class="grid margin" url="/pages/order/index?currentTab=2" hover-class="none">
+					<view class="ui_grid-img">
+						<form report-submit='true' bindsubmit='getNumSuccess'>
+							<button form-type="submit" hover-class="none" class="btnSub">
+								<image src="/images/order2.png" />
+							</button>
+						</form>
+					</view>
+					<view class="ui_grid-label ellipsis">待发货</view>
+				</navigator>
+				<navigator class="grid margin" url="/pages/order/index?currentTab=3" hover-class="none">
+					<view class="ui_grid-img">
+						<form report-submit='true' bindsubmit='getNumSuccess'>
+							<button form-type="submit" hover-class="none" class="btnSub">
+								<image src="/images/order3.png" />
+							</button>
+						</form>
+					</view>
+					<view class="ui_grid-label ellipsis">待收货</view>
+				</navigator>
+				<navigator class="grid margin" url="/pages/order/index?currentTab=4" hover-class="none">
+					<view class="ui_grid-img">
+						<form report-submit='true' bindsubmit='getNumSuccess'>
+							<button form-type="submit" hover-class="none" class="btnSub">
+								<image src="/images/order4.png" />
+							</button>
+						</form>
+					</view>
+					<view class="ui_grid-label ellipsis">已完成</view>
+				</navigator>
+			</view>
+		</view>
+		<!-- 订单模块 -->
+	</view>
+	<!-- 头部模块 -->
+	<!-- 其他模块 -->
+	<view class="listmenu">
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/mine/shoppingCart" hover-class="none">
+					<image src="/images/car.png" />
+					<text>购物车</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/friend/index" hover-class="none">
+					<image src="/images/friend.png" />
+					<text>我的好友</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/mine/quan" hover-class="none">
+					<image src="/images/quan.png" />
+					<text>我的优惠券</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/user/myaddress" hover-class="none">
+					<image src="/images/adress.png" />
+					<text>我的地址</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/user/apply" hover-class="none">
+					<image src="/images/apply.png" />
+					<text>申请成为维修师傅</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator class="menu-item" url="/pages/user/applycity" hover-class="none">
+					<image src="/images/cityapply.png" />
+					<text>城市合伙人申请</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator wx:if="{{identity == 2}}" class="menu-item" url="/pages/poster/index" hover-class="none">
+					<image src="/images/cityapply.png" />
+					<text>单图海报</text>
+				</navigator>
+			</button>
+		</form>
+		<form report-submit='true' bindsubmit='getNumSuccess'>
+			<button form-type="submit" hover-class="none" class="btnSub">
+				<navigator wx:if="{{identity == 2}}" class="menu-item" url="/pages/poster/poster" hover-class="none">
+					<image src="/images/cityapply.png" />
+					<text>自定义海报</text>
+				</navigator>
+			</button>
+		</form>
+	</view>
+	<!-- 其他模块 -->
+</view>
+<view class='bottomV'>
+	<text class='bottomInfo'>{{text}}</text>
 </view>

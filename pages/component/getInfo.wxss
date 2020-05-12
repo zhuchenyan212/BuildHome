@@ -67,9 +67,23 @@
 
 .getinfo {
   width: 90%;
-  height: 42px;
-  line-height: 42px;
-  font-size: 14px;
+  height: 36px;
+  line-height: 36px;
+  font-size: 12px;
   color: #fff;
+  padding-left: 0px;
+  padding-right: 0px;
   background: #dc7f20;
+}
+
+.getinfos {
+  width: 90%;
+  height: 36px;
+  line-height: 36px;
+  font-size: 12px;
+  color: #fff;
+  padding-left: 0px;
+  padding-right: 0px;
+  background: #dc7f20;
+  margin-top: 30rpx;
 }

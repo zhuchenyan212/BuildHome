@@ -11,14 +11,12 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(options.id)
     var that = this;
     //请求服务器
     $.http({
       url: wx.getStorageSync('domain') + '/api/index/activities/' + options.id,
       method: 'GET'
     }).then(res => {
-      console.log(res)
       that.setData({
         id: options.id,
         count: res.count,
@@ -33,7 +31,6 @@ Page({
         WxParse.wxParse('article', 'html', res.jgjActivity.detail, that, 5);
       }
     }).catch(err => {
-      console.log(err)
       wx.showToast({
         title: '请求失败请稍候',
         icon: 'none',
@@ -45,7 +42,6 @@ Page({
   saveInfo: function(e) {
     var that = this,
       phoneReg = /^(^(\d{3,4}-)?\d{7,8})$|(1[0-9]{10})$/;
-    console.log(e.detail.value)
     if (e.detail.value.username == '') {
       wx.showToast({
         title: '请输入姓名',
